@@ -31,16 +31,16 @@ public class Player : MonoBehaviour
         }
 
         //タップでジャンプ
-        if (MobileInput.GetFlick() == MobileInput.TouchDir.UP && m_isGrounded)
+        if (MobileInput.TouchType(MobileInput.TouchDir.UP) && m_isGrounded)
         {
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
             m_isGrounded = false;
         }
 
         //下方向フリックでしゃがむ
-        if (MobileInput.GetFlick() == MobileInput.TouchDir.DOWN && m_isGrounded)
+        if (MobileInput.TouchType(MobileInput.TouchDir.DOWN) && m_isGrounded)
         {
-
+            print("しゃがむ");
         }
         
 

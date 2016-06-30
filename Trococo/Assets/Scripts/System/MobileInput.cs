@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+
 public class MobileInput : MonoBehaviour
 {
     private static Vector2 m_StartPos;
@@ -17,6 +18,11 @@ public class MobileInput : MonoBehaviour
         NONE
     }
 
+    public static bool TouchType(TouchDir t)
+    {
+        if (GetFlick() == t) return true;
+        return false;
+    }
 
     public static TouchDir GetFlick()
     {

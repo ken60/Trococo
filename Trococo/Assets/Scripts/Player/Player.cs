@@ -31,14 +31,14 @@ public class Player : MonoBehaviour
         }
 
         //タップでジャンプ
-        if (MobileInput.TouchType(MobileInput.TouchDir.UP) && m_isGrounded)
+        if (MobileInput.GetTouch(MobileInput.TouchType.UP) && m_isGrounded)
         {
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
             m_isGrounded = false;
         }
 
-        //下方向フリックでしゃがむ
-        if (MobileInput.TouchType(MobileInput.TouchDir.DOWN) && m_isGrounded)
+        //GetTouchType
+        if (MobileInput.GetTouch(MobileInput.TouchType.DOWN) && m_isGrounded)
         {
             print("しゃがむ");
         }
@@ -46,31 +46,31 @@ public class Player : MonoBehaviour
 
         switch (MobileInput.GetFlick())
         {
-            case MobileInput.TouchDir.NONE:
+            case MobileInput.TouchType.NONE:
                 //m_Text.text = "なし";
                 break;
 
-            case MobileInput.TouchDir.UP:
+            case MobileInput.TouchType.UP:
                 //上フリックされた時の処理
                 m_Text.text = "上フリック";
                 break;
 
-            case MobileInput.TouchDir.DOWN:
+            case MobileInput.TouchType.DOWN:
                 //下フリックされた時の処理
                 m_Text.text = "下フリック";
                 break;
 
-            case MobileInput.TouchDir.RIGHT:
+            case MobileInput.TouchType.RIGHT:
                 //右フリックされた時の処理
                 m_Text.text = "右フリック";
                 break;
 
-            case MobileInput.TouchDir.LEFT:
+            case MobileInput.TouchType.LEFT:
                 //左フリックされた時の処理
                 m_Text.text = "左フリック";
                 break;
 
-            case MobileInput.TouchDir.TOUCH:
+            case MobileInput.TouchType.TOUCH:
                 //タッチされた時の処理
                 m_Text.text = "タッチ";
                 break;

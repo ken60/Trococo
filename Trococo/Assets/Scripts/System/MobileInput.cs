@@ -6,9 +6,9 @@ public class MobileInput : MonoBehaviour
     private static Vector2 m_StartPos;
     private static Vector2 m_EndPos;
     private static string m_Direction;
-    private static TouchDir m_TouchDir;
+    private static TouchType m_TouchDir;
 
-    public enum TouchDir
+    public enum TouchType
     {
         UP,
         DOWN,
@@ -18,13 +18,13 @@ public class MobileInput : MonoBehaviour
         NONE
     }
 
-    public static bool TouchType(TouchDir t)
+    public static bool GetTouch(TouchType type)
     {
-        if (GetFlick() == t) return true;
+        if (GetFlick() == type) return true;
         return false;
     }
 
-    public static TouchDir GetFlick()
+    public static TouchType GetFlick()
     {
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
@@ -39,7 +39,7 @@ public class MobileInput : MonoBehaviour
         }
         else
         {
-            m_TouchDir = TouchDir.NONE;
+            m_TouchDir = TouchType.NONE;
         }
 #elif UNITY_IOS || UNITY_ANDROID
         if (Input.touchCount > 0)
@@ -68,7 +68,7 @@ public class MobileInput : MonoBehaviour
     }
 
 
-    static void GetDirection()
+    private static void GetDirection()
     {
         Vector2 direction = m_EndPos - m_StartPos;
 
@@ -77,12 +77,12 @@ public class MobileInput : MonoBehaviour
             if (30 < direction.x)
             {
                 //右向きにフリック
-                m_TouchDir = TouchDir.RIGHT;
+                m_TouchDir = TouchType.RIGHT;
             }
             else if (-30 > direction.x)
             {
                 //左向きにフリック
-                m_TouchDir = TouchDir.LEFT;
+                m_TouchDir = TouchType.LEFT;
             }
         }
         else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
@@ -90,18 +90,18 @@ public class MobileInput : MonoBehaviour
             if (30 < direction.y)
             {
                 //上向きにフリック
-                m_TouchDir = TouchDir.UP;
+                m_TouchDir = TouchType.UP;
             }
             else if (-30 > direction.y)
             {
                 //下向きのフリック
-                m_TouchDir = TouchDir.DOWN;
+                m_TouchDir = TouchType.DOWN;
             }
         }
         else
         {
             //タッチを検出
-            m_TouchDir = TouchDir.TOUCH;
+            m_TouchDir = TouchType.TOUCH;
         }
     }
 }

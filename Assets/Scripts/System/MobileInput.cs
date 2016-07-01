@@ -61,7 +61,7 @@ public class MobileInput : MonoBehaviour
         }
         else
         {
-            m_TouchDir = TouchDir.NONE;
+            m_TouchDir = TouchType.NONE;
         }
 #endif
         return m_TouchDir;

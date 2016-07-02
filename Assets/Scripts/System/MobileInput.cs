@@ -3,28 +3,66 @@ using System.Collections;
 
 public class MobileInput : MonoBehaviour
 {
-    private static Vector2 m_StartPos;
-    private static Vector2 m_EndPos;
-    private static string m_Direction;
-    private static TouchType m_TouchDir;
+    public static MobileInput instance;
+    public static MobileInput Instance { get { return instance; } }
+
+    private Vector2 m_StartPos;
+    private Vector2 m_EndPos;
+    private string m_Direction;
+    private TouchType m_TouchDir;
 
     public enum TouchType
     {
+        NONE = 0,
         UP,
         DOWN,
         LEFT,
         RIGHT,
-        TOUCH,
-        NONE
+        TOUCH
     }
 
-    public static bool GetTouch(TouchType type)
+    private void Start()
+    {
+        instance = this;
+    }
+
+    public bool GetTouchType(TouchType type)
     {
         if (GetFlick() == type) return true;
         return false;
     }
 
-    public static TouchType GetFlick()
+    public bool IsFlickUp()
+    {
+        if (GetFlick() == TouchType.UP) return true;
+        return false;
+    }
+
+    public bool IsFlickDown()
+    {
+        if (GetFlick() == TouchType.DOWN) return true;
+        return false;
+    }
+
+    public bool IsFlickLeft()
+    {
+        if (GetFlick() == TouchType.LEFT) return true;
+        return false;
+    }
+
+    public bool IsFlickRight()
+    {
+        if (GetFlick() == TouchType.RIGHT) return true;
+        return false;
+    }
+
+    public bool IsTouch()
+    {
+        if (GetFlick() == TouchType.TOUCH) return true;
+        return false;
+    }
+
+    private TouchType GetFlick()
     {
 #if UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
@@ -68,7 +106,7 @@ public class MobileInput : MonoBehaviour
     }
 
 
-    private static void GetDirection()
+    private void GetDirection()
     {
         Vector2 direction = m_EndPos - m_StartPos;
 

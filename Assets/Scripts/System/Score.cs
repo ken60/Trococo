@@ -8,12 +8,12 @@ public class Score : MonoBehaviour
 
     private Text m_ScoreText;
 
-    void Start()
+    private void Start()
     {
         m_ScoreText = GetComponent<Text>();
     }
 
-    void Update()
+    private void Update()
     {
         m_ScoreText.text = "Score: " + (int)m_Player.position.z;
 

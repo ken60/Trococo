@@ -13,13 +13,14 @@ public class Player : MonoBehaviour
     private Touch m_Touch;
     private Ray ray;
     private RaycastHit hit;
+    private bool m_isJump;
 
-    void Start()
+    private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void Update()
     {
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -36,17 +37,37 @@ public class Player : MonoBehaviour
             }
         }
 
-        //タップでジャンプ
+        //上フリックでジャンプ
         if (MobileInput.instance.IsFlickUp() && m_isGrounded)
         {
-            m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
+            m_isJump = true;
             m_isGrounded = false;
         }
+        else
+        {
+            m_isJump = false;
+        }
 
-        //GetTouchType
+        //下フリックでしゃがむ
         if (MobileInput.instance.IsFlickDown() && m_isGrounded)
         {
             print("しゃがむ");
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (m_isJump)
+        {
+            m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
+        }
+    }
+
+    void OnTriggerEnter(Collider hit)
+    {
+        if(hit.gameObject.tag == "Obstacle")
+        {
+            print("HIT!!");
         }
     }
 }

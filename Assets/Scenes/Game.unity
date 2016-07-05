@@ -583,10 +583,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b10d06495bf7e46ab6963bd6e87ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Player: {fileID: 1395996585}
   m_Rail: {fileID: 158560, guid: 88827502889ee534e868a65963285914, type: 2}
   m_Ground: {fileID: 148856, guid: 1e0eb148cf1560f4d96a2e95b1370202, type: 2}
-  m_Rock: []
-  m_Player: {fileID: 1395996585}
+  m_Plante:
+  - {fileID: 133908, guid: 1134507961d8cfa42b6531ec3dcf5acd, type: 2}
+  - {fileID: 130094, guid: 00d59b45b1420ae4fa4563c629579d73, type: 2}
+  - {fileID: 198840, guid: 88903b58fe9439e46821318c0be7ee5b, type: 2}
+  - {fileID: 179632, guid: 8b84e3961ddc14d439244a44ca1512b0, type: 2}
+  m_Obstacle: []
   m_PreInstantiateRail: 40
   m_PreInstantiateGround: 4
 --- !u!4 &1887546729

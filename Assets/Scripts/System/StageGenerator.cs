@@ -25,13 +25,16 @@ public class StageGenerator : MonoBehaviour
         for (; m_RailPosZ < m_PreInstantiateRail; m_RailPosZ++)
         {
             GenObject(m_Rail, m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));
+            GenObject(m_Rail, m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));
+            GenObject(m_Rail, m_GeneratedRail, new Vector3(-1.0f, 0.0f, m_RailPosZ));
+
         }
 
         //初期配置地面,植物等を生成
         for (; m_GroundPosZ < m_PreInstantiateGround; m_GroundPosZ++)
         {
             GenObject(m_Ground, m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * 10));
-            GenObject(m_Plante[Random.Range(0, m_Plante.Length)], m_GeneratedPlante, new Vector3(0.0f, 0.0f, m_GroundPosZ * 10));
+            //GenObject(m_Plante[Random.Range(0, m_Plante.Length)], m_GeneratedPlante, new Vector3(0.0f, 0.0f, m_GroundPosZ * 10));
         }
     }
 
@@ -41,6 +44,8 @@ public class StageGenerator : MonoBehaviour
         {
             //画面外に出たレールを移動
             MoveObject(m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));
+            MoveObject(m_GeneratedRail, new Vector3(-1.0f, 0.0f, m_RailPosZ));
+            MoveObject(m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));
             m_RailPosZ++;
         }
 
@@ -57,7 +62,21 @@ public class StageGenerator : MonoBehaviour
 
             m_GroundPosZ++;
         }
+        SideMove();
     }
+
+    void SideMove()
+    {
+        if(MobileInput.instance.IsFlickRight())
+        {
+            m_Player.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+        }
+        if (MobileInput.instance.IsFlickLeft())
+        {
+            m_Player.transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+        }
+    }
+
 
 
     private void GenObject(GameObject genObj, List<GameObject> list, Vector3 pos)

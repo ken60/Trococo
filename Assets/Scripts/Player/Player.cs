@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
 
         //接地判定
         Vector3 RayPos = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
-        //Debug.DrawRay(RayPos, Vector3.down * m_RayDist, Color.red);
+        Debug.DrawRay(RayPos, Vector3.down * m_RayDist, Color.red);
         if (Physics.Raycast(RayPos, Vector3.down, out hit, m_RayDist))
         {
             if (hit.collider.tag == "Rail")

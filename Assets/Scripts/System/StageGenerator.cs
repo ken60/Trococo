@@ -45,7 +45,6 @@ public class StageGenerator : MonoBehaviour
         for (; m_GroundPosZ < m_PreInstantiateGround; m_GroundPosZ++)//, m_ObstaclePosZ += m_GroundSizeZ)
         {
             GenObject(m_Ground, m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
-            //GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ));
         }
 
         //初期配置障害物を生成
@@ -74,15 +73,18 @@ public class StageGenerator : MonoBehaviour
 
             //障害物を生成
             GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ));
-            
+
             m_GroundPosZ++;
             m_ObstaclePosZ += m_GroundSizeZ;
         }
 
+        //print(m_ObstaclePosZ);
+
         //画面外に出た障害物を削除
-        if (m_Player.position.z > (m_GroundPosZ - m_PreInstantiateObstacle) * m_GroundSizeZ)
+        if (m_Player.position.z > ((m_ObstaclePosZ * 0.1f) - m_PreInstantiateGround) * m_GroundSizeZ)
         {
-            RemoveObject(m_GeneratedObstacle, 0);
+            //print("Called");
+            //RemoveObject(m_GeneratedObstacle, 0);
         }
     }
 

@@ -40,7 +40,7 @@ public class StageGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (m_Player.position.z > m_RailPosZ - (m_PreInstantiateRail - 1))
+        if (m_Player.position.z > m_RailPosZ - (m_PreInstantiateRail - 2))
         {
             //画面外に出たレールを移動
             MoveObject(m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));
@@ -62,29 +62,16 @@ public class StageGenerator : MonoBehaviour
 
             m_GroundPosZ++;
         }
-        SideMove();
     }
 
-    void SideMove()
-    {
-        if(MobileInput.instance.IsFlickRight())
-        {
-            m_Player.transform.position += new Vector3(1.0f, 0.0f, 0.0f);
-        }
-        if (MobileInput.instance.IsFlickLeft())
-        {
-            m_Player.transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
-        }
-    }
-
-
-
+    //オブジェクトを生成
     private void GenObject(GameObject genObj, List<GameObject> list, Vector3 pos)
     {
         GameObject obj = Instantiate(genObj, pos, Quaternion.identity) as GameObject;
         list.Add(obj);
     }
 
+    //オブジェクトを移動
     private void MoveObject(List<GameObject> list, Vector3 pos)
     {
         GameObject obj = list[0];
@@ -93,6 +80,7 @@ public class StageGenerator : MonoBehaviour
         obj.transform.position = pos;
     }
 
+    //オブジェクトを削除
     private void RemoveObject(List<GameObject> list, int index)
     {
         GameObject obj = list[index];

@@ -6,14 +6,18 @@ public class Player : MonoBehaviour
 {
     public float m_MoveSpeed = 2.0f;
     public float m_JumpForce;
+    public float m_LateralForce;
     public float m_RayDist = 0.5f;
+    public float m_LateralMotionSpeed;
     public bool m_isGrounded = false;
 
     private Rigidbody m_Rigidbody;
     private Touch m_Touch;
     private Ray ray;
     private RaycastHit hit;
-    private bool m_isJump;
+    private int m_CurrentRunningRail = 0; //現在走っているレール
+    private bool m_isJump = false;
+    private bool m_isLateralMove = false;
 
     private void Start()
     {
@@ -53,6 +57,12 @@ public class Player : MonoBehaviour
         {
             print("しゃがむ");
         }
+
+        //地面についている時のみ横移動
+        if (m_isGrounded)
+        {
+            LateralMotion();
+        }
     }
 
     private void FixedUpdate()
@@ -61,11 +71,33 @@ public class Player : MonoBehaviour
         {
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
         }
+        if (m_isLateralMove)
+        {
+            m_Rigidbody.AddForce(Vector3.up * (m_JumpForce * 0.5f));
+        }
+    }
+
+    //横移動
+    private void LateralMotion()
+    {
+        if (MobileInput.instance.IsFlickRight())
+        {
+            m_CurrentRunningRail++;
+        }
+        if (MobileInput.instance.IsFlickLeft())
+        {
+            m_CurrentRunningRail--;
+        }
+        m_CurrentRunningRail = Mathf.Clamp(m_CurrentRunningRail, -1, 1);
+
+        transform.position =
+            Vector3.Lerp(transform.position,
+            new Vector3(m_CurrentRunningRail, transform.position.y, transform.position.z), 0.2f);
     }
 
     void OnTriggerEnter(Collider hit)
     {
-        if(hit.gameObject.tag == "Obstacle")
+        if (hit.gameObject.tag == "Obstacle")
         {
             print("HIT!!");
         }

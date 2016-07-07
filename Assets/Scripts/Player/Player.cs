@@ -5,9 +5,13 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private GameObject m_Squid_ink;   //画面を覆うイカスミ
+    [SerializeField]
     private Collider m_Collider;   //プレイヤーのCollider
     [SerializeField]
     private ParticleSystem m_DieParticle;   //プレイヤーのCollider
+    [SerializeField]
+    private Canvas m_Canvas;    //キャンバス
     [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
     [SerializeField]
@@ -15,13 +19,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_LateralJumpForce;    //横移動時のジャンプ力
     [SerializeField]
-    private float m_CrouchTime;   //しゃがむ時間
+    private float m_CrouchTime; //しゃがむ時間
     [SerializeField]
     private float m_LerpRate;   //横移動の補間割合
     [SerializeField]
     private float m_LateralMotionSpeed;  //横移動のスピード
     [SerializeField]
-    private float m_RayDist;     //地面判定のRayの長さ
+    private float m_RayDist;    //地面判定のRayの長さ
 
     private Rigidbody m_Rigidbody;
     private Touch m_Touch;
@@ -131,6 +135,12 @@ public class Player : MonoBehaviour
         if (hit.gameObject.tag == "Obstacle")
         {
             Instantiate(m_DieParticle, transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity);
+        }
+        //障害物
+        if (hit.gameObject.tag == "Squid")
+        {
+            GameObject obj = Instantiate(m_Squid_ink, transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
+            obj.transform.SetParent(m_Canvas.transform, false);
         }
     }
 }

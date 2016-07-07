@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7b58f1f211000554a992732afbce8848
-timeCreated: 1467370366
+guid: 2505dca247e96414c89a5461b519589d
+timeCreated: 1467891012
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Torokko:Mesh
-    9500000: //RootNode
+    4300000: Trocco:Mesh
   materials:
     importMaterials: 1
     materialName: 0
@@ -69,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

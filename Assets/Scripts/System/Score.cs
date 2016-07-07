@@ -16,6 +16,5 @@ public class Score : MonoBehaviour
     private void Update()
     {
         m_ScoreText.text = "Score: " + (int)m_Player.position.z;
-
     }
 }

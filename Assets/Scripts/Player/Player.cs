@@ -5,11 +5,17 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private Collider m_Collider;   //プレイヤーのCollider
+    [SerializeField]
+    private ParticleSystem m_DieParticle;   //プレイヤーのCollider
+    [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
     [SerializeField]
     private float m_JumpForce;   //ジャンプ力
     [SerializeField]
     private float m_LateralJumpForce;    //横移動時のジャンプ力
+    [SerializeField]
+    private float m_CrouchTime;   //しゃがむ時間
     [SerializeField]
     private float m_LerpRate;   //横移動の補間割合
     [SerializeField]
@@ -22,9 +28,11 @@ public class Player : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private int m_CurrentRunningRail = 0;   //現在走っているレール
-    private bool m_isGrounded = false;      //地面に着いているか
-    private bool m_isJump = false;          //ジャンプ中か
+    private float m_TimeCount = 0;          //
+    private bool m_isGrounded = false;
+    private bool m_isJump = false;
     private bool m_isLateralMove = false;   //横移動中か
+    private bool m_isCrouch = false;
 
     private void Start()
     {
@@ -61,7 +69,19 @@ public class Player : MonoBehaviour
         //下フリックでしゃがむ
         if (MobileInput.instance.IsFlickDown() && m_isGrounded)
         {
-            print("しゃがむ");
+            m_isCrouch = true;
+        }
+        //しゃがみ中はプレイヤー自身の衝突判定を無効化
+        if (m_isCrouch)
+        {
+            m_Collider.enabled = !m_isCrouch;
+            m_TimeCount += Time.deltaTime;
+            if (m_TimeCount >= m_CrouchTime)
+            {
+                m_TimeCount = 0.0f;
+                m_isCrouch = false;
+                m_Collider.enabled = !m_isCrouch;
+            }
         }
 
         //地面についている時のみ横移動
@@ -96,6 +116,7 @@ public class Player : MonoBehaviour
         {
             m_CurrentRunningRail--;
         }
+
         m_CurrentRunningRail = Mathf.Clamp(m_CurrentRunningRail, -1, 1);
 
         //レール間移動
@@ -109,7 +130,7 @@ public class Player : MonoBehaviour
         //障害物
         if (hit.gameObject.tag == "Obstacle")
         {
-            print("HIT!!");
+            Instantiate(m_DieParticle, transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity);
         }
     }
 }

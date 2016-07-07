@@ -42,7 +42,7 @@ public class StageGenerator : MonoBehaviour
         }
 
         //初期配置地面を生成
-        for (; m_GroundPosZ < m_PreInstantiateGround; m_GroundPosZ++)//, m_ObstaclePosZ += m_GroundSizeZ)
+        for (; m_GroundPosZ < m_PreInstantiateGround; m_GroundPosZ++)
         {
             GenObject(m_Ground, m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
         }

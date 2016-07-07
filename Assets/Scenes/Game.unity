@@ -1242,7 +1242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &876078945
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,6 +1543,22 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 782233244}
+--- !u!1 &1334273802 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: cf30c716249590e449a33279bab59fbc, type: 3}
+  m_PrefabInternal: {fileID: 741145432}
+--- !u!65 &1334273803
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1334273802}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4965657, y: 0.8764, z: 0.37606195}
+  m_Center: {x: -0.000000029802322, y: 0.4382, z: -0.030010477}
 --- !u!1 &1345893684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,7 +1713,7 @@ GameObject:
   - 114: {fileID: 1395996592}
   - 114: {fileID: 1395996590}
   m_Layer: 0
-  m_Name: Trokko
+  m_Name: Trocco
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1761,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 395fc42d207aaa341a470f214d1ceff4, type: 2}
+  - {fileID: 2100000, guid: ae8fa3bc4a18ea44bbff5a0c67d4e2a9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1768,7 +1784,7 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395996584}
-  m_Mesh: {fileID: 4300000, guid: 7b58f1f211000554a992732afbce8848, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2505dca247e96414c89a5461b519589d, type: 3}
 --- !u!65 &1395996589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1779,8 +1795,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.50406146, y: 0.4977812, z: 0.62907904}
-  m_Center: {x: 0.00064480305, y: 0.2519094, z: 0.000300318}
+  m_Size: {x: 0.50406146, y: 0.49778122, z: 0.57620287}
+  m_Center: {x: 0.00064480305, y: 0.2519094, z: 0.02673839}
 --- !u!114 &1395996590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,9 +1808,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0424e42f8ccfccb43aaa65abdbf67f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Collider: {fileID: 1334273803}
+  m_DieParticle: {fileID: 19872740, guid: f02123e7c588bbc469f870ac750094ae, type: 2}
   m_MoveSpeed: 4
   m_JumpForce: 250
   m_LateralJumpForce: 120
+  m_CrouchTime: 1.1
   m_LerpRate: 0.2
   m_LateralMotionSpeed: 2
   m_RayDist: 0.502

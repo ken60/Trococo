@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     private float m_RayDist;    //地面判定のRayの長さ
 
     private Rigidbody m_Rigidbody;
+    private Animator m_Animator;
     private Touch m_Touch;
     private Ray ray;
     private RaycastHit hit;
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
         {
             m_isJump = true;
             m_isGrounded = false;
+            m_Animator.SetTrigger("Jump");
         }
         else
         {
@@ -99,12 +102,12 @@ public class Player : MonoBehaviour
     {
         if (m_isJump)
         {
-            m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
+            //m_Rigidbody.AddForce(Vector3.up * m_JumpForce, ForceMode.VelocityChange);
         }
 
         if (m_isLateralMove)
         {
-            m_Rigidbody.AddForce(Vector3.up * (m_LateralJumpForce));
+            //m_Rigidbody.AddForce(Vector3.up * (m_LateralJumpForce));
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_Squid_ink;   //画面を覆うイカスミ
+    private GameObject[] m_Squid_ink;   //画面を覆うイカスミ
     [SerializeField]
     private Collider m_Collider;   //プレイヤーのCollider
     [SerializeField]
@@ -39,14 +39,17 @@ public class Player : MonoBehaviour
     private bool m_isLateralMove = false;   //横移動中か
     private bool m_isCrouch = false;
 
+    private bool m_GameOver = false;
+
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Animator = GetComponent<Animator>();
+        //m_Animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if (m_GameOver) return;
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
 
@@ -66,7 +69,7 @@ public class Player : MonoBehaviour
         {
             m_isJump = true;
             m_isGrounded = false;
-            m_Animator.SetTrigger("Jump");
+            //m_Animator.SetTrigger("Jump");
         }
         else
         {
@@ -102,7 +105,7 @@ public class Player : MonoBehaviour
     {
         if (m_isJump)
         {
-            //m_Rigidbody.AddForce(Vector3.up * m_JumpForce, ForceMode.VelocityChange);
+            m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
         }
 
         if (m_isLateralMove)
@@ -142,7 +145,7 @@ public class Player : MonoBehaviour
         //障害物
         if (hit.gameObject.tag == "Squid")
         {
-            GameObject obj = Instantiate(m_Squid_ink, transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
+            GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
             obj.transform.SetParent(m_Canvas.transform, false);
         }
     }

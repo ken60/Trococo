@@ -8,6 +8,8 @@ TagManager:
   - Rail
   - Obstacle
   - Squid
+  - Coin
+  - Tomato
   layers:
   - Default
   - TransparentFX

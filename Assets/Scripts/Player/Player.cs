@@ -39,13 +39,13 @@ public class Player : MonoBehaviour
     private bool m_isLateralMove = false;   //横移動中か
     private bool m_isCrouch = false;
 
-    private void Start()
+    void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         //m_Animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    void Update()
     {
         if (GameData.Instance.IsGameOver || !GameData.Instance.IsGamePlay) return;
 
@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         GameData.Instance.Score = (int)transform.position.z;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         if (m_isJump)
         {
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     }
 
     //横移動
-    private void LateralMotion()
+    void LateralMotion()
     {
         //フリックで移動先のレールを変更
         if (MobileInput.Instance.IsFlickRight())
@@ -150,6 +150,19 @@ public class Player : MonoBehaviour
         {
             GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
             obj.transform.SetParent(m_Canvas.transform, false);
+        }
+
+        //コイン
+        if (hit.gameObject.tag == "Coin")
+        {
+            GameData.Instance.Coin++;
+            Destroy(hit.gameObject);
+        }
+
+        //トマト
+        if (hit.gameObject.tag == "Tomato")
+        {
+            Destroy(hit.gameObject);
         }
     }
 }

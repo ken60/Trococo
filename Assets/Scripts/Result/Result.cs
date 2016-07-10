@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class Result : MonoBehaviour
 {
-    RectTransform m_RectTransform;
+    [SerializeField]
+    private Text m_ScoreNum;
+    [SerializeField]
+    private Text m_CoinNum;
+
+    private RectTransform m_RectTransform;
+
 
     void Start()
     {
         m_RectTransform = GetComponent<RectTransform>();
+        m_ScoreNum.text = GameData.Instance.Score + " 点";
+        m_CoinNum.text = GameData.Instance.Coin + " 枚";
         MoveIn();
     }
 

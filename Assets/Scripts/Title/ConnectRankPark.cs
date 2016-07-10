@@ -13,6 +13,9 @@ public class ConnectRankPark : MonoBehaviour
     }
     public void ButtonClick()
     {
-        RankParkInterface.Instance().StartActivity();
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            RankParkInterface.Instance().StartActivity();
+        }
     }
 }

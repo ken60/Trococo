@@ -39,8 +39,6 @@ public class Player : MonoBehaviour
     private bool m_isLateralMove = false;   //横移動中か
     private bool m_isCrouch = false;
 
-    private bool m_GameOver = false;
-
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -49,7 +47,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (m_GameOver) return;
+        if (GameData.Instance.IsGameOver || !GameData.Instance.IsGamePlay) return;
+
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
 
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour
         }
 
         //上フリックでジャンプ
-        if (MobileInput.instance.IsFlickUp() && m_isGrounded)
+        if (MobileInput.Instance.IsFlickUp() && m_isGrounded)
         {
             m_isJump = true;
             m_isGrounded = false;
@@ -77,7 +76,7 @@ public class Player : MonoBehaviour
         }
 
         //下フリックでしゃがむ
-        if (MobileInput.instance.IsFlickDown() && m_isGrounded)
+        if (MobileInput.Instance.IsFlickDown() && m_isGrounded)
         {
             m_isCrouch = true;
         }
@@ -99,6 +98,9 @@ public class Player : MonoBehaviour
         {
             LateralMotion();
         }
+
+        //スコア
+        GameData.Instance.Score = (int)transform.position.z;
     }
 
     private void FixedUpdate()
@@ -118,11 +120,11 @@ public class Player : MonoBehaviour
     private void LateralMotion()
     {
         //フリックで移動先のレールを変更
-        if (MobileInput.instance.IsFlickRight())
+        if (MobileInput.Instance.IsFlickRight())
         {
             m_CurrentRunningRail++;
         }
-        if (MobileInput.instance.IsFlickLeft())
+        if (MobileInput.Instance.IsFlickLeft())
         {
             m_CurrentRunningRail--;
         }
@@ -140,9 +142,10 @@ public class Player : MonoBehaviour
         //障害物
         if (hit.gameObject.tag == "Obstacle")
         {
-            Instantiate(m_DieParticle, transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity);
+            GameData.Instance.IsGameOver = true;
+            Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
         }
-        //障害物
+        //イカ
         if (hit.gameObject.tag == "Squid")
         {
             GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;

@@ -3,13 +3,16 @@ using System.Collections;
 
 public class MobileInput : MonoBehaviour
 {
-    public static MobileInput instance;
     public static MobileInput Instance { get { return instance; } }
 
+    [SerializeField]
+    private float m_Angle;
+
+    private static MobileInput instance;
     private Vector2 m_StartPos;
     private Vector2 m_EndPos;
-    private string m_Direction;
     private TouchType m_TouchDir;
+    private string m_Direction;
 
     public enum TouchType
     {
@@ -73,7 +76,8 @@ public class MobileInput : MonoBehaviour
         else if (Input.GetMouseButtonUp(0))
         {
             m_EndPos = Input.mousePosition;
-            GetDirection();
+            Vector2 direction = m_EndPos - m_StartPos;
+            GetDirection(direction);
         }
         else
         {
@@ -93,7 +97,8 @@ public class MobileInput : MonoBehaviour
                 //指を離した座標を取得
                 case TouchPhase.Ended:
                     m_EndPos = touch.position;
-                    GetDirection();
+                    Vector2 direction = m_EndPos - m_StartPos;
+                    GetDirection(direction);
                     break;
             }
         }
@@ -106,18 +111,17 @@ public class MobileInput : MonoBehaviour
     }
 
 
-    private void GetDirection()
+    private void GetDirection(Vector2 direction)
     {
-        Vector2 direction = m_EndPos - m_StartPos;
 
         if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
         {
-            if (30 < direction.x)
+            if (m_Angle < direction.x)
             {
                 //右向きにフリック
                 m_TouchDir = TouchType.RIGHT;
             }
-            else if (-30 > direction.x)
+            else if (-m_Angle > direction.x)
             {
                 //左向きにフリック
                 m_TouchDir = TouchType.LEFT;
@@ -125,12 +129,12 @@ public class MobileInput : MonoBehaviour
         }
         else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
         {
-            if (30 < direction.y)
+            if (m_Angle < direction.y)
             {
                 //上向きにフリック
                 m_TouchDir = TouchType.UP;
             }
-            else if (-30 > direction.y)
+            else if (-m_Angle > direction.y)
             {
                 //下向きのフリック
                 m_TouchDir = TouchType.DOWN;

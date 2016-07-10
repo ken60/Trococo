@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+class Data
+{
+    public int HighScore = 0;
+    public int TotalCoinNum = 0;
+}
+
 public class GameData : SingletonMonoBehaviour<GameData>
 {
     private int m_Score = 0;
@@ -76,5 +83,15 @@ public class GameData : SingletonMonoBehaviour<GameData>
         {
             m_isGamePlay = value;
         }
+    }
+
+    public void Save()
+    {
+
+    }
+
+    public void Load()
+    {
+
     }
 }

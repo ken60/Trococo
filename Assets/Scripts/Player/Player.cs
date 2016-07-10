@@ -162,6 +162,7 @@ public class Player : MonoBehaviour
         //トマト
         if (hit.gameObject.tag == "Tomato")
         {
+            GameData.Instance.Tomato++;
             Destroy(hit.gameObject);
         }
     }

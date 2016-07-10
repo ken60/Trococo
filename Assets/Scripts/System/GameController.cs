@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour
                 //Androidのみスコアを送信
                 if (Application.platform == RuntimePlatform.Android)
                 {
-                    RankParkInterface.Instance().AddScore(GameData.Instance.Score);
+                    //RankParkInterface.Instance().AddScore(GameData.Instance.Score);
                 }
                 m_GameScene++;
                 break;

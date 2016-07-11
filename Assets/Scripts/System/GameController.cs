@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
             case GameScene.StartCount:
                 m_TimeCount += Time.deltaTime;
 
-                if (m_TimeCount >= 3.0f)
+                if (m_TimeCount >= 4.0f)
                 {
                     m_TimeCount = 0.0f;
                     GameData.Instance.IsGamePlay = true;

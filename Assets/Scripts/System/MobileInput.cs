@@ -7,11 +7,14 @@ public class MobileInput : MonoBehaviour
 
     [SerializeField]
     private float m_Angle;
+    [SerializeField]
+    private float m_TapRange = 0.0f;
 
     private static MobileInput instance;
     private Vector2 m_StartPos;
     private Vector2 m_EndPos;
     private TouchType m_TouchDir;
+    private float m_TapLength = 0.0f;
     private string m_Direction;
 
     public enum TouchType
@@ -67,54 +70,64 @@ public class MobileInput : MonoBehaviour
 
     private TouchType GetFlick()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))
+        //Unity Editorの場合
+        if (Application.platform == RuntimePlatform.WindowsEditor ||
+            Application.platform == RuntimePlatform.OSXEditor)
         {
-            m_StartPos = Input.mousePosition;
-        }
-
-        else if (Input.GetMouseButtonUp(0))
-        {
-            m_EndPos = Input.mousePosition;
-            Vector2 direction = m_EndPos - m_StartPos;
-            GetDirection(direction);
-        }
-        else
-        {
-            m_TouchDir = TouchType.NONE;
-        }
-#elif UNITY_IOS || UNITY_ANDROID
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            switch (touch.phase)
+            if (Input.GetMouseButtonDown(0))
             {
-                //最初にタッチされた座標を取得
-                case TouchPhase.Began:
-                    m_StartPos = touch.position;
-                    break;
+                m_StartPos = Input.mousePosition;
+            }
 
-                //指を離した座標を取得
-                case TouchPhase.Ended:
-                    m_EndPos = touch.position;
-                    Vector2 direction = m_EndPos - m_StartPos;
-                    GetDirection(direction);
-                    break;
+            else if (Input.GetMouseButtonUp(0))
+            {
+                m_EndPos = Input.mousePosition;
+                GetDirection(m_StartPos, m_EndPos);
+            }
+            else
+            {
+                m_TouchDir = TouchType.NONE;
             }
         }
-        else
-        {
-            m_TouchDir = TouchType.NONE;
-        }
-#endif
+        //AndroidかiPhoneの場合
+        else if (Application.platform == RuntimePlatform.Android ||
+            Application.platform == RuntimePlatform.IPhonePlayer)
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                switch (touch.phase)
+                {
+                    //最初にタッチされた座標を取得
+                    case TouchPhase.Began:
+                        m_StartPos = touch.position;
+                        break;
+
+                    //指を離した座標を取得
+                    case TouchPhase.Ended:
+                        m_EndPos = touch.position;
+                        GetDirection(m_StartPos, m_EndPos);
+                        break;
+                }
+            }
+            else
+            {
+                m_TouchDir = TouchType.NONE;
+            }
+        
         return m_TouchDir;
     }
 
 
-    private void GetDirection(Vector2 direction)
+    private void GetDirection(Vector2 start, Vector2 end)
     {
+        Vector2 direction = end - start;
 
-        if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
+        if (Vector2.Distance(start, end) < m_TapRange)
+        {
+            //タッチを検出
+            m_TouchDir = TouchType.TOUCH;
+        }
+        else if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
         {
             if (m_Angle < direction.x)
             {
@@ -139,11 +152,6 @@ public class MobileInput : MonoBehaviour
                 //下向きのフリック
                 m_TouchDir = TouchType.DOWN;
             }
-        }
-        else
-        {
-            //タッチを検出
-            m_TouchDir = TouchType.TOUCH;
         }
     }
 }

@@ -16,8 +16,8 @@ public class Result : MonoBehaviour
     void Start()
     {
         m_RectTransform = GetComponent<RectTransform>();
-        m_ScoreNum.text = GameData.Instance.Score + " 点";
-        m_CoinNum.text = GameData.Instance.Coin + " 枚";
+        m_ScoreNum.text = GameManager.Instance.Score + " 点";
+        m_CoinNum.text = GameManager.Instance.Coin + " 枚";
         MoveIn();
     }
 
@@ -58,13 +58,13 @@ public class Result : MonoBehaviour
     //ボタンクリック後のアニメーション完了時に呼ばれる
     void BackToTitle()
     {
-        GameData.Instance.InitGame();
+        GameManager.Instance.InitGame();
         SceneManager.LoadScene("Title");
     }
 
     void Restart()
     {
-        GameData.Instance.InitGame();
+        GameManager.Instance.InitGame();
         SceneManager.LoadScene("Game");
     }
 

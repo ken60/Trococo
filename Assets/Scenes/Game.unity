@@ -866,6 +866,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 498366, guid: 8c26cd695d092aa40919b8fc292245e0, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c26cd695d092aa40919b8fc292245e0, type: 2}
   m_IsPrefabParent: 0
@@ -2070,6 +2074,10 @@ Prefab:
       propertyPath: m_Canvas
       value: 
       objectReference: {fileID: 1345893687}
+    - target: {fileID: 11426762, guid: bcf4bfebe8d032a42883be9ba14f7542, type: 2}
+      propertyPath: m_TapRange
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bcf4bfebe8d032a42883be9ba14f7542, type: 2}
   m_IsPrefabParent: 0

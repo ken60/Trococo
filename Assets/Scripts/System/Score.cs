@@ -17,9 +17,9 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        m_ScoreText.text = "スコア " + GameData.Instance.Score;
+        m_ScoreText.text = "スコア " + GameManager.Instance.Score;
 
-        if (GameData.Instance.IsGameOver)
+        if (GameManager.Instance.IsGameOver)
         {
             m_TimeCount += Time.deltaTime;
             if (m_TimeCount >= m_GameOverWait)

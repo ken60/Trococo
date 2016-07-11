@@ -6,7 +6,9 @@ public class GameController : MonoBehaviour
 {
     enum GameScene
     {
-        StartCount = 0,
+        Title = 0,
+        LoadGame, 
+        StartCount,
         Play,
         GameOver,
         End
@@ -34,6 +36,15 @@ public class GameController : MonoBehaviour
     {
         switch (m_GameScene)
         {
+            case GameScene.Title:
+                m_GameScene++;
+                break;
+
+            case GameScene.LoadGame:
+                //GameManager.Instance.LoadGame();
+                m_GameScene++;
+                break;
+
             //ゲーム開始時のカウントダウン
             case GameScene.StartCount:
                 m_TimeCount += Time.deltaTime;
@@ -41,13 +52,13 @@ public class GameController : MonoBehaviour
                 if (m_TimeCount >= 4.0f)
                 {
                     m_TimeCount = 0.0f;
-                    GameData.Instance.IsGamePlay = true;
+                    GameManager.Instance.IsGamePlay = true;
                     m_GameScene++;
                 }
                 break;
             //ゲームプレイ中
             case GameScene.Play:
-                if (GameData.Instance.IsGameOver)
+                if (GameManager.Instance.IsGameOver)
                 {
                     m_TimeCount += Time.deltaTime;
                     if (m_TimeCount >= m_GameOverWait)
@@ -59,10 +70,11 @@ public class GameController : MonoBehaviour
                 break;
             //ゲームオーバー時一度だけ
             case GameScene.GameOver:
-                GameData.Instance.IsGamePlay = false;
+                GameManager.Instance.IsGamePlay = false;
                 GameObject panel = Instantiate(m_ResultPanel, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
                 panel.transform.SetParent(m_Canvas.transform, false);
 
+                //GameManager.Instance.SaveGame();
                 //Androidのみスコアを送信
                 if (Application.platform == RuntimePlatform.Android)
                 {

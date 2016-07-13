@@ -14,7 +14,7 @@ public class GameScene : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject m_ResultPanel;
+    private GameObject m_Panel_Result;
     [SerializeField]
     private GameObject m_StartCount;
     [SerializeField]
@@ -37,9 +37,8 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadGame:
-                //セーブデータのロード
                 GameManager.Instance.LoadGame();
-                GameObject obj =  Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
+                GameObject obj = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
                 obj.transform.SetParent(m_Camera.transform, false);
                 m_GameScene++;
                 break;
@@ -70,7 +69,7 @@ public class GameScene : MonoBehaviour
             //ゲームオーバー時一度だけ
             case eGameScene.GameOver:
                 GameSceneManager.Instance.IsGamePlaying = false;
-                GameObject panel = Instantiate(m_ResultPanel, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
+                GameObject panel = Instantiate(m_Panel_Result, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
                 panel.transform.SetParent(m_Canvas.transform, false);
 
                 //ハイスコアの時 & Androidのみスコアを送信
@@ -78,7 +77,6 @@ public class GameScene : MonoBehaviour
                 {
                     RankParkInterface.Instance().AddScore(GameManager.Instance.Score);
                 }
-
                 //セーブ
                 GameManager.Instance.SaveGame();
 

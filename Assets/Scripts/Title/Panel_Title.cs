@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 
 public class Panel_Title : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject m_Panel_HowToPlay;
+
     private RectTransform m_RectTransform;
 
     void Start()
@@ -16,9 +20,22 @@ public class Panel_Title : MonoBehaviour
         MoveIn();
     }
 
-    void Update()
+    public void Button_GameStart()
     {
-        //MoveOut();
+        MoveOut_Start();
+    }
+
+    public void Button_HowToPlay()
+    {
+
+    }
+
+    public void Button_Ranking()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            RankParkInterface.Instance().StartActivity();
+        }
     }
 
     void MoveIn()
@@ -29,18 +46,19 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    public void MoveOut()
+    void MoveOut_Start()
     {
         Hashtable parameters = new Hashtable();
-        parameters.Add("y", -(Screen.height * 0.5f) - m_RectTransform.sizeDelta.y);
+        parameters.Add("y", -Screen.height * 0.5f);
         parameters.Add("easeType", iTween.EaseType.easeInOutBack);
-        parameters.Add("oncomplete", "DestroyPanel");
+        parameters.Add("oncomplete", "LoadGame");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void DestroyPanel()
+    void LoadGame()
     {
+        SceneManager.LoadScene("Game");
         Destroy(gameObject);
     }
 }

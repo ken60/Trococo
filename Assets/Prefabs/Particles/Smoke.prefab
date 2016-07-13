@@ -408,7 +408,7 @@ ParticleSystem:
     enabled: 1
     type: 4
     radius: 0.46
-    angle: 30
+    angle: 20
     length: 5
     boxX: 1
     boxY: 1
@@ -428,7 +428,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 15
+      scalar: 13
       maxCurve:
         serializedVersion: 2
         m_Curve:

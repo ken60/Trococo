@@ -155,14 +155,14 @@ public class Player : MonoBehaviour
         //コイン
         if (hit.gameObject.tag == "Coin")
         {
-            GameManager.Instance.Coin++;
+            GameManager.Instance.Coin += 1;
             Destroy(hit.gameObject);
         }
 
         //トマト
         if (hit.gameObject.tag == "Tomato")
         {
-            GameManager.Instance.Tomato++;
+            GameManager.Instance.Tomato += 1;
             Destroy(hit.gameObject);
         }
     }

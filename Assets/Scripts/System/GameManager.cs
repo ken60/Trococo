@@ -45,6 +45,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void SaveGame()
     {
         Data data = new Data();
+
         //ハイスコア
         if (m_HighScore < m_Score)
             data.HighScore = m_Score;
@@ -99,7 +100,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
         set
         {
-            TotalCoinNum = value;
+            m_TotalCoinNum = value;
         }
     }
 

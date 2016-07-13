@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b764bd3af8d883488c5aed2b921bf70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ResultPanel: {fileID: 169746, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+  m_Panel_Result: {fileID: 169746, guid: 53402489bd9672d469a3a383365eed56, type: 2}
   m_StartCount: {fileID: 118732, guid: 8c26cd695d092aa40919b8fc292245e0, type: 2}
   m_Canvas: {fileID: 1345893687}
   m_GameOverWait: 1.3

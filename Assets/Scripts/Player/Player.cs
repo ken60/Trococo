@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsGameOver || !GameManager.Instance.IsGamePlay) return;
+        if (GameSceneManager.Instance.IsGameOver || !GameSceneManager.Instance.IsGamePlaying) return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
         //障害物
         if (hit.gameObject.tag == "Obstacle")
         {
-            GameManager.Instance.IsGameOver = true;
+            GameSceneManager.Instance.IsGameOver = true;
             Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
         }
         //イカ

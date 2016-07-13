@@ -23,11 +23,6 @@ public class RankParkInterface
         return _instance;
     }
 
-    public void Start()
-    {
-        SafeCall("startActivity", mainActivity);
-    }
-
     public void AddScore(int score)
     {
         SafeCall("sendScore", mainActivity, score);

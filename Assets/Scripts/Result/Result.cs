@@ -31,7 +31,7 @@ public class Result : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("easeType", iTween.EaseType.easeOutBounce);
         iTween.MoveTo(gameObject, parameters);
     }
 

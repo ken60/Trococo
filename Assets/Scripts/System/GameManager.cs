@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using LitJson;
 
 [System.Serializable]
 class Data
@@ -19,7 +20,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private bool m_isGamePlay = false;
     private bool m_isGameOver = false;
     private string m_Json;
-    Data m_Data = new Data();
+    private Data m_Data = new Data();
 
     public void InitGame()
     {
@@ -28,30 +29,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         m_TomatoNum = 0;
         m_isGameOver = false;
         m_isGamePlay = false;
+        m_Data = new Data();
     }
-
-    public void LoadGame()
-    {/*
-        Data data = new Data(); //初期化が必要
-        JsonUtility.FromJsonOverwrite(m_Json, data);
-        m_HighScore = data.HighScore;
-        m_TotalCoinNum = data.TotalCoinNum;
-        print(data.HighScore + " " + data.TotalCoinNum);
-        */
-        string loadData = null;
-        loadData = FileRead("SaveData");
-        Debug.Log(loadData);
-    }
-
-    public void SaveGame()
-    {
-        m_Data.HighScore = m_HighScore + m_Score;
-        m_Data.TotalCoinNum = m_TotalCoinNum + m_CoinNum;
-        m_Json = JsonUtility.ToJson(m_Data);
-        Debug.Log(m_Json);
-        FileWrite("SaveData", m_Json);
-    }
-
 
     public int Score
     {
@@ -89,6 +68,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
+    public int TotalCoinNum
+    {
+        get
+        {
+            return m_Data.TotalCoinNum;
+        }
+        set
+        {
+            TotalCoinNum = value;
+        }
+    }
+
     public bool IsGameOver
     {
         get
@@ -113,26 +104,83 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
+    public bool IsHighScore()
+    {
+        if (m_Data.HighScore < m_Score)
+            return true;
+        return false;
+    }
+
+    public void LoadGame()
+    {
+        Data loadData = JsonMapper.ToObject<Data>(FileRead("SaveData"));
+        m_Data.HighScore = loadData.HighScore;
+        m_Data.TotalCoinNum = loadData.TotalCoinNum;
+
+        Debug.Log(m_Data.HighScore);
+        Debug.Log(m_Data.TotalCoinNum);
+    }
+
+    public void SaveGame()
+    {
+        //ハイスコア
+        if (m_Data.HighScore < m_Score)
+            m_Data.HighScore = m_Score;
+        //合計コイン数
+        m_Data.TotalCoinNum = m_Data.TotalCoinNum + m_CoinNum;
+
+        m_Json = JsonMapper.ToJson(m_Data);
+        FileWrite("SaveData", m_Json);
+    }
+
     public void FileWrite(string name, string json)
     {
-        print("Called");
         // 保存するフォルダー
         string path = Application.persistentDataPath + "/Database/";
-        print(Application.persistentDataPath + "/Database/");
 
         // フォルダーがない場合は作成する
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
-            print("Create");
         }
-
         File.WriteAllText(path + name + ".json", json);
     }
 
     public string FileRead(string name)
     {
         string path = Application.persistentDataPath + "/Database/";
+
+        //ファイルがない場合は作成
+        if (!Directory.Exists(path))
+        {
+            FileWrite("SaveData", "");
+        }
         return File.ReadAllText(path + name + ".json", System.Text.Encoding.UTF8);
+    }
+
+    public static void Delete(string path)
+    {
+        if (!Directory.Exists(path))
+        {
+            return;
+        }
+
+        //ディレクトリ以外の全ファイルを削除
+        string[] filePaths = Directory.GetFiles(path);
+        foreach (string filePath in filePaths)
+        {
+            File.SetAttributes(filePath, FileAttributes.Normal);
+            File.Delete(filePath);
+        }
+
+        //ディレクトリの中のディレクトリも再帰的に削除
+        string[] directoryPaths = Directory.GetDirectories(path);
+        foreach (string directoryPath in directoryPaths)
+        {
+            Delete(directoryPath);
+        }
+
+        //中が空になったらディレクトリ自身も削除
+        Directory.Delete(path, false);
     }
 }

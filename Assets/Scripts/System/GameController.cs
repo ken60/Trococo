@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
     enum GameScene
     {
         Title = 0,
-        LoadGame, 
+        LoadGame,
         StartCount,
         Play,
         GameOver,
@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
                 break;
 
             case GameScene.LoadGame:
+                //セーブデータのロード
                 //GameManager.Instance.LoadGame();
                 m_GameScene++;
                 break;
@@ -74,12 +75,15 @@ public class GameController : MonoBehaviour
                 GameObject panel = Instantiate(m_ResultPanel, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
                 panel.transform.SetParent(m_Canvas.transform, false);
 
-                //GameManager.Instance.SaveGame();
-                //Androidのみスコアを送信
-                if (Application.platform == RuntimePlatform.Android)
+                //ハイスコアの時 & Androidのみスコアを送信
+                if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
-                    //RankParkInterface.Instance().AddScore(GameData.Instance.Score);
+                    RankParkInterface.Instance().AddScore(GameManager.Instance.Score);
                 }
+
+                //セーブ
+                //GameManager.Instance.SaveGame();
+
                 m_GameScene++;
                 break;
 

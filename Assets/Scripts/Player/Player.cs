@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
+        //m_Rigidbody.velocity = (Vector3.forward * m_MoveSpeed) *Time.deltaTime;
 
         //接地判定
         Vector3 RayPos = transform.position + new Vector3(0.0f, 0.5f, 0.0f);

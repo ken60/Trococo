@@ -47,7 +47,7 @@ public class GameScene : MonoBehaviour
             case eGameScene.StartCount:
                 m_TimeCount += Time.deltaTime;
 
-                if (m_TimeCount >= 4.0f)
+                if (m_TimeCount >= 3.0f)
                 {
                     m_TimeCount = 0.0f;
                     GameSceneManager.Instance.IsGamePlaying = true;

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.IO;
 
 [System.Serializable]
 class Data
@@ -14,6 +12,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private int m_Score = 0;
     private int m_CoinNum = 0;
     private int m_HighScore = 0;
+    private int m_OldHighScore = 0;
     private int m_TotalCoinNum = 0;
     private int m_TomatoNum = 0;
     private string m_Json;
@@ -27,6 +26,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_Score = 0;
         m_CoinNum = 0;
+        m_HighScore = 0;
+        m_OldHighScore = 0;
+        m_TotalCoinNum = 0;
         m_TomatoNum = 0;
     }
 
@@ -36,10 +38,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (loadData == null) return;
 
         m_HighScore = loadData.HighScore;
+        m_OldHighScore = loadData.HighScore;
         m_TotalCoinNum = loadData.TotalCoinNum;
-
-        //Debug.Log(m_HighScore);
-        //Debug.Log(m_TotalCoinNum);
     }
 
     public void SaveGame()
@@ -48,7 +48,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         //ハイスコア
         if (m_HighScore < m_Score)
+        {
             data.HighScore = m_Score;
+        }
+        else
+        {
+            data.HighScore = m_OldHighScore;
+        }
         //合計コイン数
         data.TotalCoinNum = m_TotalCoinNum + m_CoinNum;
 
@@ -56,7 +62,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         FileIO.FileWrite("SaveData", m_Json);
     }
 
-    public int Score
+    public int score
     {
         get
         {
@@ -68,7 +74,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public int Coin
+    public int highScore
+    {
+        get
+        {
+            return m_HighScore;
+        }
+    }
+
+    public int coin
     {
         get
         {
@@ -80,7 +94,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public int Tomato
+    public int tmato
     {
         get
         {
@@ -92,7 +106,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public int TotalCoinNum
+    public int totalCoinNum
     {
         get
         {
@@ -104,7 +118,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public bool IsHighScore()
+    public bool isHighScore()
     {
         if (m_HighScore < m_Score)
             return true;

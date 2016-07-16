@@ -50,13 +50,13 @@ public class GameScene : MonoBehaviour
                 if (m_TimeCount >= 3.0f)
                 {
                     m_TimeCount = 0.0f;
-                    GameSceneManager.Instance.IsGamePlaying = true;
+                    GameSceneManager.Instance.isGamePlaying = true;
                     m_GameScene++;
                 }
                 break;
             //ゲームプレイ中
             case eGameScene.Play:
-                if (GameSceneManager.Instance.IsGameOver)
+                if (GameSceneManager.Instance.isGameOver)
                 {
                     m_TimeCount += Time.deltaTime;
                     if (m_TimeCount >= m_GameOverWait)
@@ -68,14 +68,16 @@ public class GameScene : MonoBehaviour
                 break;
             //ゲームオーバー時一度だけ
             case eGameScene.GameOver:
-                GameSceneManager.Instance.IsGamePlaying = false;
+                GameSceneManager.Instance.isGamePlaying = false;
                 GameObject panel = Instantiate(m_Panel_Result, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
                 panel.transform.SetParent(m_Canvas.transform, false);
 
+
                 //ハイスコアの時 & Androidのみスコアを送信
-                if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
+                if (GameManager.Instance.isHighScore() && Application.platform == RuntimePlatform.Android)
                 {
-                    RankParkInterface.Instance().AddScore(GameManager.Instance.Score);
+                    RankParkInterface.Instance().AddScore(GameManager.Instance.score);
+                    //print("Send Score");
                 }
                 //セーブ
                 GameManager.Instance.SaveGame();

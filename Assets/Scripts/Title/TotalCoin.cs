@@ -12,6 +12,6 @@ public class TotalCoin : MonoBehaviour
 
     void Update()
     {
-        m_Text.text = "所持コイン " + GameManager.Instance.TotalCoinNum + "枚";
+        m_Text.text = "所持コイン " + GameManager.Instance.totalCoinNum + "枚";
     }
 }

@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameSceneManager.Instance.IsGameOver || !GameSceneManager.Instance.IsGamePlaying) return;
+        if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         }
 
         //上フリックでジャンプ
-        if (MobileInput.Instance.IsFlickUp() && m_isGrounded)
+        if (MobileInput.Instance.IsTouch() && m_isGrounded)
         {
             m_isJump = true;
             m_isGrounded = false;
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         }
 
         //スコア
-        GameManager.Instance.Score = (int)transform.position.z;
+        GameManager.Instance.score = (int)transform.position.z;
     }
 
     void FixedUpdate()
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
         //障害物
         if (hit.gameObject.tag == "Obstacle")
         {
-            GameSceneManager.Instance.IsGameOver = true;
+            GameSceneManager.Instance.isGameOver = true;
             Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
         }
         //イカ
@@ -156,14 +156,14 @@ public class Player : MonoBehaviour
         //コイン
         if (hit.gameObject.tag == "Coin")
         {
-            GameManager.Instance.Coin += 1;
+            GameManager.Instance.coin += 1;
             Destroy(hit.gameObject);
         }
 
         //トマト
         if (hit.gameObject.tag == "Tomato")
         {
-            GameManager.Instance.Tomato += 1;
+            GameManager.Instance.tmato += 1;
             Destroy(hit.gameObject);
         }
     }

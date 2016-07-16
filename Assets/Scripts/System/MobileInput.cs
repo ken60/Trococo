@@ -71,8 +71,7 @@ public class MobileInput : MonoBehaviour
     private TouchType GetFlick()
     {
         //Unity Editorの場合
-        if (Application.platform == RuntimePlatform.WindowsEditor ||
-            Application.platform == RuntimePlatform.OSXEditor)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -89,9 +88,8 @@ public class MobileInput : MonoBehaviour
                 m_TouchDir = TouchType.NONE;
             }
         }
-        //AndroidかiPhoneの場合
-        else if (Application.platform == RuntimePlatform.Android ||
-            Application.platform == RuntimePlatform.IPhonePlayer)
+        //Androidの場合
+        else if (Application.platform == RuntimePlatform.Android)
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -113,7 +111,7 @@ public class MobileInput : MonoBehaviour
             {
                 m_TouchDir = TouchType.NONE;
             }
-        
+
         return m_TouchDir;
     }
 
@@ -121,37 +119,39 @@ public class MobileInput : MonoBehaviour
     private void GetDirection(Vector2 start, Vector2 end)
     {
         Vector2 direction = end - start;
-
-        if (Vector2.Distance(start, end) < m_TapRange)
+        
+        if (m_TapRange < Vector2.Distance(start, end))
         {
-            //タッチを検出
+            if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
+            {
+                if (m_Angle < direction.x)
+                {
+                    //右向きにフリック
+                    m_TouchDir = TouchType.RIGHT;
+                }
+                else if (-m_Angle > direction.x)
+                {
+                    //左向きにフリック
+                    m_TouchDir = TouchType.LEFT;
+                }
+            }
+            else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+            {
+                if (m_Angle < direction.y)
+                {
+                    //上向きにフリック
+                    m_TouchDir = TouchType.UP;
+                }
+                else if (-m_Angle > direction.y)
+                {
+                    //下向きのフリック
+                    m_TouchDir = TouchType.DOWN;
+                }
+            }
+        }
+        else
+        {
             m_TouchDir = TouchType.TOUCH;
-        }
-        else if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))
-        {
-            if (m_Angle < direction.x)
-            {
-                //右向きにフリック
-                m_TouchDir = TouchType.RIGHT;
-            }
-            else if (-m_Angle > direction.x)
-            {
-                //左向きにフリック
-                m_TouchDir = TouchType.LEFT;
-            }
-        }
-        else if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
-        {
-            if (m_Angle < direction.y)
-            {
-                //上向きにフリック
-                m_TouchDir = TouchType.UP;
-            }
-            else if (-m_Angle > direction.y)
-            {
-                //下向きのフリック
-                m_TouchDir = TouchType.DOWN;
-            }
         }
     }
 }

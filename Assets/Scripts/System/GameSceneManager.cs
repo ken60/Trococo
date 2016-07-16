@@ -10,11 +10,13 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
 
     public void InitGame()
     {
-        m_isGameOver = false;
+        m_GameStart = false;
+        m_HawToPlay = false;
         m_isGamePlaying = false;
+        m_isGameOver = false;
     }
 
-    public bool IsGameOver
+    public bool isGameOver
     {
         get
         {
@@ -26,7 +28,7 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
         }
     }
 
-    public bool IsGamePlaying
+    public bool isGamePlaying
     {
         get
         {

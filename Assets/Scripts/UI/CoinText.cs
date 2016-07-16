@@ -17,9 +17,9 @@ public class CoinText : MonoBehaviour
 
     void Update()
     {
-        m_CoinText.text = "コイン " + GameManager.Instance.Coin;
+        m_CoinText.text = "コイン " + GameManager.Instance.coin;
 
-        if (GameSceneManager.Instance.IsGameOver)
+        if (GameSceneManager.Instance.isGameOver)
         {
             m_TimeCount += Time.deltaTime;
             if (m_TimeCount >= m_GameOverWait)

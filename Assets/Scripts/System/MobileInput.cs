@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class MobileInput : MonoBehaviour
 {
@@ -9,6 +9,8 @@ public class MobileInput : MonoBehaviour
     private float m_Angle;
     [SerializeField]
     private float m_TapRange = 0.0f;
+    [SerializeField]
+    private Slider m_Slider;
 
     private static MobileInput instance;
     private Vector2 m_StartPos;
@@ -31,6 +33,7 @@ public class MobileInput : MonoBehaviour
     {
         instance = this;
     }
+
 
     public bool GetTouchType(TouchType type)
     {
@@ -66,6 +69,11 @@ public class MobileInput : MonoBehaviour
     {
         if (GetFlick() == TouchType.TOUCH) return true;
         return false;
+    }
+
+    public TouchType touchType
+    {
+        get { return m_TouchDir; }
     }
 
     private TouchType GetFlick()
@@ -118,8 +126,10 @@ public class MobileInput : MonoBehaviour
 
     private void GetDirection(Vector2 start, Vector2 end)
     {
+        m_TapRange = (int)m_Slider.value;
         Vector2 direction = end - start;
-        
+
+        //m_TapRange = 15ぐらい？
         if (m_TapRange < Vector2.Distance(start, end))
         {
             if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))

@@ -7,6 +7,7 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
     private bool m_HawToPlay = false;
     private bool m_isGamePlaying = false;
     private bool m_isGameOver = false;
+    private bool m_isCollider = true;
 
     public void InitGame()
     {
@@ -39,4 +40,17 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
             m_isGamePlaying = value;
         }
     }
+
+    public bool colliderEnabled
+    {
+        get
+        {
+            return m_isCollider;
+        }
+        set
+        {
+            m_isCollider = value;
+        }
+    }
+
 }

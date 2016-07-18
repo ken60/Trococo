@@ -17,7 +17,7 @@ public class ScoreText : MonoBehaviour
 
     void Update()
     {
-        m_ScoreText.text = "スコア " + GameManager.Instance.score;
+        m_ScoreText.text = "キョリ " + GameManager.Instance.score;
 
         if (GameSceneManager.Instance.isGameOver)
         {

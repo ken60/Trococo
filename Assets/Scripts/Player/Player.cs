@@ -140,31 +140,34 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider hit)
     {
-        //障害物
-        if (hit.gameObject.tag == "Obstacle")
+        if (GameSceneManager.Instance.colliderEnabled)
         {
-            GameSceneManager.Instance.isGameOver = true;
-            Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
-        }
-        //イカ
-        if (hit.gameObject.tag == "Squid")
-        {
-            GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
-            obj.transform.SetParent(m_Canvas.transform, false);
-        }
+            //障害物
+            if (hit.gameObject.tag == "Obstacle")
+            {
+                GameSceneManager.Instance.isGameOver = true;
+                Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
+            }
+            //イカ
+            if (hit.gameObject.tag == "Squid")
+            {
+                GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
+                obj.transform.SetParent(m_Canvas.transform, false);
+            }
 
-        //コイン
-        if (hit.gameObject.tag == "Coin")
-        {
-            GameManager.Instance.coin += 1;
-            Destroy(hit.gameObject);
-        }
+            //コイン
+            if (hit.gameObject.tag == "Coin")
+            {
+                GameManager.Instance.coin += 1;
+                Destroy(hit.gameObject);
+            }
 
-        //トマト
-        if (hit.gameObject.tag == "Tomato")
-        {
-            GameManager.Instance.tmato += 1;
-            Destroy(hit.gameObject);
+            //トマト
+            if (hit.gameObject.tag == "Tomato")
+            {
+                GameManager.Instance.tmato += 1;
+                Destroy(hit.gameObject);
+            }
         }
     }
 }

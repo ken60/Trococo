@@ -27,7 +27,7 @@ public class StageGenerator : MonoBehaviour
     private List<GameObject> m_GeneratedObstacle = new List<GameObject>();
     private int m_RailPosZ = -2;        //レールを生成するZ座標
     private int m_GroundPosZ = -1;      //地面を生成するZ座標
-    private int m_ObstaclePosZ = 10;    //障害物を生成するZ座標
+    private int m_ObstaclePosZ = 1;    //障害物を生成するZ座標
     private int m_GroundSizeZ = 10;     //地面のZサイズ
 
     private void Start()
@@ -48,9 +48,9 @@ public class StageGenerator : MonoBehaviour
         }
 
         //初期配置障害物を生成
-        for (; m_ObstaclePosZ < m_PreInstantiateGround * m_GroundSizeZ; m_ObstaclePosZ += m_GroundSizeZ)
+        for (; m_ObstaclePosZ < m_PreInstantiateGround; m_ObstaclePosZ++)
         {
-            GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ));
+            GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ * 10));
         }
     }
 
@@ -72,18 +72,19 @@ public class StageGenerator : MonoBehaviour
             MoveObject(m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
 
             //障害物を生成
-            GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ));
+            GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ * 10));
+
+            RemoveObject(m_GeneratedObstacle, 0);
 
             m_GroundPosZ++;
-            m_ObstaclePosZ += m_GroundSizeZ;
+            m_ObstaclePosZ++;
         }
 
-        //print(m_ObstaclePosZ);
 
         //画面外に出た障害物を削除
-        if (m_Player.position.z > ((m_ObstaclePosZ * 0.1f) - m_PreInstantiateGround) * m_GroundSizeZ)
+        if (m_Player.position.z > m_ObstaclePosZ * 10 - (m_PreInstantiateObstacle - 1))
         {
-            //print("Called");
+            //print("RemoveObject");
             //RemoveObject(m_GeneratedObstacle, 0);
         }
     }

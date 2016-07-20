@@ -16,7 +16,7 @@ public class Result : MonoBehaviour
     void Start()
     {
         m_RectTransform = GetComponent<RectTransform>();
-        m_ScoreNum.text = GameManager.Instance.score + " 点";
+        m_ScoreNum.text = GameManager.Instance.score + " m";
         m_CoinNum.text = GameManager.Instance.coin + " 枚";
         MoveIn();
     }

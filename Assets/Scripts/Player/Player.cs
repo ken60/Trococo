@@ -158,15 +158,15 @@ public class Player : MonoBehaviour
             //コイン
             if (hit.gameObject.tag == "Coin")
             {
-                GameManager.Instance.coin += 1;
                 Destroy(hit.gameObject);
+                GameManager.Instance.coin += 1;
             }
 
             //トマト
             if (hit.gameObject.tag == "Tomato")
             {
-                GameManager.Instance.tmato += 1;
                 Destroy(hit.gameObject);
+                GameManager.Instance.tmato += 1;
             }
         }
     }

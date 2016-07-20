@@ -11,8 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ParticleSystem m_DieParticle;   //プレイヤーのCollider
     [SerializeField]
-    private Canvas m_Canvas;    //キャンバス
-    [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
     [SerializeField]
     private float m_JumpForce;   //ジャンプ力
@@ -27,6 +25,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_RayDist;    //地面判定のRayの長さ
 
+    private GameObject m_Canvas;    //キャンバス
     private Rigidbody m_Rigidbody;
     private Animator m_Animator;
     private Touch m_Touch;
@@ -41,6 +40,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        m_Canvas = GameObject.Find("Canvas");
         m_Rigidbody = GetComponent<Rigidbody>();
         //m_Animator = GetComponent<Animator>();
     }

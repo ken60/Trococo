@@ -18,10 +18,9 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private GameObject m_StartCount;
     [SerializeField]
-    private Canvas m_Canvas;
-    [SerializeField]
     private float m_GameOverWait;
 
+    private GameObject m_Canvas;
     private Camera m_Camera;
     private eGameScene m_GameScene;
     private float m_TimeCount = 0.0f;
@@ -29,6 +28,7 @@ public class GameScene : MonoBehaviour
 
     void Start()
     {
+        m_Canvas = GameObject.Find("Canvas");
         m_Camera = Camera.main;
     }
 

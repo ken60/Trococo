@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3337270}
   - 23: {fileID: 2338424}
   - 95: {fileID: 9579830}
-  - 114: {fileID: 11405664}
+  - 114: {fileID: 11477512}
   m_Layer: 0
   m_Name: CountDown
   m_TagString: Untagged
@@ -81,7 +81,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11405664
+--- !u!114 &11477512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -46,29 +46,7 @@ public class HowToPlay : MonoBehaviour
             m_ButtonText[1].text = "つぎへ";
         }
 
-        //ページ切り替え
-        switch (m_PageNmmber)
-        {
-            case 1:
-                m_ExplanatoryImage.sprite = m_Sprite[0];
-                break;
-
-            case 2:
-                m_ExplanatoryImage.sprite = m_Sprite[1];
-                break;
-
-            case 3:
-                m_ExplanatoryImage.sprite = m_Sprite[2];
-                break;
-
-            case 4:
-                m_ExplanatoryImage.sprite = m_Sprite[3];
-                break;
-
-            case 5:
-                m_ExplanatoryImage.sprite = m_Sprite[4];
-                break;
-        }
+        m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
     }
 
     //「もどる」ボタンをおした時
@@ -120,7 +98,7 @@ public class HowToPlay : MonoBehaviour
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
     }
-    
+
     void PanelDestroy()
     {
         Destroy(gameObject);

@@ -7,6 +7,8 @@ public class Panel_Title : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_Panel_HowToPlay;
+    [SerializeField]
+    private GameObject m_Panel_CharSelect;
 
     private GameObject m_Canvas;
 
@@ -23,6 +25,13 @@ public class Panel_Title : MonoBehaviour
     public void Button_GameStart()
     {
         MoveOut_Start();
+    }
+
+    public void Button_Select()
+    {
+        MoveOut();
+        GameObject panel = Instantiate(m_Panel_CharSelect, new Vector3(0.0f, 1900.0f, 0.0f), Quaternion.identity) as GameObject;
+        panel.transform.SetParent(m_Canvas.transform, false);
     }
 
     public void Button_HowToPlay()

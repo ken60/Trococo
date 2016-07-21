@@ -16,7 +16,6 @@ public class MobileInput : MonoBehaviour
     private Vector2 m_StartPos;
     private Vector2 m_EndPos;
     private TouchType m_TouchDir;
-    private float m_TapLength = 0.0f;
     private string m_Direction;
 
     public enum TouchType

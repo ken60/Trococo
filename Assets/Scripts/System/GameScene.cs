@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour
@@ -40,7 +39,7 @@ public class GameScene : MonoBehaviour
                 GameManager.Instance.LoadGame();
                 GameObject obj = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
                 obj.transform.SetParent(m_Camera.transform, false);
-                m_GameScene++;
+                m_GameScene = eGameScene.StartCount;
                 break;
 
             //ゲーム開始時のカウントダウン
@@ -51,7 +50,7 @@ public class GameScene : MonoBehaviour
                 {
                     m_TimeCount = 0.0f;
                     GameSceneManager.Instance.isGamePlaying = true;
-                    m_GameScene++;
+                    m_GameScene = eGameScene.Play;
                 }
                 break;
             //ゲームプレイ中
@@ -62,7 +61,7 @@ public class GameScene : MonoBehaviour
                     if (m_TimeCount >= m_GameOverWait)
                     {
                         m_TimeCount = 0.0f;
-                        m_GameScene++;
+                        m_GameScene  = eGameScene.GameOver;
                     }
                 }
                 break;
@@ -82,7 +81,7 @@ public class GameScene : MonoBehaviour
                 //セーブ
                 GameManager.Instance.SaveGame();
 
-                m_GameScene++;
+                m_GameScene = eGameScene.End;
                 break;
 
             case eGameScene.End:

@@ -43,6 +43,17 @@ public class Player : MonoBehaviour
         //m_Animator = GetComponent<Animator>();
     }
 
+    public void InitPlayer()
+    {
+        transform.position = Vector3.zero;
+        m_CurrentRunningRail = 0;
+        m_TimeCount = 0;
+        m_isGrounded = false;
+        m_isJump = false;
+        m_isLateralMove = false;
+        m_isCrouch = false;
+    }
+
     void Update()
     {
         if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;

@@ -9,6 +9,8 @@ public class Panel_Title : MonoBehaviour
     private GameObject m_Panel_HowToPlay;
     [SerializeField]
     private GameObject m_Panel_CharSelect;
+    [SerializeField]
+    private Text m_Text;
 
     private GameObject m_Canvas;
 
@@ -20,6 +22,11 @@ public class Panel_Title : MonoBehaviour
         GameManager.Instance.LoadGame();
 
         MoveIn();
+    }
+
+    void Update()
+    {
+        m_Text.text = "所持コイン " + GameManager.Instance.totalCoinNum + "枚";
     }
 
     public void Button_GameStart()

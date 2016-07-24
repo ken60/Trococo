@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Result : MonoBehaviour
+public class Panel_Result : MonoBehaviour
 {
     [SerializeField]
     private Text m_ScoreNum;

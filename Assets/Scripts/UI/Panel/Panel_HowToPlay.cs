@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HowToPlay : MonoBehaviour
+public class Panel_HowToPlay : MonoBehaviour
 {
     [SerializeField]
     private Sprite[] m_Sprite;

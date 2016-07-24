@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (GameSceneManager.isGameOver || !GameSceneManager.isGamePlaying) return;
+        if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
         //接地判定
         Vector3 RayPos = transform.position + new Vector3(0.0f, 0.5f, 0.0f);
-        //Debug.DrawRay(RayPos, Vector3.down * m_RayDist, Color.red);
+        Debug.DrawRay(RayPos, Vector3.down * m_RayDist, Color.red);
         if (Physics.Raycast(RayPos, Vector3.down, out hit, m_RayDist))
         {
             if (hit.collider.tag == "Rail")
@@ -149,12 +149,12 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider hit)
     {
-        if (GameSceneManager.colliderEnabled)
+        if (GameSceneManager.Instance.colliderEnabled)
         {
             //障害物
             if (hit.gameObject.tag == "Obstacle")
             {
-                GameSceneManager.isGameOver = true;
+                GameSceneManager.Instance.isGameOver = true;
                 Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
             }
             //イカ

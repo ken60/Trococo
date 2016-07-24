@@ -9,17 +9,12 @@ public class Result : MonoBehaviour
     private Text m_ScoreNum;
     [SerializeField]
     private Text m_CoinNum;
-    [SerializeField]
-    private GameObject m_Panel_Title;
-
-    private GameObject m_Canvas;
 
     private RectTransform m_RectTransform;
 
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
         m_RectTransform = GetComponent<RectTransform>();
         m_ScoreNum.text = GameManager.Instance.score + " m";
         m_CoinNum.text = GameManager.Instance.coin + " 枚";
@@ -48,10 +43,6 @@ public class Result : MonoBehaviour
         parameters.Add("oncomplete", "BackToTitle");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
-
-        //タイトルパネルの表示
-        GameObject panelTitle = Instantiate(m_Panel_Title, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
-        panelTitle.transform.SetParent(m_Canvas.transform, false);
     }
 
     public void Button_Restart()
@@ -68,13 +59,13 @@ public class Result : MonoBehaviour
     void BackToTitle()
     {
         GameManager.Instance.InitGame();
-        GameSceneManager.scene = GameSceneManager.eGameScene.LoadTitle;
+        SceneManager.LoadScene("Title");
     }
 
     void Restart()
     {
         GameManager.Instance.InitGame();
-        GameSceneManager.scene = GameSceneManager.eGameScene.LoadGame;
+        SceneManager.LoadScene("Game");
     }
 
 }

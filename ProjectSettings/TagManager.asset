@@ -10,7 +10,6 @@ TagManager:
   - Squid
   - Coin
   - Tomato
-  - Trocco
   layers:
   - Default
   - TransparentFX

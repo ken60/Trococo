@@ -13,7 +13,7 @@ public class Move : MonoBehaviour
 	void Update ()
 	{
 
-        if (GameSceneManager.isGameOver || !GameSceneManager.isGamePlaying) return;
+        if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;

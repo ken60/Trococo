@@ -3,7 +3,6 @@ using System.Collections;
 
 public class RankParkInterface
 {
-#if UNITY_ANDROID
     private static RankParkInterface _instance = null;
 
     private AndroidJavaClass rankPark = null;
@@ -50,5 +49,4 @@ public class RankParkInterface
             Debug.LogError("rankPark is not created");
         }
     }
-#endif
 }

@@ -206,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ScoreNum: {fileID: 11468856}
   m_CoinNum: {fileID: 11476374}
+  m_Panel_Title: {fileID: 123858, guid: bf65409f912338341969bd43982d90fc, type: 2}
 --- !u!114 &11404166
 MonoBehaviour:
   m_ObjectHideFlags: 1

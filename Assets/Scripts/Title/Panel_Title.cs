@@ -79,7 +79,7 @@ public class Panel_Title : MonoBehaviour
 
     void LoadGame()
     {
-        SceneManager.LoadScene("Game");
+        GameSceneManager.scene = GameSceneManager.eGameScene.LoadGame;
         Destroy(gameObject);
     }
 

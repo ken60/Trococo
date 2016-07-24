@@ -5,8 +5,6 @@ using System.Collections.Generic;
 public class StageGenerator : MonoBehaviour
 {
     [SerializeField]
-    private Transform m_Player;      //プレイヤーの座標
-    [SerializeField]
     private GameObject m_Rail;       //レール
     [SerializeField]
     private GameObject m_Ground;     //地面
@@ -21,6 +19,8 @@ public class StageGenerator : MonoBehaviour
     [SerializeField]
     private int m_PreInstantiateObstacle = 3;   //予め生成しておく障害物数
 
+
+    private GameObject m_Player;      //プレイヤーの座標
     private List<GameObject> m_GeneratedRail = new List<GameObject>();
     private List<GameObject> m_GeneratedGround = new List<GameObject>();
     private List<GameObject> m_GeneratedPlante = new List<GameObject>();
@@ -30,15 +30,28 @@ public class StageGenerator : MonoBehaviour
     private int m_ObstaclePosZ = 1;    //障害物を生成するZ座標
     private int m_GroundSizeZ = 10;     //地面のZサイズ
 
-    private void Start()
+    void Start()
     {
+        m_Player = GameObject.FindGameObjectWithTag("Trocco");
+    //}
+
+    //public void InitStage()
+    //{
+        m_GeneratedRail = new List<GameObject>();
+        m_GeneratedGround = new List<GameObject>();
+        m_GeneratedPlante = new List<GameObject>();
+        m_GeneratedObstacle = new List<GameObject>();
+        m_RailPosZ = -2;
+        m_GroundPosZ = -1;
+        m_ObstaclePosZ = 1;
+        m_GroundSizeZ = 10;
+
         //初期配置レールを生成
         for (; m_RailPosZ < m_PreInstantiateRail; m_RailPosZ++)
         {
             GenObject(m_Rail, m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));    //右
             GenObject(m_Rail, m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));    //中
             GenObject(m_Rail, m_GeneratedRail, new Vector3(-1.0f, 0.0f, m_RailPosZ));   //左
-
         }
 
         //初期配置地面を生成
@@ -57,7 +70,7 @@ public class StageGenerator : MonoBehaviour
     private void Update()
     {
         //プレイヤーが、予め生成しておくレール数より進んだら
-        if (m_Player.position.z > m_RailPosZ - (m_PreInstantiateRail - 2))
+        if (m_Player.transform.position.z > m_RailPosZ - (m_PreInstantiateRail - 2))
         {
             //画面外に出たレールを移動
             MoveObject(m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));   //右
@@ -66,20 +79,20 @@ public class StageGenerator : MonoBehaviour
             m_RailPosZ++;
         }
 
-        if (m_Player.position.z > (m_GroundPosZ - m_PreInstantiateGround) * m_GroundSizeZ)
+        if (m_Player.transform.position.z > (m_GroundPosZ - m_PreInstantiateGround) * m_GroundSizeZ)
         {
             //画面外に出た地面を移動
             MoveObject(m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
 
             //障害物を生成
             GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ * 10));
-            
+
             m_GroundPosZ++;
             m_ObstaclePosZ++;
         }
-        
+
         //画面外に出た障害物を削除
-        if (m_Player.position.z % (m_ObstaclePosZ * 10) > 1.0f)
+        if (m_Player.transform.position.z % (m_ObstaclePosZ * 10) > 1.0f)
         {
             //print("RemoveObject");
             //RemoveObject(m_GeneratedObstacle, 0);
@@ -90,6 +103,7 @@ public class StageGenerator : MonoBehaviour
     private void GenObject(GameObject genObj, List<GameObject> list, Vector3 pos)
     {
         GameObject obj = Instantiate(genObj, pos, Quaternion.identity) as GameObject;
+        obj.transform.SetParent(this.transform, false);
         list.Add(obj);
     }
 

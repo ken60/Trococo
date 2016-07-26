@@ -14,13 +14,11 @@ public class Panel_HowToPlay : MonoBehaviour
     private GameObject m_Panel_Title;
 
     private GameObject m_Canvas;
-    private int m_MaxPageNum;
     private int m_PageNmmber = 1;
 
     void Start()
     {
         m_Canvas = GameObject.Find("Canvas");
-        m_MaxPageNum = m_Sprite.Length;
         MoveIn();
     }
 
@@ -37,7 +35,7 @@ public class Panel_HowToPlay : MonoBehaviour
         }
 
         //最後のページの時はボタンテキストを「もどる」に
-        if (m_PageNmmber == m_MaxPageNum)
+        if (m_PageNmmber == m_Sprite.Length)
         {
             m_ButtonText[1].text = "もどる";
         }
@@ -68,7 +66,7 @@ public class Panel_HowToPlay : MonoBehaviour
     public void Button_Next()
     {
         //ページ数が最大未満の時ページ送り
-        if (m_PageNmmber < m_MaxPageNum)
+        if (m_PageNmmber < m_Sprite.Length)
             m_PageNmmber++;
 
         //最終ページの時はパネルを隠す

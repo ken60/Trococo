@@ -178,7 +178,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11479746}
         m_MethodName: Button_Next
         m_Mode: 1
         m_Arguments:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 11479746}
         m_MethodName: Button_Prev
         m_Mode: 1
         m_Arguments:
@@ -415,6 +415,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4c0a523821aa947bd06f435a7c61b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Sprite:
+  - {fileID: 21300000, guid: 24f31c95c795c264e9086704540086c9, type: 3}
+  - {fileID: 21300000, guid: 4b4d1ec654f901e42b504dd15216082d, type: 3}
+  - {fileID: 21300000, guid: abe7d0c018bb3d34c80b6f314d4ca31a, type: 3}
+  m_ExplanatoryImage: {fileID: 11485342}
+  m_ButtonText:
+  - {fileID: 11483194}
+  - {fileID: 11463136}
+  m_Panel_Title: {fileID: 123858, guid: bf65409f912338341969bd43982d90fc, type: 2}
 --- !u!114 &11483194
 MonoBehaviour:
   m_ObjectHideFlags: 1

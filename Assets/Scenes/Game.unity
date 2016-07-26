@@ -634,7 +634,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 30
   m_WholeNumbers: 0
-  m_Value: 15
+  m_Value: 25
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2623,7 +2623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4706b3dd2dd9164a8a9ff457d128e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameOverWait: 1.3
 --- !u!4 &1689597617 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}

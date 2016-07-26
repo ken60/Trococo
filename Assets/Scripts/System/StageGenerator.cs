@@ -90,6 +90,7 @@ public class StageGenerator : MonoBehaviour
     private void GenObject(GameObject genObj, List<GameObject> list, Vector3 pos)
     {
         GameObject obj = Instantiate(genObj, pos, Quaternion.identity) as GameObject;
+        obj.transform.SetParent(this.transform);
         list.Add(obj);
     }
 

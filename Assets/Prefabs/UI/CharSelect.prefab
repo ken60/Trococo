@@ -416,9 +416,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Sprite:
-  - {fileID: 21300000, guid: 24f31c95c795c264e9086704540086c9, type: 3}
-  - {fileID: 21300000, guid: 4b4d1ec654f901e42b504dd15216082d, type: 3}
-  - {fileID: 21300000, guid: abe7d0c018bb3d34c80b6f314d4ca31a, type: 3}
+  - {fileID: 21300000, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
+  - {fileID: 21300000, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
+  - {fileID: 21300000, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
   m_ExplanatoryImage: {fileID: 11485342}
   m_ButtonText:
   - {fileID: 11483194}
@@ -476,7 +476,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

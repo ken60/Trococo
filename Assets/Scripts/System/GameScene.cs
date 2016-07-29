@@ -18,11 +18,13 @@ public class GameScene : MonoBehaviour
     static public eGameScene m_GameScene;
 
     [SerializeField]
+    private SceneChangeFade m_Fade;
+    [SerializeField]
     private Text[] m_UI_Text;
     [SerializeField]
-    private GameObject m_Panel_Title;
+    private Panel_Title m_Panel_Title;
     [SerializeField]
-    private GameObject m_Panel_Result;
+    private Panel_Result m_Panel_Result;
     [SerializeField]
     private GameObject m_StartCount;
     [SerializeField]
@@ -31,9 +33,7 @@ public class GameScene : MonoBehaviour
     private StageGenerator m_StageGenerator;
     [SerializeField]
     private float m_GameOverWait;
-
-
-    private GameObject m_Canvas;
+        
     private Camera m_Camera;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;
@@ -42,7 +42,6 @@ public class GameScene : MonoBehaviour
     void Start()
     {
         m_FromTitle = false;
-        m_Canvas = GameObject.Find("Canvas");
         m_Camera = Camera.main;
     }
 
@@ -51,6 +50,7 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
+                m_Fade.fadeOut = true;
                 //セーブデータロード
                 GameManager.Instance.LoadGame();
                 //ステージの初期化
@@ -65,8 +65,7 @@ public class GameScene : MonoBehaviour
                 }
 
                 //タイトルパネルを表示
-                GameObject panelTitle = Instantiate(m_Panel_Title, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
-                panelTitle.transform.SetParent(m_Canvas.transform, false);
+                m_Panel_Title.MoveIn();
 
                 m_FromTitle = true;
 
@@ -91,6 +90,7 @@ public class GameScene : MonoBehaviour
                     //プレイヤーの初期化
                     m_Player.GetComponent<Player>().InitPlayer();
                 }
+                m_FromTitle = false;
 
                 //ゲームプレイ中のUIを表示
                 for (int i = 0; i < m_UI_Text.Length; i++)
@@ -101,11 +101,10 @@ public class GameScene : MonoBehaviour
                 GameObject obj = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
                 obj.transform.SetParent(m_Camera.transform, false);
 
-                m_FromTitle = false;
 
                 m_GameScene = eGameScene.StartCount;
                 break;
-
+                
             //ゲーム開始時のカウントダウン
             case eGameScene.StartCount:
                 m_TimeCount += Time.deltaTime;
@@ -132,8 +131,8 @@ public class GameScene : MonoBehaviour
             //ゲームオーバー時一度だけ
             case eGameScene.GameOver:
                 GameSceneManager.Instance.isGamePlaying = false;
-                GameObject panelRes = Instantiate(m_Panel_Result, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
-                panelRes.transform.SetParent(m_Canvas.transform, false);
+                //リザルトパネルを表示
+                m_Panel_Result.MoveIn();
 
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameManager.Instance.isHighScore() && Application.platform == RuntimePlatform.Android)

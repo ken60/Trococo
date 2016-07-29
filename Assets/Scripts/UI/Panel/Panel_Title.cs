@@ -6,19 +6,16 @@ using UnityEngine.UI;
 public class Panel_Title : MonoBehaviour
 {
     [SerializeField]
-    private GameObject m_Panel_HowToPlay;
+    private Panel_HowToPlay m_Panel_HowToPlay;
     [SerializeField]
-    private GameObject m_Panel_CharSelect;
+    private Panel_CharSelect m_Panel_CharSelect;
     [SerializeField]
     private Text m_Text;
-
-    private GameObject m_Canvas;
+    
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
 
-        MoveIn();
     }
 
     void Update()
@@ -34,15 +31,13 @@ public class Panel_Title : MonoBehaviour
     public void Button_Select()
     {
         MoveOut();
-        GameObject panel = Instantiate(m_Panel_CharSelect, new Vector3(0.0f, 1900.0f, 0.0f), Quaternion.identity) as GameObject;
-        panel.transform.SetParent(m_Canvas.transform, false);
+        m_Panel_CharSelect.MoveIn();
     }
 
     public void Button_HowToPlay()
     {
         MoveOut();
-        GameObject panel = Instantiate(m_Panel_HowToPlay, new Vector3(0.0f, 1900.0f, 0.0f), Quaternion.identity) as GameObject;
-        panel.transform.SetParent(m_Canvas.transform, false);
+        m_Panel_HowToPlay.MoveIn();
     }
 
     public void Button_Ranking()
@@ -53,7 +48,7 @@ public class Panel_Title : MonoBehaviour
         }
     }
 
-    void MoveIn()
+    public void MoveIn()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
@@ -62,7 +57,7 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void MoveOut_Start()
+    public void MoveOut_Start()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
@@ -73,13 +68,13 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void MoveOut()
+    public void MoveOut()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
         parameters.Add("time", 0.4f);
         parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        parameters.Add("oncomplete", "PanelDestroy");
+        parameters.Add("oncomplete", "PanelMove");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
     }
@@ -87,11 +82,11 @@ public class Panel_Title : MonoBehaviour
     void LoadGame()
     {
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
-        Destroy(gameObject);
+        transform.localPosition = new Vector2(0.0f, 1650.0f);
     }
 
-    void PanelDestroy()
+    void PanelMove()
     {
-        Destroy(gameObject);
+        transform.localPosition = new Vector2(0.0f, 1650.0f);
     }
 }

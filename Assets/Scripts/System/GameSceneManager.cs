@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
 {
@@ -15,8 +14,7 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
         m_HawToPlay = false;
         m_isGamePlaying = false;
         m_isGameOver = false;
-    }
-    
+    }    
     
     public bool isGameOver
     {
@@ -42,6 +40,7 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
         }
     }
 
+    //Debug only
     public bool colliderEnabled
     {
         get

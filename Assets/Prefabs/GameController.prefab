@@ -52,10 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b764bd3af8d883488c5aed2b921bf70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameScene: 0
-  m_Panel_Title: {fileID: 123858, guid: bf65409f912338341969bd43982d90fc, type: 2}
-  m_Panel_Result: {fileID: 169746, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+  m_Fade: {fileID: 0}
+  m_UI_Text:
+  - {fileID: 0}
+  - {fileID: 0}
+  m_Panel_Title: {fileID: 0}
+  m_Panel_Result: {fileID: 0}
   m_StartCount: {fileID: 118732, guid: 8c26cd695d092aa40919b8fc292245e0, type: 2}
+  m_Player: {fileID: 0}
+  m_StageGenerator: {fileID: 0}
   m_GameOverWait: 1.3
 --- !u!114 &11467172
 MonoBehaviour:

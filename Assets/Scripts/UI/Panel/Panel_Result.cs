@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class Panel_Result : MonoBehaviour
 {
+    [SerializeField]
+    private SceneChangeFade m_Fade;
     [SerializeField]
     private Text m_ScoreNum;
     [SerializeField]
@@ -16,24 +17,12 @@ public class Panel_Result : MonoBehaviour
     void Start()
     {
         m_RectTransform = GetComponent<RectTransform>();
-        m_ScoreNum.text = GameManager.Instance.score + " m";
-        m_CoinNum.text = GameManager.Instance.coin + " 枚";
-        MoveIn();
     }
 
     void Update()
     {
-
-    }
-
-    //iTween
-    void MoveIn()
-    {
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.MoveTo(gameObject, parameters);
+        m_ScoreNum.text = GameManager.Instance.score + " m";
+        m_CoinNum.text = GameManager.Instance.coin + " 枚";
     }
 
     public void Button_Title()
@@ -58,17 +47,40 @@ public class Panel_Result : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
+    //iTween
+    public void MoveIn()
+    {
+        Hashtable parameters = new Hashtable();
+        parameters.Add("y", Screen.height * 0.5f);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
+        iTween.MoveTo(gameObject, parameters);
+    }
+
     //ボタンクリック後のアニメーション完了時に呼ばれる
     void BackToTitle()
     {
+        DestroySquidInk();
         GameManager.Instance.InitGame();
         GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
+        transform.localPosition = new Vector2(0.0f, 1645.0f);
     }
 
     void Restart()
     {
+        DestroySquidInk();
         GameManager.Instance.InitGame();
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
+        transform.localPosition = new Vector2(0.0f, 1645.0f);
     }
 
+    //画面に出たイカスミを削除
+    void DestroySquidInk()
+    {
+        GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("Squid_ink");
+        foreach (GameObject obj in tagobjs)
+        {
+            Destroy(obj);
+        }
+    }
 }

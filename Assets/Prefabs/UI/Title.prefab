@@ -391,9 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0625226763355499ca35ed2a57ecb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_GameScene: {fileID: 0}
-  m_Panel_HowToPlay: {fileID: 136692, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
-  m_Panel_CharSelect: {fileID: 183034, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+  m_Panel_HowToPlay: {fileID: 0}
+  m_Panel_CharSelect: {fileID: 0}
   m_Text: {fileID: 11494876}
 --- !u!114 &11437744
 MonoBehaviour:

@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eedcc8ca61d4864ebb8cb892bf81b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Fade: {fileID: 0}
   m_ScoreNum: {fileID: 11468856}
   m_CoinNum: {fileID: 11476374}
 --- !u!114 &11404166

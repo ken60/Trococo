@@ -11,19 +11,17 @@ public class Panel_CharSelect : MonoBehaviour
     [SerializeField]
     private Text[] m_ButtonText;
     [SerializeField]
-    private GameObject m_Panel_Title;
+    private Panel_Title m_Panel_Title;
 
-    private GameObject m_Canvas;
     private int m_PageNmmber = 1;
 
-    void Start ()
+    void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
-        MoveIn();
+
     }
-	
-	void Update ()
-	{
+
+    void Update()
+    {
         //1ページ目の時は戻るボタンを隠す
         if (m_PageNmmber == 1)
         {
@@ -57,8 +55,7 @@ public class Panel_CharSelect : MonoBehaviour
         if (m_ButtonText[0].text == "もどる")
         {
             MoveOut();
-            GameObject panel = Instantiate(m_Panel_Title, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
-            panel.transform.SetParent(m_Canvas.transform, false);
+            m_Panel_Title.MoveIn();
         }
     }
 
@@ -73,14 +70,14 @@ public class Panel_CharSelect : MonoBehaviour
         if (m_ButtonText[1].text == "もどる")
         {
             MoveOut();
-            GameObject panel = Instantiate(m_Panel_Title, new Vector3(0.0f, 1645.0f, 0.0f), Quaternion.identity) as GameObject;
-            panel.transform.SetParent(m_Canvas.transform, false);
+            m_Panel_Title.MoveIn();
         }
     }
 
     //iTween
-    void MoveIn()
+    public void MoveIn()
     {
+        m_PageNmmber = 1;
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
         parameters.Add("time", 0.4f);
@@ -88,19 +85,19 @@ public class Panel_CharSelect : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void MoveOut()
+    public void MoveOut()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
         parameters.Add("time", 0.4f);
         parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        parameters.Add("oncomplete", "PanelDestroy");
+        parameters.Add("oncomplete", "PanelMove");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void PanelDestroy()
+    void PanelMove()
     {
-        Destroy(gameObject);
+        transform.localPosition = new Vector2(0.0f, 1900.0f);
     }
 }

@@ -83,7 +83,8 @@ public class Panel_CharSelect : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         iTween.MoveTo(gameObject, parameters);
     }
 
@@ -91,7 +92,8 @@ public class Panel_CharSelect : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         parameters.Add("oncomplete", "PanelDestroy");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);

@@ -32,6 +32,24 @@ public class StageGenerator : MonoBehaviour
 
     private void Start()
     {
+    }
+
+    public void InitStage()
+    {
+        foreach (Transform n in this.transform)
+        {
+            Destroy(n.gameObject);
+        }
+
+        m_GeneratedRail = new List<GameObject>();
+        m_GeneratedGround = new List<GameObject>();
+        m_GeneratedPlante = new List<GameObject>();
+        m_GeneratedObstacle = new List<GameObject>();
+        m_RailPosZ = -2;
+        m_GroundPosZ = -1;
+        m_ObstaclePosZ = 1;
+        m_GroundSizeZ = 10;
+
         //初期配置レールを生成
         for (; m_RailPosZ < m_PreInstantiateRail; m_RailPosZ++)
         {
@@ -73,11 +91,11 @@ public class StageGenerator : MonoBehaviour
 
             //障害物を生成
             GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ * 10));
-            
+
             m_GroundPosZ++;
             m_ObstaclePosZ++;
         }
-        
+
         //画面外に出た障害物を削除
         if (m_Player.position.z % (m_ObstaclePosZ * 10) > 1.0f)
         {

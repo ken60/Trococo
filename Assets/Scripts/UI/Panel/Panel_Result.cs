@@ -31,7 +31,8 @@ public class Panel_Result : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         iTween.MoveTo(gameObject, parameters);
     }
 
@@ -39,7 +40,8 @@ public class Panel_Result : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height + m_RectTransform.sizeDelta.y);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         parameters.Add("oncomplete", "BackToTitle");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
@@ -49,7 +51,8 @@ public class Panel_Result : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height + m_RectTransform.sizeDelta.y);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         parameters.Add("oncomplete", "Restart");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
@@ -59,13 +62,13 @@ public class Panel_Result : MonoBehaviour
     void BackToTitle()
     {
         GameManager.Instance.InitGame();
-        SceneManager.LoadScene("Title");
+        GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
     }
 
     void Restart()
     {
         GameManager.Instance.InitGame();
-        SceneManager.LoadScene("Game");
+        GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
     }
 
 }

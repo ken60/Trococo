@@ -18,9 +18,6 @@ public class Panel_Title : MonoBehaviour
     {
         m_Canvas = GameObject.Find("Canvas");
 
-        //セーブデータのロード
-        GameManager.Instance.LoadGame();
-
         MoveIn();
     }
 
@@ -60,7 +57,8 @@ public class Panel_Title : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         iTween.MoveTo(gameObject, parameters);
     }
 
@@ -68,7 +66,8 @@ public class Panel_Title : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         parameters.Add("oncomplete", "LoadGame");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
@@ -78,7 +77,8 @@ public class Panel_Title : MonoBehaviour
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutBack);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
         parameters.Add("oncomplete", "PanelDestroy");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
@@ -86,7 +86,7 @@ public class Panel_Title : MonoBehaviour
 
     void LoadGame()
     {
-        SceneManager.LoadScene("Game");
+        GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
         Destroy(gameObject);
     }
 

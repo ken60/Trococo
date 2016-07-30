@@ -8,6 +8,7 @@ public class GameScene : MonoBehaviour
         LoadTitle = 0,
         Title,
         LoadGame,
+        WaitCount,
         StartCount,
         Play,
         GameOver,
@@ -33,11 +34,10 @@ public class GameScene : MonoBehaviour
     private StageGenerator m_StageGenerator;
     [SerializeField]
     private float m_GameOverWait;
-        
+
     private Camera m_Camera;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;
-
 
     void Start()
     {
@@ -102,9 +102,14 @@ public class GameScene : MonoBehaviour
                 obj.transform.SetParent(m_Camera.transform, false);
 
 
-                m_GameScene = eGameScene.StartCount;
+                m_GameScene = eGameScene.WaitCount;
                 break;
-                
+
+            case eGameScene.WaitCount:
+                m_GameScene = eGameScene.StartCount;
+
+                break;
+
             //ゲーム開始時のカウントダウン
             case eGameScene.StartCount:
                 m_TimeCount += Time.deltaTime;

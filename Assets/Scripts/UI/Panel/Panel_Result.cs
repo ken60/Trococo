@@ -25,6 +25,16 @@ public class Panel_Result : MonoBehaviour
         m_CoinNum.text = GameManager.Instance.coin + " 枚";
     }
 
+    //iTween
+    public void MoveIn()
+    {
+        Hashtable parameters = new Hashtable();
+        parameters.Add("y", Screen.height * 0.5f);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
+        iTween.MoveTo(gameObject, parameters);
+    }
+
     public void Button_Title()
     {
         Hashtable parameters = new Hashtable();
@@ -34,6 +44,8 @@ public class Panel_Result : MonoBehaviour
         parameters.Add("oncomplete", "BackToTitle");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
+
+        m_Fade.FadeIn();
     }
 
     public void Button_Restart()
@@ -45,17 +57,10 @@ public class Panel_Result : MonoBehaviour
         parameters.Add("oncomplete", "Restart");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
+
+        m_Fade.FadeIn();
     }
 
-    //iTween
-    public void MoveIn()
-    {
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.MoveTo(gameObject, parameters);
-    }
 
     //ボタンクリック後のアニメーション完了時に呼ばれる
     void BackToTitle()

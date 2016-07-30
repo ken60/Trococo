@@ -83,12 +83,6 @@ public class StageGenerator : MonoBehaviour
             m_RailPosZ++;
         }
 
-        //画面外に出た障害物を削除
-        if (m_Player.position.z > (m_GroundPosZ - m_PreInstantiateGround) * m_GroundSizeZ)
-        {
-            //print("RemoveObject");
-            RemoveObject(m_GeneratedObstacle, 0);
-        }
 
         if (m_Player.position.z > (m_GroundPosZ - m_PreInstantiateGround) * m_GroundSizeZ)
         {
@@ -103,7 +97,11 @@ public class StageGenerator : MonoBehaviour
             m_ObstaclePosZ++;
         }
 
-        
+        //プレイヤーより後ろの障害物を削除
+        if (m_Player.position.z - m_GroundSizeZ > m_GeneratedObstacle[0].gameObject.transform.position.z)
+        {
+            RemoveObject(m_GeneratedObstacle, 0);
+        }
     }
 
     //オブジェクトを生成

@@ -11,11 +11,10 @@ public class Panel_Title : MonoBehaviour
     private Panel_CharSelect m_Panel_CharSelect;
     [SerializeField]
     private Text m_Text;
-    
+
 
     void Start()
     {
-
     }
 
     void Update()

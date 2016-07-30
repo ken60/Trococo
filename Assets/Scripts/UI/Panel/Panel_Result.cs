@@ -25,15 +25,6 @@ public class Panel_Result : MonoBehaviour
         m_CoinNum.text = GameManager.Instance.coin + " 枚";
     }
 
-    //iTween
-    public void MoveIn()
-    {
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.MoveTo(gameObject, parameters);
-    }
 
     public void Button_Title()
     {
@@ -45,6 +36,8 @@ public class Panel_Result : MonoBehaviour
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
 
+        DestroySquidInk();
+        GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
         m_Fade.FadeIn();
     }
 
@@ -58,24 +51,29 @@ public class Panel_Result : MonoBehaviour
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
 
+        DestroySquidInk();
+        GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
         m_Fade.FadeIn();
     }
 
+    //iTween
+    public void MoveIn()
+    {
+        Hashtable parameters = new Hashtable();
+        parameters.Add("y", Screen.height * 0.5f);
+        parameters.Add("time", 0.4f);
+        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
+        iTween.MoveTo(gameObject, parameters);
+    }
 
     //ボタンクリック後のアニメーション完了時に呼ばれる
     void BackToTitle()
     {
-        DestroySquidInk();
-        GameManager.Instance.InitGame();
-        GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
         transform.localPosition = new Vector2(0.0f, 1645.0f);
     }
 
     void Restart()
     {
-        DestroySquidInk();
-        GameManager.Instance.InitGame();
-        GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
         transform.localPosition = new Vector2(0.0f, 1645.0f);
     }
 

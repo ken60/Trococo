@@ -50,9 +50,9 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
-                m_Fade.fadeOut = true;
-                //セーブデータロード
+                //セーブデータのロード
                 GameManager.Instance.LoadGame();
+                m_Fade.fadeOut = true;
                 //ステージの初期化
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
@@ -83,7 +83,9 @@ public class GameScene : MonoBehaviour
                 //前のシーンがタイトル以外の時
                 if (!m_FromTitle)
                 {
-                    //セーブデータロード
+                    //初期化
+                    GameManager.Instance.InitGame();
+                    //セーブデータのロード
                     GameManager.Instance.LoadGame();
                     //ステージの初期化
                     m_StageGenerator.InitStage();

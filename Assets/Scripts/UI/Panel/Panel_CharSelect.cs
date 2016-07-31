@@ -7,11 +7,12 @@ public class Panel_CharSelect : MonoBehaviour
     [SerializeField]
     private Sprite[] m_Sprite;
     [SerializeField]
-    private Image m_ExplanatoryImage;
-    [SerializeField]
     private Text[] m_ButtonText;
     [SerializeField]
+    private Image m_ExplanatoryImage;
+    [SerializeField]
     private Panel_Title m_Panel_Title;
+    Button m_button;
 
     private int m_PageNmmber = 1;
 
@@ -25,7 +26,7 @@ public class Panel_CharSelect : MonoBehaviour
         //1ページ目の時は戻るボタンを隠す
         if (m_PageNmmber == 1)
         {
-            m_ButtonText[0].text = "キャンセル";
+            m_ButtonText[0].text = "もどる";
             m_ButtonText[0].fontSize = 50;
         }
         else
@@ -56,7 +57,7 @@ public class Panel_CharSelect : MonoBehaviour
         if (1 < m_PageNmmber)
             m_PageNmmber--;
 
-        if (m_ButtonText[0].text == "キャンセル")
+        if (m_ButtonText[0].text == "もどる")
         {
             MoveOut();
             m_Panel_Title.MoveIn();

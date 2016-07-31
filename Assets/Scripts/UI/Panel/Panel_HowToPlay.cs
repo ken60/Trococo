@@ -7,18 +7,16 @@ public class Panel_HowToPlay : MonoBehaviour
     [SerializeField]
     private Sprite[] m_Sprite;
     [SerializeField]
-    private Image m_ExplanatoryImage;
-    [SerializeField]
     private Text[] m_ButtonText;
     [SerializeField]
+    private Image m_ExplanatoryImage;
+    [SerializeField]
     private Panel_Title m_Panel_Title;
-
-    private GameObject m_Canvas;
+    
     private int m_PageNmmber = 1;
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
     }
 
     void Update()

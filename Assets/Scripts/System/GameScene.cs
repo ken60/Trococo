@@ -78,12 +78,11 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadGame:
                 GameSceneManager.Instance.isGameOver = false;
 
-                //初期化
-                GameManager.Instance.InitGame();
-
                 //前のシーンがタイトル以外の時
                 if (!m_FromTitle)
                 {
+                    //初期化
+                    GameManager.Instance.InitGame();
                     //セーブデータのロード
                     GameManager.Instance.LoadGame();
                     //ステージの初期化

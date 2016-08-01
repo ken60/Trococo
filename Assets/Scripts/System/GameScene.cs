@@ -21,7 +21,7 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private SceneChangeFade m_Fade;
     [SerializeField]
-    private Text[] m_UI_Text;
+    private GameObject m_UI_Text;
     [SerializeField]
     private Panel_Title m_Panel_Title;
     [SerializeField]
@@ -59,10 +59,8 @@ public class GameScene : MonoBehaviour
                 m_Player.GetComponent<Player>().InitPlayer();
 
                 //ゲームプレイ中のUIを非表示
-                for (int i = 0; i < m_UI_Text.Length; i++)
-                {
-                    m_UI_Text[i].enabled = false;
-                }
+                m_UI_Text.SetActive(false);
+
 
                 //タイトルパネルを表示
                 m_Panel_Title.MoveIn();
@@ -80,11 +78,12 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadGame:
                 GameSceneManager.Instance.isGameOver = false;
 
+                //初期化
+                GameManager.Instance.InitGame();
+
                 //前のシーンがタイトル以外の時
                 if (!m_FromTitle)
                 {
-                    //初期化
-                    GameManager.Instance.InitGame();
                     //セーブデータのロード
                     GameManager.Instance.LoadGame();
                     //ステージの初期化
@@ -95,10 +94,7 @@ public class GameScene : MonoBehaviour
                 m_FromTitle = false;
 
                 //ゲームプレイ中のUIを表示
-                for (int i = 0; i < m_UI_Text.Length; i++)
-                {
-                    m_UI_Text[i].enabled = true;
-                }
+                m_UI_Text.SetActive(true);
 
                 GameObject obj = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
                 obj.transform.SetParent(m_Camera.transform, false);

@@ -9,7 +9,9 @@ public class Panel_Result : MonoBehaviour
     [SerializeField]
     private Text m_ScoreNum;
     [SerializeField]
-    private Text m_CoinNum;
+    private Text m_GoldCoinNum;
+    [SerializeField]
+    private Text m_CopperCoinNum;
 
     private RectTransform m_RectTransform;
 
@@ -22,7 +24,8 @@ public class Panel_Result : MonoBehaviour
     void Update()
     {
         m_ScoreNum.text = GameManager.Instance.score + " m";
-        m_CoinNum.text = GameManager.Instance.coin + " 枚";
+        m_GoldCoinNum.text = GameManager.Instance.goldCoin + " 枚";
+        m_CopperCoinNum.text = GameManager.Instance.copperCoin + " 枚";
     }
 
 

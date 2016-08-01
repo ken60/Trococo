@@ -165,10 +165,16 @@ public class Player : MonoBehaviour
             }
 
             //コイン
-            if (hit.gameObject.tag == "Coin")
+            if (hit.gameObject.tag == "Gold_Coin")
             {
                 Destroy(hit.gameObject);
-                GameManager.Instance.coin += 1;
+                GameManager.Instance.goldCoin += 1;
+            }
+
+            if (hit.gameObject.tag == "Copper_Coin")
+            {
+                Destroy(hit.gameObject);
+                GameManager.Instance.copperCoin += 1;
             }
 
             //トマト

@@ -4,16 +4,12 @@ using UnityEngine.UI;
 
 public class CoinText : MonoBehaviour
 {
-    private Text m_CoinText;
-
-    void Start()
-    {
-        m_CoinText = GetComponent<Text>();
-    }
-
+    public Text m_GoldCoinText;
+    public Text m_CopperCoinText;
+    
     void Update()
     {
-        m_CoinText.text = "コイン " + GameManager.Instance.coin;
-
+        m_GoldCoinText.text = GameManager.Instance.goldCoin.ToString();
+        m_CopperCoinText.text = GameManager.Instance.copperCoin.ToString();
     }
 }

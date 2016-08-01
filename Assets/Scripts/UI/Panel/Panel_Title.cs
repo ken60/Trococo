@@ -10,16 +10,20 @@ public class Panel_Title : MonoBehaviour
     [SerializeField]
     private Panel_CharSelect m_Panel_CharSelect;
     [SerializeField]
-    private Text m_Text;
+    private Text m_GoldCoinText;
+    [SerializeField]
+    private Text m_CopperCoinText;
 
 
     void Start()
     {
+
     }
 
     void Update()
     {
-        m_Text.text = "所持コイン " + GameManager.Instance.totalCoinNum + "枚";
+        m_GoldCoinText.text = GameManager.Instance.totalGoldCoinNum.ToString();
+        m_CopperCoinText.text = GameManager.Instance.totalCopperCoinNum.ToString();
     }
 
     public void Button_GameStart()

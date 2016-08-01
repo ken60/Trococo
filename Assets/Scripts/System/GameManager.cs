@@ -3,17 +3,20 @@
 [System.Serializable]
 class Data
 {
-    public int HighScore = 0;
-    public int TotalCoinNum = 0;
+    public int highScore = 0;
+    public int totalGoldCoinNum = 0;
+    public int totalCopperCoinNum = 0;
 }
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     private int m_Score = 0;
-    private int m_CoinNum = 0;
+    private int m_GoldCoinNum = 0;
+    private int m_CopperCoinNum = 0;
     private int m_HighScore = 0;
     private int m_OldHighScore = 0;
-    private int m_TotalCoinNum = 0;
+    private int m_TotalGoldCoinNum = 0;
+    private int m_TotalCopperCoinNum = 0;
     private int m_TomatoNum = 0;
     private string m_Json;
 
@@ -25,10 +28,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public void InitGame()
     {
         m_Score = 0;
-        m_CoinNum = 0;
+        m_GoldCoinNum = 0;
+        m_CopperCoinNum = 0;
         m_HighScore = 0;
         m_OldHighScore = 0;
-        m_TotalCoinNum = 0;
+        m_TotalGoldCoinNum = 0;
+        m_TotalCopperCoinNum = 0;
         m_TomatoNum = 0;
     }
 
@@ -37,9 +42,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         Data loadData = JsonUtility.FromJson(FileIO.FileRead("SaveData"), typeof(Data)) as Data;
         if (loadData == null) return;
 
-        m_HighScore = loadData.HighScore;
-        m_OldHighScore = loadData.HighScore;
-        m_TotalCoinNum = loadData.TotalCoinNum;
+        m_HighScore = loadData.highScore;
+        m_OldHighScore = loadData.highScore;
+        m_TotalGoldCoinNum = loadData.totalGoldCoinNum;
+        m_TotalCopperCoinNum = loadData.totalCopperCoinNum;
     }
 
     public void SaveGame()
@@ -49,14 +55,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         //ハイスコア
         if (m_HighScore < m_Score)
         {
-            data.HighScore = m_Score;
+            data.highScore = m_Score;
         }
         else
         {
-            data.HighScore = m_OldHighScore;
+            data.highScore = m_OldHighScore;
         }
         //合計コイン数
-        data.TotalCoinNum = m_TotalCoinNum + m_CoinNum;
+        data.totalGoldCoinNum = m_TotalGoldCoinNum + m_GoldCoinNum;
+        data.totalCopperCoinNum = m_TotalCopperCoinNum + m_CopperCoinNum;
 
         m_Json = JsonUtility.ToJson(data);
         FileIO.FileWrite("SaveData", m_Json);
@@ -82,18 +89,29 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public int coin
+    public int goldCoin
     {
         get
         {
-            return m_CoinNum;
+            return m_GoldCoinNum;
         }
         set
         {
-            m_CoinNum = value;
+            m_GoldCoinNum = value;
         }
     }
 
+    public int copperCoin
+    {
+        get
+        {
+            return m_CopperCoinNum;
+        }
+        set
+        {
+            m_CopperCoinNum = value;
+        }
+    }
     public int tmato
     {
         get
@@ -106,15 +124,27 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
-    public int totalCoinNum
+    public int totalGoldCoinNum
     {
         get
         {
-            return m_TotalCoinNum;
+            return m_TotalGoldCoinNum;
         }
         set
         {
-            m_TotalCoinNum = value;
+            m_TotalGoldCoinNum = value;
+        }
+    }
+
+    public int totalCopperCoinNum
+    {
+        get
+        {
+            return m_TotalCopperCoinNum;
+        }
+        set
+        {
+            m_TotalCopperCoinNum = value;
         }
     }
 

@@ -27,24 +27,20 @@ public class Panel_CharSelect : MonoBehaviour
         if (m_PageNmmber == 1)
         {
             m_ButtonText[0].text = "もどる";
-            m_ButtonText[0].fontSize = 50;
         }
         else
         {
             m_ButtonText[0].text = "まえへ";
-            m_ButtonText[0].fontSize = 64;
         }
 
         //最後のページの時はボタンテキストを「もどる」に
         if (m_PageNmmber == m_Sprite.Length)
         {
             m_ButtonText[1].text = "もどる";
-            m_ButtonText[1].fontSize = 64;
         }
         else
         {
             m_ButtonText[1].text = "つぎへ";
-            m_ButtonText[1].fontSize = 64;
         }
 
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];

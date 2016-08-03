@@ -799,6 +799,48 @@ Prefab:
       propertyPath: m_Panel_Title
       value: 
       objectReference: {fileID: 733076773}
+    - target: {fileID: 145960, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 119780, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11445022, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11468740, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11468740, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462586, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11416186, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11457060, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11407388, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3a85cdfe846c1954fa4dcba7710b4177, type: 2}
   m_IsPrefabParent: 0
@@ -1672,6 +1714,93 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 1276681386}
+--- !u!1 &820929933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 820929938}
+  - 20: {fileID: 820929937}
+  - 124: {fileID: 820929936}
+  - 92: {fileID: 820929935}
+  - 81: {fileID: 820929934}
+  m_Layer: 0
+  m_Name: CharViewCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!81 &820929934
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820929933}
+  m_Enabled: 1
+--- !u!92 &820929935
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820929933}
+  m_Enabled: 1
+--- !u!124 &820929936
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820929933}
+  m_Enabled: 1
+--- !u!20 &820929937
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820929933}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0.5
+    height: 0.5
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!4 &820929938
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 820929933}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1001 &849808992
 Prefab:
   m_ObjectHideFlags: 0
@@ -2009,6 +2138,42 @@ Prefab:
       propertyPath: m_Fade
       value: 
       objectReference: {fileID: 1965819516}
+    - target: {fileID: 167446, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 109012, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462478, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11457670, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11449138, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11422508, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 109012, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_Name
+      value: Restart_Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 167446, guid: 53402489bd9672d469a3a383365eed56, type: 2}
+      propertyPath: m_Name
+      value: TitleText
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 53402489bd9672d469a3a383365eed56, type: 2}
   m_IsPrefabParent: 0
@@ -2529,8 +2694,8 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_Camera: {fileID: 6310086}
+  m_PlaneDistance: 0.5
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2731,6 +2896,62 @@ Prefab:
       propertyPath: m_Panel_CharSelect
       value: 
       objectReference: {fileID: 1907612695}
+    - target: {fileID: 196244, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 156678, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 155752, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 177502, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11452784, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11424606, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11484452, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11453720, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11445592, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11472428, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11421892, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11479050, guid: bf65409f912338341969bd43982d90fc, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 114000014098594688, guid: bf65409f912338341969bd43982d90fc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bf65409f912338341969bd43982d90fc, type: 2}
@@ -3673,6 +3894,42 @@ Prefab:
       propertyPath: m_Panel_Title
       value: 
       objectReference: {fileID: 733076773}
+    - target: {fileID: 165198, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115352, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115352, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_Name
+      value: PrevText
+      objectReference: {fileID: 0}
+    - target: {fileID: 165198, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_Name
+      value: NextText
+      objectReference: {fileID: 0}
+    - target: {fileID: 11423230, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11455576, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b88a65c987b06b44f93c7021b5a30dbb,
+        type: 3}
+    - target: {fileID: 11451186, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
+    - target: {fileID: 11405764, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5d48628172ff17a4895de626933cac75,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac245ae112f231f478023bbed0137e8d, type: 2}
   m_IsPrefabParent: 0

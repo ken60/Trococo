@@ -27,18 +27,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void InitGame()
     {
+        //print("InitGame");
         m_Score = 0;
         m_GoldCoinNum = 0;
         m_CopperCoinNum = 0;
-        m_HighScore = 0;
-        m_OldHighScore = 0;
-        m_TotalGoldCoinNum = 0;
-        m_TotalCopperCoinNum = 0;
+        //m_HighScore = 0;
+        //m_OldHighScore = 0;
         m_TomatoNum = 0;
     }
 
     public void LoadGame()
     {
+        //print("LoadGame");
         Data loadData = JsonUtility.FromJson(FileIO.FileRead("SaveData"), typeof(Data)) as Data;
         if (loadData == null) return;
 
@@ -50,6 +50,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void SaveGame()
     {
+        //print("SaveGame");
         Data data = new Data();
 
         //ハイスコア
@@ -130,10 +131,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             return m_TotalGoldCoinNum;
         }
-        set
-        {
-            m_TotalGoldCoinNum = value;
-        }
     }
 
     public int totalCopperCoinNum
@@ -141,10 +138,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         get
         {
             return m_TotalCopperCoinNum;
-        }
-        set
-        {
-            m_TotalCopperCoinNum = value;
         }
     }
 

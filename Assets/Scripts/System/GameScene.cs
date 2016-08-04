@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using UnityStandardAssets.ImageEffects;
 
 public class GameScene : MonoBehaviour
 {
@@ -19,13 +19,11 @@ public class GameScene : MonoBehaviour
     static public eGameScene m_GameScene;
 
     [SerializeField]
-    private SceneChangeFade m_Fade;
-    [SerializeField]
     private GameObject m_UI_Text;
     [SerializeField]
     private Panel_Title m_Panel_Title;
     [SerializeField]
-    private Panel_Result m_Panel_Result;
+    private GameObject m_Panel_Result;
     [SerializeField]
     private GameObject m_StartCount;
     [SerializeField]
@@ -33,14 +31,18 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private StageGenerator m_StageGenerator;
     [SerializeField]
+    private BlurOptimized m_Blur;
+    [SerializeField]
     private float m_GameOverWait;
 
     private Camera m_Camera;
+    private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;
 
     void Start()
     {
+        m_Canvas = GameObject.Find("Canvas");
         m_FromTitle = false;
         m_Camera = Camera.main;
     }
@@ -52,12 +54,12 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadTitle:
                 //セーブデータのロード
                 GameManager.Instance.LoadGame();
-                m_Fade.fadeOut = true;
                 //ステージの初期化
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
                 m_Player.GetComponent<Player>().InitPlayer();
-
+                //ブラーを有効化
+                m_Blur.enabledBlur = true;
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
 
@@ -71,18 +73,18 @@ public class GameScene : MonoBehaviour
                 break;
 
             case eGameScene.Title:
-                //Show Title
+                //Title Showing
 
                 break;
 
             case eGameScene.LoadGame:
                 GameSceneManager.Instance.isGameOver = false;
+                //初期化
+                GameManager.Instance.InitGame();
 
                 //前のシーンがタイトル以外の時
                 if (!m_FromTitle)
                 {
-                    //初期化
-                    GameManager.Instance.InitGame();
                     //セーブデータのロード
                     GameManager.Instance.LoadGame();
                     //ステージの初期化
@@ -103,6 +105,8 @@ public class GameScene : MonoBehaviour
                 break;
 
             case eGameScene.WaitCount:
+                //ブラーを無効化
+                m_Blur.enabledBlur = false;
                 m_GameScene = eGameScene.StartCount;
 
                 break;
@@ -133,8 +137,15 @@ public class GameScene : MonoBehaviour
             //ゲームオーバー時一度だけ
             case eGameScene.GameOver:
                 GameSceneManager.Instance.isGamePlaying = false;
+
+                //ゲームプレイ中のUIを非表示
+                m_UI_Text.SetActive(false);
+                //ブラーを有効化
+                m_Blur.enabledBlur = true;
+
                 //リザルトパネルを表示
-                m_Panel_Result.MoveIn();
+                GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;
+                panelRes.transform.SetParent(m_Canvas.transform, false);
 
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameManager.Instance.isHighScore() && Application.platform == RuntimePlatform.Android)
@@ -142,6 +153,7 @@ public class GameScene : MonoBehaviour
                     RankParkInterface.Instance().AddScore(GameManager.Instance.score);
                     //print("Send Score");
                 }
+
                 //セーブ
                 GameManager.Instance.SaveGame();
 

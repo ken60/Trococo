@@ -10,8 +10,7 @@ public class SceneChangeFade : MonoBehaviour
 
     private Color m_Color;
     private Image m_Image;
-
-    private float m_TimeCount = 0.0f;
+    
     public bool m_isFadeIn = false;
     public bool m_isFadeOut = false;
 

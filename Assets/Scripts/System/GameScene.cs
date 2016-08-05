@@ -49,6 +49,7 @@ public class GameScene : MonoBehaviour
 
     void Update()
     {
+        //print(m_GameScene);
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
@@ -164,4 +165,5 @@ public class GameScene : MonoBehaviour
                 break;
         }
     }
+
 }

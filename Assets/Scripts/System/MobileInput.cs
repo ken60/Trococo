@@ -14,9 +14,8 @@ public class MobileInput : MonoBehaviour
 
     private static MobileInput instance;
     private Vector2 m_StartPos = Vector2.zero;
-    private Vector2 m_EndPos = Vector2.zero;
     private TouchType m_TouchDir = TouchType.NONE;
-    private string m_Direction = null;
+    private Vector2 m_Direction = Vector2.zero;
     private bool m_DuringTap = false;
 
     public enum TouchType
@@ -76,7 +75,6 @@ public class MobileInput : MonoBehaviour
         get { return m_DuringTap; }
     }
 
-
     private TouchType GetFlick()
     {
         //Unity Editorの場合
@@ -88,8 +86,7 @@ public class MobileInput : MonoBehaviour
             }
             else if (Input.GetMouseButtonUp(0))
             {
-                m_EndPos = Input.mousePosition;
-                GetDirection(m_StartPos, m_EndPos);
+                GetDirection(m_StartPos, Input.mousePosition);
             }
             else
             {
@@ -98,6 +95,7 @@ public class MobileInput : MonoBehaviour
         }
         //Androidの場合
         else if (Application.platform == RuntimePlatform.Android)
+        {
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -109,11 +107,14 @@ public class MobileInput : MonoBehaviour
                         m_StartPos = touch.position;
                         break;
 
+                    //移動した時
+                    case TouchPhase.Moved:
+                        break;
+
                     //指を離した座標を取得
                     case TouchPhase.Ended:
                         m_DuringTap = false;
-                        m_EndPos = touch.position;
-                        GetDirection(m_StartPos, m_EndPos);
+                        GetDirection(m_StartPos, touch.position);
                         break;
                 }
             }
@@ -121,7 +122,7 @@ public class MobileInput : MonoBehaviour
             {
                 m_TouchDir = TouchType.NONE;
             }
-
+        }
         return m_TouchDir;
     }
 
@@ -131,7 +132,6 @@ public class MobileInput : MonoBehaviour
         m_TapRange = (int)m_Slider.value;
         Vector2 direction = end - start;
 
-        //m_TapRange = 15ぐらい？
         if (m_TapRange < Vector2.Distance(start, end))
         {
             if (Mathf.Abs(direction.y) < Mathf.Abs(direction.x))

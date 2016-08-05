@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
     public void InitPlayer()
     {
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         transform.position = Vector3.zero;
         m_CurrentRunningRail = 0;
         m_TimeCount = 0;
@@ -112,10 +113,11 @@ public class Player : MonoBehaviour
             //縮む動作
             if (MobileInput.Instance.duringTap)
                 transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 0.72f, 1.0f), 0.3f);
-            else
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 1.0f, 1.0f), 0.3f);
-
         }
+
+        //縮みを戻す
+        if (!MobileInput.Instance.duringTap)
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 1.0f, 1.0f), 0.3f);
 
         //スコア
         GameManager.Instance.score = (int)transform.position.z;

@@ -23,42 +23,53 @@ public class Panel_Result : MonoBehaviour
     private int m_ShowAdRate = 4;
 
     private RectTransform m_RectTransform;
+    private int m_ClickCnt = 0;
 
 
     void Start()
     {
-        m_AdsText.text = "動画を見てコインをゲット!";
+        m_ClickCnt = 0;
         m_RectTransform = GetComponent<RectTransform>();
 
-        int random = Random.Range(0, m_ShowAdRate);
+        m_AdsText.text = "動画を見てコインをゲット!";
 
+        int random = Random.Range(0, m_ShowAdRate);
+        int i;
         //広告ありの場合
         if (random == 0)
         {
             //スコアバーなどの移動
-            for (int i = 0; i < m_ResultBar.Length; i++)
+            for (i = 0; i < m_ResultBar.Length; i++)
+            {
                 MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
+            }
+            //ボタンの移動
+            for (int j = 0; j < m_Button.Length; j++)
+                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length) * 0.2f);
         }
         //広告無しの場合
         else
         {
             //スコアバーなどの移動
-            for (int i = 0; i < m_ResultBar.Length - 1; i++)
+            for (i = 0; i < m_ResultBar.Length - 1; i++)
+            {
                 MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
+
+            }
+            //ボタンの移動
+            for (int j = 0; j < m_Button.Length; j++)
+                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length - 1) * 0.2f);
+
         }
 
-        //ボタンの移動
-        for (int i = 0; i < m_Button.Length; i++)
-            Button_MoveIn(m_Button[i].gameObject, i * 0.2f);
-
-
+        //Textに結果を表示
         m_ScoreNum.text = GameManager.Instance.score + " m";
         m_GoldCoinNum.text = GameManager.Instance.goldCoin + " 枚";
         m_CopperCoinNum.text = GameManager.Instance.copperCoin + " 枚";
     }
 
     //Unity Ads
-    public void ShowRewardedAd()
+    public void ShowRewardedAD()
     {
         if (Advertisement.IsReady("rewardedVideo"))
         {
@@ -101,18 +112,19 @@ public class Panel_Result : MonoBehaviour
         }
     }
 
-    //iTween
-    public void MoveIn(GameObject gameObj, float delay)
+    //********iTween********
+    void MoveIn(GameObject gameObj, float delay)
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("x", Screen.width * 0.5f);
         parameters.Add("time", 0.4f);
         parameters.Add("delay", delay);
         parameters.Add("easeType", iTween.EaseType.easeInOutSine);
+
         iTween.MoveTo(gameObj, parameters);
     }
 
-    public void Button_MoveIn(GameObject gameObj, float delay)
+    void Button_MoveIn(GameObject gameObj, float delay)
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", Screen.height * 0.15f);
@@ -122,7 +134,7 @@ public class Panel_Result : MonoBehaviour
         iTween.MoveTo(gameObj, parameters);
     }
 
-    public void Button_Title()
+    void MoveOut()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height + m_RectTransform.sizeDelta.y);
@@ -131,31 +143,34 @@ public class Panel_Result : MonoBehaviour
         parameters.Add("oncomplete", "Destroy");
         parameters.Add("oncompletetarget", gameObject);
         iTween.MoveTo(gameObject, parameters);
+    }
 
+    //********Button********
+    public void Button_Title()
+    {
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
+        MoveOut();
         DestroySquidInk();
         GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
+
     }
 
     public void Button_Restart()
     {
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", -Screen.height + m_RectTransform.sizeDelta.y);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        parameters.Add("oncomplete", "Destroy");
-        parameters.Add("oncompletetarget", gameObject);
-        iTween.MoveTo(gameObject, parameters);
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
+        MoveOut();
         DestroySquidInk();
-
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
     }
 
     public void ViewAd()
     {
-        ShowRewardedAd();
+        ShowRewardedAD();
     }
 
-    //ボタンクリック後のアニメーション完了時に呼ばれる
+    //アニメーション完了時に呼ばれる
     void Destroy()
     {
         Destroy(gameObject);

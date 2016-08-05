@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Panel_Title : MonoBehaviour
 {
@@ -13,10 +14,10 @@ public class Panel_Title : MonoBehaviour
     [SerializeField]
     private Text m_CopperCoinText;
 
+    private int m_ClickCnt = 0;
 
     void Start()
     {
-
     }
 
     void Update()
@@ -25,31 +26,51 @@ public class Panel_Title : MonoBehaviour
         m_CopperCoinText.text = GameManager.Instance.totalCopperCoinNum.ToString();
     }
 
+    //********Button********
     public void Button_GameStart()
     {
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
         MoveOut_Start();
     }
 
     public void Button_Select()
     {
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
         MoveOut();
         m_Panel_CharSelect.MoveIn();
     }
 
     public void Button_HowToPlay()
     {
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
         MoveOut();
         m_Panel_HowToPlay.MoveIn();
     }
 
     public void Button_Ranking()
     {
+        if (m_ClickCnt != 1) return;
         if (Application.platform == RuntimePlatform.Android)
         {
             RankParkInterface.Instance().StartActivity();
         }
     }
 
+    public void ButtonDown()
+    {
+        //m_ClickCnt++;
+    }
+
+    public void ButtonUp()
+    {
+        //m_ClickCnt = 0;
+    }
+
+
+    //********iTween********
     public void MoveIn()
     {
         Hashtable parameters = new Hashtable();
@@ -59,7 +80,7 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    public void MoveOut_Start()
+    void MoveOut_Start()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
@@ -70,7 +91,7 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    public void MoveOut()
+    void MoveOut()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
@@ -85,10 +106,12 @@ public class Panel_Title : MonoBehaviour
     {
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
         transform.localPosition = new Vector2(0.0f, 1920.0f);
+        m_ClickCnt = 0;
     }
 
     void PanelMove()
     {
+        m_ClickCnt = 0;
         transform.localPosition = new Vector2(0.0f, 1920.0f);
     }
 }

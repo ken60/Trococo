@@ -5,21 +5,19 @@ using System.Collections;
 public class Panel_CharSelect : MonoBehaviour
 {
     [SerializeField]
-    private Sprite[] m_Sprite;
+    private Sprite[] m_Sprite;          //各キャラの画像
     [SerializeField]
-    private Text[] m_ButtonText;
+    private Text[] m_ButtonText;        //ボタンテキスト
+    [SerializeField, TextArea(3, 24)]
+    private string[] m_DescriptionText; //キャラクターの説明文
     [SerializeField]
-    private Image m_ExplanatoryImage;
+    private Text m_Description;         //キャラクターの説明Text
+    [SerializeField]
+    private Image m_ExplanatoryImage;   //キャラクターのImage
     [SerializeField]
     private Panel_Title m_Panel_Title;
-    Button m_button;
 
     private int m_PageNmmber = 1;
-
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -44,6 +42,7 @@ public class Panel_CharSelect : MonoBehaviour
         }
 
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
+        m_Description.text = m_DescriptionText[m_PageNmmber - 1];
     }
 
     //「もどる」ボタンをおした時

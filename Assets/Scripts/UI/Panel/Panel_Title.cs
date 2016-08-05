@@ -52,10 +52,16 @@ public class Panel_Title : MonoBehaviour
 
     public void Button_Ranking()
     {
+        m_ClickCnt++;
         if (m_ClickCnt != 1) return;
+        m_ClickCnt = 0;
         if (Application.platform == RuntimePlatform.Android)
         {
             RankParkInterface.Instance().StartActivity();
+        }
+        else
+        {
+            Debug.Log("Show RankPark");
         }
     }
 

@@ -2558,7 +2558,7 @@ Prefab:
     - target: {fileID: 114000013163492650, guid: bf65409f912338341969bd43982d90fc,
         type: 2}
       propertyPath: m_Text
-      value: Ver a0.4.6
+      value: Ver a0.4.7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011295177350, guid: bf65409f912338341969bd43982d90fc, type: 2}

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class Panel_Title : MonoBehaviour
 {
@@ -18,6 +17,7 @@ public class Panel_Title : MonoBehaviour
 
     void Start()
     {
+
     }
 
     void Update()
@@ -58,17 +58,6 @@ public class Panel_Title : MonoBehaviour
             RankParkInterface.Instance().StartActivity();
         }
     }
-
-    public void ButtonDown()
-    {
-        //m_ClickCnt++;
-    }
-
-    public void ButtonUp()
-    {
-        //m_ClickCnt = 0;
-    }
-
 
     //********iTween********
     public void MoveIn()

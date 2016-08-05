@@ -488,7 +488,7 @@ MonoBehaviour:
   - {fileID: 11436904}
   - {fileID: 11416634}
   m_ExplanatoryImage: {fileID: 11448262}
-  m_Panel_Title: {fileID: 0}
+  m_Panel_Title: {fileID: 11428328, guid: bf65409f912338341969bd43982d90fc, type: 2}
 --- !u!222 &22209474
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -137,6 +137,8 @@ GameObject:
   - 222: {fileID: 22275840}
   - 114: {fileID: 11479746}
   - 114: {fileID: 11413760}
+  - 114: {fileID: 114000012800165020}
+  - 114: {fileID: 114000013100221856}
   m_Layer: 5
   m_Name: CharSelect
   m_TagString: Untagged
@@ -580,9 +582,6 @@ MonoBehaviour:
   m_ButtonText:
   - {fileID: 11483194}
   - {fileID: 11463136}
-  m_Description: {fileID: 114000011810085136}
-  m_ExplanatoryImage: {fileID: 11485342}
-  m_Panel_Title: {fileID: 0}
   m_DescriptionText:
   - "\u3053\u308C\u306F\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC1\u3067\u3059\u3002"
   - "\u3053\u308C\u306F\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC2\u3067\u3059\u3002"
@@ -590,6 +589,9 @@ MonoBehaviour:
   - "\u3053\u308C\u306F\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC4\u3067\u3059\u3002"
   - "\u3053\u308C\u306F\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC5\u3067\u3059\u3002"
   - "\u3053\u308C\u306F\u30AD\u30E3\u30E9\u30AF\u30BF\u30FC6\u3067\u3059\u3002"
+  m_Description: {fileID: 114000011810085136}
+  m_ExplanatoryImage: {fileID: 11485342}
+  m_Panel_Title: {fileID: 11428328, guid: bf65409f912338341969bd43982d90fc, type: 2}
 --- !u!114 &11483194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1044,6 +1046,48 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
+--- !u!114 &114000012800165020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521257714fc9e437a9163df2d37f2ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  type: 
+  method: 
+  easeType: 0
+  time: 0
+  delay: 0
+  loopType: 0
+  isRunning: 0
+  isPaused: 0
+  _name: 
+--- !u!114 &114000013100221856
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 521257714fc9e437a9163df2d37f2ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
+  type: 
+  method: 
+  easeType: 0
+  time: 0
+  delay: 0
+  loopType: 0
+  isRunning: 0
+  isPaused: 0
+  _name: 
 --- !u!114 &114000013240564936
 MonoBehaviour:
   m_ObjectHideFlags: 1

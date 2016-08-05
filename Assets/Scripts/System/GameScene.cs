@@ -19,26 +19,28 @@ public class GameScene : MonoBehaviour
     static public eGameScene m_GameScene;
 
     [SerializeField]
-    private GameObject m_UI_Text;
+    private GameObject[] m_Panel;   //ゲームプレイ中非アクティブにするパネル
     [SerializeField]
-    private Panel_Title m_Panel_Title;
+    private GameObject m_UI_Text;   //ゲーム中のスコア表示Text
     [SerializeField]
-    private GameObject m_Panel_Result;
+    private Panel_Title m_Panel_Title;  //タイトルパネルスクリプト
     [SerializeField]
-    private GameObject m_StartCount;
+    private GameObject m_Panel_Result;  //リザルトパネル
     [SerializeField]
-    private GameObject m_Player;
+    private GameObject m_StartCount;    //スタートカウントダウン
     [SerializeField]
-    private StageGenerator m_StageGenerator;
+    private Player m_Player;    //プレイヤースクリプト プレイヤー初期化で必要
     [SerializeField]
-    private BlurOptimized m_Blur;
+    private StageGenerator m_StageGenerator;    //ステージ生成スクリプト ステージ初期化で必要
     [SerializeField]
-    private float m_GameOverWait;
+    private BlurOptimized m_Blur;   //StandardAsset Blur
+    [SerializeField]
+    private float m_GameOverWait;   //ゲームオーバー時の待機時間
 
     private Camera m_Camera;
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
-    private bool m_FromTitle = false;
+    private bool m_FromTitle = false;   //タイトルからの遷移か
 
     void Start()
     {
@@ -53,18 +55,20 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
+                //パネルをアクティブ化
+                for (int i = 0; i < m_Panel.Length; i++)
+                    m_Panel[i].gameObject.SetActive(true);
+
                 //セーブデータのロード
                 GameManager.Instance.LoadGame();
                 //ステージの初期化
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
-                m_Player.GetComponent<Player>().InitPlayer();
+                m_Player.InitPlayer();
                 //ブラーを有効化
                 m_Blur.enabledBlur = true;
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
-
-
                 //タイトルパネルを表示
                 m_Panel_Title.MoveIn();
 
@@ -91,7 +95,7 @@ public class GameScene : MonoBehaviour
                     //ステージの初期化
                     m_StageGenerator.InitStage();
                     //プレイヤーの初期化
-                    m_Player.GetComponent<Player>().InitPlayer();
+                    m_Player.InitPlayer();
                 }
                 m_FromTitle = false;
 
@@ -108,6 +112,11 @@ public class GameScene : MonoBehaviour
             case eGameScene.WaitCount:
                 //ブラーを無効化
                 m_Blur.enabledBlur = false;
+
+                //パネルを非アクティブ化
+                for (int i = 0; i < m_Panel.Length; i++)
+                    m_Panel[i].gameObject.SetActive(false);
+
                 m_GameScene = eGameScene.StartCount;
 
                 break;

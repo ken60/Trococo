@@ -13,10 +13,11 @@ public class MobileInput : MonoBehaviour
     private Slider m_Slider;
 
     private static MobileInput instance;
-    private Vector2 m_StartPos;
-    private Vector2 m_EndPos;
-    private TouchType m_TouchDir;
-    private string m_Direction;
+    private Vector2 m_StartPos = Vector2.zero;
+    private Vector2 m_EndPos = Vector2.zero;
+    private TouchType m_TouchDir = TouchType.NONE;
+    private string m_Direction = null;
+    private bool m_DuringTap = false;
 
     public enum TouchType
     {
@@ -70,10 +71,11 @@ public class MobileInput : MonoBehaviour
         return false;
     }
 
-    public TouchType touchType
+    public bool duringTap
     {
-        get { return m_TouchDir; }
+        get { return m_DuringTap; }
     }
+
 
     private TouchType GetFlick()
     {
@@ -82,16 +84,19 @@ public class MobileInput : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                m_DuringTap = true;
                 m_StartPos = Input.mousePosition;
             }
 
             else if (Input.GetMouseButtonUp(0))
             {
+                m_DuringTap = false;
                 m_EndPos = Input.mousePosition;
                 GetDirection(m_StartPos, m_EndPos);
             }
             else
             {
+                m_DuringTap = false;
                 m_TouchDir = TouchType.NONE;
             }
         }
@@ -104,11 +109,13 @@ public class MobileInput : MonoBehaviour
                 {
                     //最初にタッチされた座標を取得
                     case TouchPhase.Began:
+                        m_DuringTap = true;
                         m_StartPos = touch.position;
                         break;
 
                     //指を離した座標を取得
                     case TouchPhase.Ended:
+                        m_DuringTap = false;
                         m_EndPos = touch.position;
                         GetDirection(m_StartPos, m_EndPos);
                         break;

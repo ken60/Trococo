@@ -73,6 +73,8 @@ public class StageGenerator : MonoBehaviour
 
     private void Update()
     {
+        if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;
+
         //プレイヤーが、予め生成しておくレール数より進んだら
         if (m_Player.position.z > m_RailPosZ - (m_PreInstantiateRail - 2))
         {

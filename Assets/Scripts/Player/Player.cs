@@ -103,10 +103,18 @@ public class Player : MonoBehaviour
             }
         }
 
-        //地面についている時のみ横移動
+        //地面についている時
         if (m_isGrounded)
         {
+            //横移動
             LateralMotion();
+
+            //縮む動作
+            if (MobileInput.Instance.duringTap)
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 0.7f, 1.0f), 0.3f);
+            else
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 1.0f, 1.0f), 0.3f);
+
         }
 
         //スコア

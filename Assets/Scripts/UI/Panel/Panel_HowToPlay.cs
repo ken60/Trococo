@@ -97,6 +97,6 @@ public class Panel_HowToPlay : MonoBehaviour
 
     void PanelMove()
     {
-        transform.localPosition = new Vector2(0.0f, 1900.0f);
+        transform.localPosition = new Vector2(0.0f, 1920.0f);
     }
 }

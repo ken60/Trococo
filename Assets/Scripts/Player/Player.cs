@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
             //縮む動作
             if (MobileInput.Instance.duringTap)
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 0.7f, 1.0f), 0.3f);
+                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 0.72f, 1.0f), 0.3f);
             else
                 transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 1.0f, 1.0f), 0.3f);
 

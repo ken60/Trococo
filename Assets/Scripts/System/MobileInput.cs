@@ -84,19 +84,15 @@ public class MobileInput : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                m_DuringTap = true;
                 m_StartPos = Input.mousePosition;
             }
-
             else if (Input.GetMouseButtonUp(0))
             {
-                m_DuringTap = false;
                 m_EndPos = Input.mousePosition;
                 GetDirection(m_StartPos, m_EndPos);
             }
             else
             {
-                m_DuringTap = false;
                 m_TouchDir = TouchType.NONE;
             }
         }

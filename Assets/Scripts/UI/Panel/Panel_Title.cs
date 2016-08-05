@@ -84,11 +84,11 @@ public class Panel_Title : MonoBehaviour
     void LoadGame()
     {
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
-        transform.localPosition = new Vector2(0.0f, 1650.0f);
+        transform.localPosition = new Vector2(0.0f, 1920.0f);
     }
 
     void PanelMove()
     {
-        transform.localPosition = new Vector2(0.0f, 1650.0f);
+        transform.localPosition = new Vector2(0.0f, 1920.0f);
     }
 }

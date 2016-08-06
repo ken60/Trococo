@@ -23,17 +23,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_RayDist;    //地面判定のRayの長さ
 
-    private GameObject m_Canvas;    //キャンバス
+    private GameObject m_Canvas;
     private Rigidbody m_Rigidbody;
     private Animator m_Animator;
     private Touch m_Touch;
     private Ray ray;
     private RaycastHit hit;
     private int m_CurrentRunningRail = 0;   //現在走っているレール
-    private float m_TimeCount = 0;          //
+    private float m_TimeCount = 0;
     private bool m_isGrounded = false;
     private bool m_isJump = false;
-    private bool m_isLateralMove = false;   //横移動中か
     private bool m_isCrouch = false;
 
     void Start()
@@ -45,14 +44,12 @@ public class Player : MonoBehaviour
 
     public void InitPlayer()
     {
-        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         transform.position = Vector3.zero;
+        transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         m_CurrentRunningRail = 0;
         m_TimeCount = 0;
-        m_isGrounded = false;
-        m_isJump = false;
-        m_isLateralMove = false;
-        m_isCrouch = false;
+
+        print(GameManager.Instance.playCharID);
     }
 
     void Update()
@@ -129,11 +126,6 @@ public class Player : MonoBehaviour
         {
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
         }
-
-        if (m_isLateralMove)
-        {
-            //m_Rigidbody.AddForce(Vector3.up * (m_LateralJumpForce));
-        }
     }
 
     //横移動
@@ -191,7 +183,6 @@ public class Player : MonoBehaviour
             if (hit.gameObject.tag == "Tomato")
             {
                 Destroy(hit.gameObject);
-                GameManager.Instance.tmato += 1;
             }
         }
     }

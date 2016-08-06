@@ -11,7 +11,11 @@ public class Panel_CharSelect : MonoBehaviour
     [SerializeField, TextArea(3, 24)]
     private string[] m_DescriptionText; //キャラクターの説明文
     [SerializeField]
+    private string m_NotAvailableText;  //キャラ未開放時に追加するテキスト
+    [SerializeField]
     private Text m_Description;         //キャラクターの説明Text
+    [SerializeField]
+    private Button m_ButtonDecision;    //決定ボタン
     [SerializeField]
     private Image m_ExplanatoryImage;   //キャラクターのImage
     [SerializeField]
@@ -41,8 +45,29 @@ public class Panel_CharSelect : MonoBehaviour
             m_ButtonText[1].text = "つぎへ";
         }
 
+        //キャラが開放されている時
+        if (GameManager.Instance.isCharAvailable(m_PageNmmber - 1))
+        {
+            //画像を元に戻す
+            m_ExplanatoryImage.color = Color.white;
+            //決定ボタン表示
+            m_ButtonDecision.gameObject.SetActive(true);
+            //説明文を変更
+            m_Description.text = m_DescriptionText[m_PageNmmber - 1];
+        }
+        //キャラが開放されていない時
+        else
+        {
+            //画像を黒くする
+            m_ExplanatoryImage.color = Color.black;
+            //決定ボタンを非表示
+            m_ButtonDecision.gameObject.SetActive(false);
+            //説明文に未開放の旨を記載
+            m_Description.text = m_NotAvailableText + "\n" + m_DescriptionText[m_PageNmmber - 1];
+        }
+
+        //スプライトと説明文を変更
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
-        m_Description.text = m_DescriptionText[m_PageNmmber - 1];
     }
 
     //「もどる」ボタンをおした時
@@ -72,6 +97,16 @@ public class Panel_CharSelect : MonoBehaviour
             MoveOut();
             m_Panel_Title.MoveIn();
         }
+    }
+
+    //決定ボタンをおした時
+    public void Button_Decision()
+    {
+        //選択中のキャラをプレイキャラに設定
+        GameManager.Instance.playCharID = m_PageNmmber - 1;
+
+        MoveOut();
+        m_Panel_Title.MoveIn();
     }
 
     //iTween

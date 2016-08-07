@@ -23,7 +23,6 @@ public class Panel_Title : MonoBehaviour
     void Update()
     {
         m_GoldCoinText.text = GameManager.Instance.totalGoldCoinNum.ToString();
-        m_CopperCoinText.text = GameManager.Instance.totalCopperCoinNum.ToString();
     }
 
     //********Button********

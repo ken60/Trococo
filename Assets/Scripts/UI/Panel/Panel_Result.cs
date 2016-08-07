@@ -16,8 +16,6 @@ public class Panel_Result : MonoBehaviour
     [SerializeField]
     private Text m_GoldCoinNum;
     [SerializeField]
-    private Text m_CopperCoinNum;
-    [SerializeField]
     private Text m_AdsText;
     [SerializeField]
     private int m_ShowAdRate = 4;
@@ -65,7 +63,6 @@ public class Panel_Result : MonoBehaviour
         //Textに結果を表示
         m_ScoreNum.text = GameManager.Instance.score + " m";
         m_GoldCoinNum.text = GameManager.Instance.goldCoin + " 枚";
-        m_CopperCoinNum.text = GameManager.Instance.copperCoin + " 枚";
     }
 
     //Unity Ads
@@ -86,16 +83,8 @@ public class Panel_Result : MonoBehaviour
 
                 m_Button_Ads.enabled = false;
 
-                if (Random.Range(0, 3) == 0)
-                {
-                    m_AdsText.text = "ゴールドコイン +10枚！";
-                    GameManager.Instance.goldCoin += 5;
-                }
-                else
-                {
-                    m_AdsText.text = "銅コイン +10枚！";
-                    GameManager.Instance.copperCoin += 10;
-                }
+                m_AdsText.text = "コイン +10枚！";
+                GameManager.Instance.goldCoin += 5;
 
                 GameManager.Instance.SaveGame();
                 break;

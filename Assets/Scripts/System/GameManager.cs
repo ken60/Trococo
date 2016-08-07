@@ -5,7 +5,7 @@ class Data
 {
     public int highScore = 0;           //ハイスコア
     public int totalGoldCoinNum = 0;    //累計金コイン数  
-    public int totalCopperCoinNum = 0;  //累計銅コイン数
+    //public int totalCopperCoinNum = 0;  //累計銅コイン数
     public int playCharID = 0;          //選択しているキャラクターID
     public bool[] isCharAvailable = new bool[6];          //キャラを開放しているか
 }
@@ -17,11 +17,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private int m_Score = 0;                //セーブするスコア
     private int m_GoldCoinNum = 0;          //金コイン数
-    private int m_CopperCoinNum = 0;        //銅コイン数
+    //private int m_CopperCoinNum = 0;        //銅コイン数
     private int m_HighScore = 0;            //ハイスコア
     private int m_OldHighScore = 0;         //ハイスコア(ハイスコアの判定用)
     private int m_TotalGoldCoinNum = 0;     //累計金コイン数
-    private int m_TotalCopperCoinNum = 0;   //累計銅コイン数
+    //private int m_TotalCopperCoinNum = 0;   //累計銅コイン数
     private int m_PlayerCharID = 0;         //選択しているキャラID
     private string m_Json;
 
@@ -33,7 +33,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         m_Score = 0;
         m_GoldCoinNum = 0;
-        m_CopperCoinNum = 0;
+        //m_CopperCoinNum = 0;
     }
 
     public void LoadGame()
@@ -44,7 +44,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         m_HighScore = loadData.highScore;
         m_OldHighScore = loadData.highScore;
         m_TotalGoldCoinNum = loadData.totalGoldCoinNum;
-        m_TotalCopperCoinNum = loadData.totalCopperCoinNum;
+        //m_TotalCopperCoinNum = loadData.totalCopperCoinNum;
 
         for (int i = 0; i < m_isCharAvailable.Length; i++)
         {
@@ -68,7 +68,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
         //合計コイン数
         data.totalGoldCoinNum = m_TotalGoldCoinNum + m_GoldCoinNum;
-        data.totalCopperCoinNum = m_TotalCopperCoinNum + m_CopperCoinNum;
+        //data.totalCopperCoinNum = m_TotalCopperCoinNum + m_CopperCoinNum;
 
         for (int i = 0; i < m_isCharAvailable.Length; i++)
         {
@@ -100,26 +100,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         get { return m_GoldCoinNum; }
         set { m_GoldCoinNum = value; }
     }
-
-    //ゲーム中取得した銅コイン数
-    public int copperCoin
-    {
-        get { return m_CopperCoinNum; }
-        set { m_CopperCoinNum = value; }
-    }
-
+    
     //累計金コイン数
     public int totalGoldCoinNum
     {
         get { return m_TotalGoldCoinNum; }
     }
-
-    //累計銅コイン数
-    public int totalCopperCoinNum
-    {
-        get { return m_TotalCopperCoinNum; }
-    }
-
+    
     //選択しているキャラID
     public int playCharID
     {

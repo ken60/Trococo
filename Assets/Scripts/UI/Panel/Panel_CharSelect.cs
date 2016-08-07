@@ -10,7 +10,7 @@ public class Panel_CharSelect : MonoBehaviour
     private Text[] m_ButtonText;        //ボタンテキスト
     [SerializeField, TextArea(3, 24)]
     private string[] m_DescriptionText; //キャラクターの説明文
-    [SerializeField]
+    [SerializeField, TextArea(2, 24)]
     private string m_NotAvailableText;  //キャラ未開放時に追加するテキスト
     [SerializeField]
     private Text m_Description;         //キャラクターの説明Text

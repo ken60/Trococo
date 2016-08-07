@@ -27,7 +27,6 @@ public class _Debug : MonoBehaviour
             "fps: " + fps.ToString("0.00") + "\n" +
             "loadHighscore: " + GameManager.Instance.highScore + "\n" +
             "loadTotalGoldCoin: " + GameManager.Instance.totalGoldCoinNum + "\n" +
-            "loadTotalCopperCoin: " + GameManager.Instance.totalCopperCoinNum + "\n" +
             "colliderEnabled: " + GameSceneManager.Instance.colliderEnabled + "\n" +
             "TapRange: " + m_Slider.value.ToString("0");
     }

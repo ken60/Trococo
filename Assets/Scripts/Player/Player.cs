@@ -172,13 +172,7 @@ public class Player : MonoBehaviour
                 Destroy(hit.gameObject);
                 GameManager.Instance.goldCoin += 1;
             }
-
-            if (hit.gameObject.tag == "Copper_Coin")
-            {
-                Destroy(hit.gameObject);
-                GameManager.Instance.copperCoin += 1;
-            }
-
+            
             //トマト
             if (hit.gameObject.tag == "Tomato")
             {

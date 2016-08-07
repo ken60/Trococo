@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
         m_CurrentRunningRail = 0;
         m_TimeCount = 0;
 
-        print(GameManager.Instance.playCharID);
     }
 
     void Update()
@@ -88,6 +87,7 @@ public class Player : MonoBehaviour
         {
             m_isCrouch = true;
         }
+
         //しゃがみ中はプレイヤー自身の衝突判定を無効化
         if (m_isCrouch)
         {
@@ -172,7 +172,7 @@ public class Player : MonoBehaviour
                 Destroy(hit.gameObject);
                 GameManager.Instance.goldCoin += 1;
             }
-            
+
             //トマト
             if (hit.gameObject.tag == "Tomato")
             {

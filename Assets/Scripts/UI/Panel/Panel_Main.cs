@@ -2,18 +2,28 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Panel_Title : MonoBehaviour
+public class Panel_Main : MonoBehaviour
 {
     [SerializeField]
-    private Panel_HowToPlay m_Panel_HowToPlay;
+    private GameObject m_Panel_Menu;
     [SerializeField]
-    private Panel_CharSelect m_Panel_CharSelect;
+    private Panel_CharSelect m_CharSelect;
     [SerializeField]
     private Text m_GoldCoinText;
     [SerializeField]
     private Text m_CopperCoinText;
+    [SerializeField]
+    private float m_LerpLate = 1.0f;
 
     private int m_ClickCnt = 0;
+    //**** m_ViewingPanelNum ****//
+    //  Panel_Settings = 0
+    //  Panel_Home = 1
+    //  Panel_Gashapon = 2
+    //  Panel_HowToPlay = 3
+    //**************************//
+
+    private float[] m_MenuPosition = new float[] { 1080.0f, 0.0f, -1080.0f, -2160.0f };
 
     void Start()
     {
@@ -26,29 +36,26 @@ public class Panel_Title : MonoBehaviour
     }
 
     //********Button********
+
+    public void MenuButton(int num)
+    {
+        m_ClickCnt++;
+        if (m_ClickCnt != 1) return;
+        m_ClickCnt = 0;
+
+        Slide(m_MenuPosition[num]);
+    }
+
+    //ゲームスタートボタン
     public void Button_GameStart()
     {
         m_ClickCnt++;
         if (m_ClickCnt != 1) return;
-        MoveOut_Start();
-    }
-
-    public void Button_Select()
-    {
-        m_ClickCnt++;
-        if (m_ClickCnt != 1) return;
+        m_ClickCnt = 0;
         MoveOut();
-        m_Panel_CharSelect.MoveIn();
     }
 
-    public void Button_HowToPlay()
-    {
-        m_ClickCnt++;
-        if (m_ClickCnt != 1) return;
-        MoveOut();
-        m_Panel_HowToPlay.MoveIn();
-    }
-
+    //ランキング
     public void Button_Ranking()
     {
         m_ClickCnt++;
@@ -74,7 +81,7 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void MoveOut_Start()
+    public void MoveOut()
     {
         Hashtable parameters = new Hashtable();
         parameters.Add("y", -Screen.height * 0.5f);
@@ -85,27 +92,20 @@ public class Panel_Title : MonoBehaviour
         iTween.MoveTo(gameObject, parameters);
     }
 
-    void MoveOut()
+    public void Slide(float x)
     {
         Hashtable parameters = new Hashtable();
-        parameters.Add("y", -Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
+        parameters.Add("x", x - (-Screen.width * 0.5f));
+        parameters.Add("time", 0.2f);
         parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        parameters.Add("oncomplete", "PanelMove");
-        parameters.Add("oncompletetarget", gameObject);
-        iTween.MoveTo(gameObject, parameters);
+        iTween.MoveTo(m_Panel_Menu.gameObject, parameters);
     }
 
     void LoadGame()
     {
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
-        transform.localPosition = new Vector2(0.0f, 1920.0f);
-        m_ClickCnt = 0;
+        Destroy(gameObject);
     }
 
-    void PanelMove()
-    {
-        m_ClickCnt = 0;
-        transform.localPosition = new Vector2(0.0f, 1920.0f);
-    }
+
 }

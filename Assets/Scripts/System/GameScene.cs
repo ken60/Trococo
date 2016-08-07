@@ -17,13 +17,11 @@ public class GameScene : MonoBehaviour
 
     [HideInInspector]
     static public eGameScene m_GameScene;
-
-    [SerializeField]
-    private GameObject[] m_Panel;   //ゲームプレイ中非アクティブにするパネル
+    
     [SerializeField]
     private GameObject m_UI_Text;   //ゲーム中のスコア表示Text
     [SerializeField]
-    private Panel_Title m_Panel_Title;  //タイトルパネルスクリプト
+    private GameObject m_Panel_Main;  //メインパネルスクリプト
     [SerializeField]
     private GameObject m_Panel_Result;  //リザルトパネル
     [SerializeField]
@@ -55,10 +53,6 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
-                //パネルをアクティブ化
-                for (int i = 0; i < m_Panel.Length; i++)
-                    m_Panel[i].gameObject.SetActive(true);
-
                 //セーブデータのロード
                 GameManager.Instance.LoadGame();
                 //ステージの初期化
@@ -70,7 +64,8 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
-                m_Panel_Title.MoveIn();
+                GameObject p_main =  Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
+                p_main.transform.SetParent(m_Canvas.transform, false);
 
                 m_FromTitle = true;
 
@@ -113,12 +108,7 @@ public class GameScene : MonoBehaviour
                 //ブラーを無効化
                 m_Blur.enabledBlur = false;
 
-                //パネルを非アクティブ化
-                for (int i = 0; i < m_Panel.Length; i++)
-                    m_Panel[i].gameObject.SetActive(false);
-
                 m_GameScene = eGameScene.StartCount;
-
                 break;
 
             //ゲーム開始時のカウントダウン

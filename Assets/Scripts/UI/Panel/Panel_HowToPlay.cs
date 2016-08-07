@@ -11,8 +11,8 @@ public class Panel_HowToPlay : MonoBehaviour
     [SerializeField]
     private Image m_ExplanatoryImage;
     [SerializeField]
-    private Panel_Title m_Panel_Title;
-    
+    private Panel_Main m_Panel_Title;
+
     private int m_PageNmmber = 1;
 
     void Start()
@@ -40,7 +40,7 @@ public class Panel_HowToPlay : MonoBehaviour
         {
             m_ButtonText[1].text = "つぎへ";
         }
-
+        
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
     }
 
@@ -50,12 +50,7 @@ public class Panel_HowToPlay : MonoBehaviour
         //ページ数が1ページ未満の時ページ送り
         if (1 < m_PageNmmber)
             m_PageNmmber--;
-
-        if (m_ButtonText[0].text == "もどる")
-        {
-            MoveOut();
-            m_Panel_Title.MoveIn();
-        }
+        
     }
 
     //「つぎへ」ボタンをおした時
@@ -63,40 +58,6 @@ public class Panel_HowToPlay : MonoBehaviour
     {
         //ページ数が最大未満の時ページ送り
         if (m_PageNmmber < m_Sprite.Length)
-            m_PageNmmber++;
-
-        //最終ページの時はパネルを隠す
-        if (m_ButtonText[1].text == "もどる")
-        {
-            MoveOut();
-            m_Panel_Title.MoveIn();
-        }
-    }
-
-    //iTween
-    public void MoveIn()
-    {
-        m_PageNmmber = 1;
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.MoveTo(gameObject, parameters);
-    }
-
-    public void MoveOut()
-    {
-        Hashtable parameters = new Hashtable();
-        parameters.Add("y", -Screen.height * 0.5f);
-        parameters.Add("time", 0.4f);
-        parameters.Add("easeType", iTween.EaseType.easeInOutSine);
-        parameters.Add("oncomplete", "PanelMove");
-        parameters.Add("oncompletetarget", gameObject);
-        iTween.MoveTo(gameObject, parameters);
-    }
-
-    void PanelMove()
-    {
-        transform.localPosition = new Vector2(0.0f, 1920.0f);
+            m_PageNmmber++;        
     }
 }

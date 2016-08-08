@@ -6,6 +6,8 @@ public class Panel_CharSelect : MonoBehaviour
     [SerializeField]
     private Sprite[] m_Sprite;          //各キャラの画像(全キャラの数)
     [SerializeField]
+    private Button[] m_Botton_Arrow;      //左右矢印ボタン
+    [SerializeField]
     private Text m_StartButtonText;     //ボタンテキスト
     [SerializeField]
     private Image m_ExplanatoryImage;   //キャラクターのImage
@@ -21,12 +23,30 @@ public class Panel_CharSelect : MonoBehaviour
         //スライダーの範囲を設定
         m_Slider.minValue = 0;
         m_Slider.maxValue = m_Sprite.Length - 1;
+        //スライダーを更新
+        m_Slider.value = GameManager.Instance.playCharID;
+
+        m_Botton_Arrow[0].gameObject.SetActive(false);
+        m_Botton_Arrow[1].gameObject.SetActive(true);
     }
 
-    void Update()
+    void MyUpdate()
     {
+        //1ページ目は◀ボタンを隠す
+        if (m_PageNmmber == 1)
+            m_Botton_Arrow[0].gameObject.SetActive(false);
+        else
+            m_Botton_Arrow[0].gameObject.SetActive(true);
+
+        //最終ページは▶ボタンを隠す
+        if (m_PageNmmber == m_Sprite.Length)
+            m_Botton_Arrow[1].gameObject.SetActive(false);
+        else
+            m_Botton_Arrow[1].gameObject.SetActive(true);
+
+
         //キャラが開放されている時
-        if (GameManager.Instance.isCharAvailable(m_PageNmmber - 1))
+        if (GameManager.Instance.IsCharAvailable(m_PageNmmber - 1))
         {
             //画像を元に戻す
             m_ExplanatoryImage.color = Color.white;
@@ -62,6 +82,8 @@ public class Panel_CharSelect : MonoBehaviour
         //ページ数が1ページ未満の時ページ送り
         if (1 < m_PageNmmber)
             m_PageNmmber--;
+
+        MyUpdate();
     }
 
     //「つぎへ」ボタンをおした時
@@ -70,5 +92,7 @@ public class Panel_CharSelect : MonoBehaviour
         //ページ数が最大未満の時ページ送り
         if (m_PageNmmber < m_Sprite.Length)
             m_PageNmmber++;
+
+        MyUpdate();
     }
 }

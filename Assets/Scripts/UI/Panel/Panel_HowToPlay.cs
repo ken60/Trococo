@@ -7,40 +7,34 @@ public class Panel_HowToPlay : MonoBehaviour
     [SerializeField]
     private Sprite[] m_Sprite;
     [SerializeField]
-    private Text[] m_ButtonText;
+    private Button[] m_Button;
     [SerializeField]
     private Image m_ExplanatoryImage;
-    [SerializeField]
-    private Panel_Main m_Panel_Title;
 
     private int m_PageNmmber = 1;
 
     void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+
+        m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
+        m_Button[0].gameObject.SetActive(false);
+        m_Button[1].gameObject.SetActive(true);
     }
 
-    void Update()
+    void MyUpdate()
     {
         //1ページ目の時は戻るボタンを隠す
         if (m_PageNmmber == 1)
-        {
-            m_ButtonText[0].text = "もどる";
-        }
+            m_Button[0].gameObject.SetActive(false);
         else
-        {
-            m_ButtonText[0].text = "まえへ";
-        }
+            m_Button[0].gameObject.SetActive(true);
 
         //最後のページの時はボタンテキストを「もどる」に
         if (m_PageNmmber == m_Sprite.Length)
-        {
-            m_ButtonText[1].text = "もどる";
-        }
+            m_Button[1].gameObject.SetActive(false);
         else
-        {
-            m_ButtonText[1].text = "つぎへ";
-        }
+            m_Button[1].gameObject.SetActive(true);
 
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
     }
@@ -52,6 +46,7 @@ public class Panel_HowToPlay : MonoBehaviour
         if (1 < m_PageNmmber)
             m_PageNmmber--;
 
+        MyUpdate();
     }
 
     //「つぎへ」ボタンをおした時
@@ -60,5 +55,7 @@ public class Panel_HowToPlay : MonoBehaviour
         //ページ数が最大未満の時ページ送り
         if (m_PageNmmber < m_Sprite.Length)
             m_PageNmmber++;
+
+        MyUpdate();
     }
 }

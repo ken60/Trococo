@@ -149,7 +149,7 @@ public class GameScene : MonoBehaviour
                 panelRes.transform.SetParent(m_Canvas.transform, false);
 
                 //ハイスコアの時 & Androidのみスコアを送信
-                if (GameManager.Instance.isHighScore() && Application.platform == RuntimePlatform.Android)
+                if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
                     RankParkInterface.Instance().AddScore(GameManager.Instance.score);
                     //print("Send Score");

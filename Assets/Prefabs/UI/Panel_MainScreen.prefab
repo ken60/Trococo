@@ -125,7 +125,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000013625551772}
-  - 114: {fileID: 114000011397886884}
   m_Layer: 5
   m_Name: Panel_Home
   m_TagString: Untagged
@@ -1312,6 +1311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b27110af13957e488dc9e0de54f178b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GashaponPrice: 100
 --- !u!114 &114000010753645960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1689,17 +1689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b415ed9c03913449a79e06d578519e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011397886884
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010903613988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a43ea240e2ab2346bfce35e5b244db9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000011426205362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1902,6 +1891,9 @@ MonoBehaviour:
   - {fileID: 21300006, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
   - {fileID: 21300008, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
   - {fileID: 21300010, guid: 0a0b8a439751b8c47b92f1370805e914, type: 3}
+  m_Botton_Arrow:
+  - {fileID: 114000011865743692}
+  - {fileID: 114000014105389064}
   m_StartButtonText: {fileID: 114000010925848388}
   m_ExplanatoryImage: {fileID: 114000010909804688}
   m_Button_Start: {fileID: 114000013964259142}
@@ -2762,11 +2754,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 24f31c95c795c264e9086704540086c9, type: 3}
   - {fileID: 21300000, guid: 4b4d1ec654f901e42b504dd15216082d, type: 3}
   - {fileID: 21300000, guid: abe7d0c018bb3d34c80b6f314d4ca31a, type: 3}
-  m_ButtonText:
-  - {fileID: 114000013704338358}
-  - {fileID: 114000014227880724}
+  m_Button:
+  - {fileID: 114000011597005556}
+  - {fileID: 114000012532210774}
   m_ExplanatoryImage: {fileID: 114000012684858628}
-  m_Panel_Title: {fileID: 0}
 --- !u!114 &114000013513611178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2832,8 +2823,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: Button_Decision
+      - m_Target: {fileID: 114000010724111878}
+        m_MethodName: Button_Gashapon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2979,18 +2970,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2f10a80175b46a444ad2be272a8b4687, type: 3}
-    m_FontSize: 64
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 64
+    m_MinSize: 0
+    m_MaxSize: 100
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u307E\u3048\u3078"
+  m_Text: "\u25C0"
 --- !u!114 &114000013734115086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3208,18 +3199,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2f10a80175b46a444ad2be272a8b4687, type: 3}
-    m_FontSize: 64
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 64
+    m_MinSize: 0
+    m_MaxSize: 75
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3064\u304E\u3078"
+  m_Text: "\u25B6"
 --- !u!114 &114000014290609754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3703,7 +3694,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 300, y: 1059}
+  m_AnchoredPosition: {x: 450, y: 1059}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011145898192
@@ -4404,7 +4395,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -300, y: 1059}
+  m_AnchoredPosition: {x: -450, y: 1059}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014196148518

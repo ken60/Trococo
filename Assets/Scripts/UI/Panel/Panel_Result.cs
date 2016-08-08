@@ -30,7 +30,7 @@ public class Panel_Result : MonoBehaviour
         m_RectTransform = GetComponent<RectTransform>();
 
         m_AdsText.text = "動画を見てコインをゲット!";
-
+        
         int random = Random.Range(0, m_ShowAdRate);
         int i;
 

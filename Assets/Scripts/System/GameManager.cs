@@ -12,7 +12,7 @@ class Data
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField]
-    private bool[] m_isCharAvailable;       //キャラを開放しているか
+    private bool[] m_isCharAvailable = new bool[] { false };       //キャラを開放しているか
 
     private int m_Score = 0;                //セーブするスコア
     private int m_GoldCoinNum = 0;          //金コイン数
@@ -100,6 +100,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     public int totalGoldCoinNum
     {
         get { return m_TotalGoldCoinNum; }
+        set { m_TotalGoldCoinNum = value; }
+    }
+
+    //ハイスコアかどうか
+    public bool IsHighScore()
+    {
+        if (m_HighScore < m_Score)
+            return true;
+        return false;
     }
 
     //選択しているキャラID
@@ -109,16 +118,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         set { m_PlayerCharID = value; }
     }
 
-    //ハイスコアかどうか
-    public bool isHighScore()
+    //全キャラクター数
+    public int totalCharacterNumber
     {
-        if (m_HighScore < m_Score)
-            return true;
-        return false;
+        get { return m_isCharAvailable.Length; }
     }
 
     //指定のキャラを開放しているか
-    public bool isCharAvailable(int id)
+    public bool IsCharAvailable(int id)
     {
         if (id > m_isCharAvailable.Length - 1)
             id = m_isCharAvailable.Length - 1;
@@ -129,4 +136,14 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         return false;
     }
 
+    //キャラを開放
+    public void OpenCharacter(int id)
+    {
+        if (id > m_isCharAvailable.Length - 1)
+            id = m_isCharAvailable.Length - 1;
+
+        if (m_isCharAvailable[id] == true) return;
+
+        m_isCharAvailable[id] = true;
+    }
 }

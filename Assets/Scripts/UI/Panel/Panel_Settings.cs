@@ -3,13 +3,13 @@
 
 public class Panel_Settings : MonoBehaviour
 {
-	void Start ()
-	{
-	
-	}
-	
-	void Update ()
-	{
-	
-	}
+    void Start()
+    {
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+    }
+
+    void Update()
+    {
+
+    }
 }

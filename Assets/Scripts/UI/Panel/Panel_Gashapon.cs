@@ -9,6 +9,7 @@ public class Panel_Gashapon : MonoBehaviour
     void Start()
     {
         m_RectTransform = GetComponent<RectTransform>();
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
 	
 	void Update ()

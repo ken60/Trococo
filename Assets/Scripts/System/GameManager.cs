@@ -24,6 +24,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Start()
     {
+        m_isCharAvailable[0] = true;
     }
 
     public void InitGame()
@@ -94,13 +95,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         get { return m_GoldCoinNum; }
         set { m_GoldCoinNum = value; }
     }
-    
+
     //累計金コイン数
     public int totalGoldCoinNum
     {
         get { return m_TotalGoldCoinNum; }
     }
-    
+
     //選択しているキャラID
     public int playCharID
     {

@@ -17,7 +17,7 @@ public class GameScene : MonoBehaviour
 
     [HideInInspector]
     static public eGameScene m_GameScene;
-    
+
     [SerializeField]
     private GameObject m_UI_Text;   //ゲーム中のスコア表示Text
     [SerializeField]
@@ -64,8 +64,9 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
-                GameObject p_main =  Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
+                GameObject p_main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
                 p_main.transform.SetParent(m_Canvas.transform, false);
+                p_main.GetComponent<Panel_Main>().Show();
 
                 m_FromTitle = true;
 

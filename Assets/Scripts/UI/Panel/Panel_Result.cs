@@ -33,9 +33,12 @@ public class Panel_Result : MonoBehaviour
 
         int random = Random.Range(0, m_ShowAdRate);
         int i;
+
         //広告ありの場合
         if (random == 0)
         {
+            //広告バーをアクティブ化
+            m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(true);
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length; i++)
             {
@@ -48,6 +51,8 @@ public class Panel_Result : MonoBehaviour
         //広告無しの場合
         else
         {
+            //広告バーを非アクティブ化
+            m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(false);
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length - 1; i++)
             {

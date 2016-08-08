@@ -17,6 +17,7 @@ public class Panel_HowToPlay : MonoBehaviour
 
     void Start()
     {
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     void Update()
@@ -40,7 +41,7 @@ public class Panel_HowToPlay : MonoBehaviour
         {
             m_ButtonText[1].text = "つぎへ";
         }
-        
+
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
     }
 
@@ -50,7 +51,7 @@ public class Panel_HowToPlay : MonoBehaviour
         //ページ数が1ページ未満の時ページ送り
         if (1 < m_PageNmmber)
             m_PageNmmber--;
-        
+
     }
 
     //「つぎへ」ボタンをおした時
@@ -58,6 +59,6 @@ public class Panel_HowToPlay : MonoBehaviour
     {
         //ページ数が最大未満の時ページ送り
         if (m_PageNmmber < m_Sprite.Length)
-            m_PageNmmber++;        
+            m_PageNmmber++;
     }
 }

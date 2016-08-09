@@ -408,6 +408,7 @@ MonoBehaviour:
   m_GoldCoinNum: {fileID: 114000010113556552}
   m_AdsText: {fileID: 114000011469486586}
   m_ShowAdRate: 3
+  m_RewardCoinNum: 20
 --- !u!114 &114000011369318082
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -11,7 +11,7 @@ TagManager:
   - Tomato
   - Squid_ink
   - Gold_Coin
-  - Copper_Coin
+  - Character
   layers:
   - Default
   - TransparentFX

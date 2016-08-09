@@ -19,6 +19,8 @@ public class Panel_Result : MonoBehaviour
     private Text m_AdsText;
     [SerializeField]
     private int m_ShowAdRate = 4;
+    [SerializeField]
+    private int m_RewardCoinNum = 10;
 
     private RectTransform m_RectTransform;
     private int m_ClickCnt = 0;
@@ -30,7 +32,7 @@ public class Panel_Result : MonoBehaviour
         m_RectTransform = GetComponent<RectTransform>();
 
         m_AdsText.text = "動画を見てコインをゲット!";
-        
+
         int random = Random.Range(0, m_ShowAdRate);
         int i;
 
@@ -82,25 +84,23 @@ public class Panel_Result : MonoBehaviour
 
     private void HandleShowResult(ShowResult result)
     {
+        //ADSボタンを無効化
+        m_Button_Ads.enabled = false;
+
         switch (result)
         {
             case ShowResult.Finished:
-
-                m_Button_Ads.enabled = false;
-
-                m_AdsText.text = "コイン +10枚！";
-                GameManager.Instance.goldCoin += 5;
+                m_AdsText.text = "コイン +" + m_RewardCoinNum + "枚！";
+                GameManager.Instance.goldCoin += m_RewardCoinNum;
 
                 GameManager.Instance.SaveGame();
                 break;
 
             case ShowResult.Skipped:
-                m_Button_Ads.enabled = false;
                 Debug.Log("動画をスキップ");
                 break;
 
             case ShowResult.Failed:
-                m_Button_Ads.enabled = false;
                 Debug.LogError("The ad failed to be shown.");
                 break;
         }

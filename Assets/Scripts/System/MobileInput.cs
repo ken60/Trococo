@@ -8,9 +8,7 @@ public class MobileInput : MonoBehaviour
     [SerializeField]
     private float m_Angle;
     [SerializeField]
-    private float m_TapRange = 0.0f;
-    [SerializeField]
-    private Slider m_Slider;
+    private float m_TapRange = 30;
 
     private static MobileInput instance;
     private Vector2 m_StartPos = Vector2.zero;
@@ -129,7 +127,6 @@ public class MobileInput : MonoBehaviour
 
     private void GetDirection(Vector2 start, Vector2 end)
     {
-        m_TapRange = (int)m_Slider.value;
         Vector2 direction = end - start;
 
         if (m_TapRange < Vector2.Distance(start, end))

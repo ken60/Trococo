@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using TouchScript.Gestures;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] m_Squid_ink;   //画面を覆うイカスミ
+    [SerializeField]
+    private GameObject m_TouchScriptObj;
     [SerializeField]
     private Collider m_Collider;   //プレイヤーのCollider
     [SerializeField]
@@ -22,6 +25,10 @@ public class Player : MonoBehaviour
     private float m_LateralMotionSpeed;  //横移動のスピード
     [SerializeField]
     private float m_RayDist;    //地面判定のRayの長さ
+    [SerializeField]
+    private float MinDistance = 1.0f;   //フリックの最小距離
+    [SerializeField]
+    private float FlickTime = 0.3f;     //フリックが有効な時間
 
     private GameObject m_Canvas;
     private Rigidbody m_Rigidbody;
@@ -40,6 +47,11 @@ public class Player : MonoBehaviour
         m_Canvas = GameObject.Find("Canvas");
         m_Rigidbody = GetComponent<Rigidbody>();
         //m_Animator = GetComponent<Animator>();
+
+        m_TouchScriptObj.GetComponent<TapGesture>().Tapped += HandleTapped;
+        m_TouchScriptObj.GetComponent<FlickGesture>().StateChanged += HandleFlick;
+        m_TouchScriptObj.GetComponent<FlickGesture>().MinDistance = 1f;
+        m_TouchScriptObj.GetComponent<FlickGesture>().FlickTime = 0.3f;
     }
 
     public void InitPlayer()
@@ -51,9 +63,56 @@ public class Player : MonoBehaviour
 
     }
 
+    //タップ時に呼ばれる
+    void HandleTapped(object sender, System.EventArgs e)
+    {
+        if (GameSceneManager.Instance.isGameOver ||
+            !GameSceneManager.Instance.isGamePlaying) return;
+
+        if (m_isGrounded)
+        {
+            m_isJump = true;
+            //m_Animator.SetTrigger("Jump");
+        }
+    }
+
+    //フリック時に呼ばれる
+    void HandleFlick(object sender, System.EventArgs e)
+    {
+        if (GameSceneManager.Instance.isGameOver ||
+            !GameSceneManager.Instance.isGamePlaying) return;
+
+        var gesture = sender as FlickGesture;
+
+        if (gesture.State != FlickGesture.GestureState.Recognized)
+            return;
+
+        //Left
+        if (gesture.ScreenFlickVector.x < 0)
+        {
+            m_CurrentRunningRail--;
+        }
+        //Right
+        else if (gesture.ScreenFlickVector.x > 0)
+        {
+            m_CurrentRunningRail++;
+        }
+        //Down
+        else if (gesture.ScreenFlickVector.y < 0)
+        {
+            m_isCrouch = true;
+        }
+        //Up
+        else if (gesture.ScreenFlickVector.y > 0)
+        {
+
+        }
+    }
+
     void Update()
     {
-        if (GameSceneManager.Instance.isGameOver || !GameSceneManager.Instance.isGamePlaying) return;
+        if (GameSceneManager.Instance.isGameOver ||
+            !GameSceneManager.Instance.isGamePlaying) return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -68,24 +127,6 @@ public class Player : MonoBehaviour
             {
                 m_isGrounded = true;
             }
-        }
-
-        //上フリックでジャンプ
-        if (MobileInput.Instance.IsTouch() && m_isGrounded)
-        {
-            m_isJump = true;
-            m_isGrounded = false;
-            //m_Animator.SetTrigger("Jump");
-        }
-        else
-        {
-            m_isJump = false;
-        }
-
-        //下フリックでしゃがむ
-        if (MobileInput.Instance.IsFlickDown() && m_isGrounded)
-        {
-            m_isCrouch = true;
         }
 
         //しゃがみ中はプレイヤー自身の衝突判定を無効化
@@ -105,42 +146,28 @@ public class Player : MonoBehaviour
         if (m_isGrounded)
         {
             //横移動
-            LateralMotion();
-
-            //縮む動作
-            if (MobileInput.Instance.duringTap)
-                transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 0.72f, 1.0f), 0.3f);
+            LateralMotion();            
         }
-
-        //縮みを戻す
-        if (!MobileInput.Instance.duringTap)
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1.0f, 1.0f, 1.0f), 0.3f);
-
+        
         //スコア
         GameManager.Instance.score = (int)transform.position.z;
     }
 
     void FixedUpdate()
     {
+
         if (m_isJump)
         {
+            m_isJump = false;
+            m_isGrounded = false;
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
         }
     }
 
+
     //横移動
     void LateralMotion()
     {
-        //フリックで移動先のレールを変更
-        if (MobileInput.Instance.IsFlickRight())
-        {
-            m_CurrentRunningRail++;
-        }
-        if (MobileInput.Instance.IsFlickLeft())
-        {
-            m_CurrentRunningRail--;
-        }
-
         m_CurrentRunningRail = Mathf.Clamp(m_CurrentRunningRail, -1, 1);
 
         //レール間移動

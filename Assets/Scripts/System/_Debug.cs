@@ -5,8 +5,6 @@ public class _Debug : MonoBehaviour
 {
     [SerializeField]
     private Text m_Text;
-    [SerializeField]
-    private Slider m_Slider;
 
     //fps測定用
     int frameCount;
@@ -27,8 +25,7 @@ public class _Debug : MonoBehaviour
             "fps: " + fps.ToString("0.00") + "\n" +
             "loadHighscore: " + GameManager.Instance.highScore + "\n" +
             "loadTotalGoldCoin: " + GameManager.Instance.totalGoldCoinNum + "\n" +
-            "colliderEnabled: " + GameSceneManager.Instance.colliderEnabled + "\n" +
-            "TapRange: " + m_Slider.value.ToString("0");
+            "colliderEnabled: " + GameSceneManager.Instance.colliderEnabled;
     }
     void fpsCount()
     {

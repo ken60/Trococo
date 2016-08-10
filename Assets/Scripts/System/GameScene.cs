@@ -8,6 +8,7 @@ public class GameScene : MonoBehaviour
         LoadTitle = 0,
         Title,
         LoadGame,
+        Tutorial,
         WaitCount,
         StartCount,
         Play,
@@ -25,6 +26,8 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private GameObject m_Panel_Result;  //リザルトパネル
     [SerializeField]
+    private GameObject m_Panel_Tutorial; //チュートリアルパネル
+    [SerializeField]
     private GameObject m_StartCount;    //スタートカウントダウン
     [SerializeField]
     private Player m_Player;    //プレイヤースクリプト プレイヤー初期化で必要
@@ -39,6 +42,7 @@ public class GameScene : MonoBehaviour
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
+    private GameObject m_InstantiatePanel;
 
     void Start()
     {
@@ -64,9 +68,9 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
-                GameObject p_main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
-                p_main.transform.SetParent(m_Canvas.transform, false);
-                p_main.GetComponent<Panel_Main>().Show();
+                GameObject main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
+                main.transform.SetParent(m_Canvas.transform, false);
+                main.GetComponent<Panel_Main>().Show();
 
                 m_FromTitle = true;
 
@@ -75,6 +79,7 @@ public class GameScene : MonoBehaviour
 
             case eGameScene.Title:
                 //Title Showing
+                //Panel_MainのLoadGame()にシーンチェンジ記述
 
                 break;
 
@@ -98,16 +103,40 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを表示
                 m_UI_Text.SetActive(true);
 
-                GameObject obj = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
-                obj.transform.SetParent(m_Camera.transform, false);
 
+                if (GameManager.Instance.isFerstStart)
+                {
+                    m_InstantiatePanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;
+                    m_InstantiatePanel.transform.SetParent(m_Canvas.transform, false);
 
-                m_GameScene = eGameScene.WaitCount;
+                    m_GameScene = eGameScene.Tutorial;
+                }
+                else
+                {
+                    m_GameScene = eGameScene.WaitCount;
+                }
+
+                break;
+
+            case eGameScene.Tutorial:
+
+                if (m_InstantiatePanel.GetComponent<Panel_Tutorial>().m_isEnd)
+                {
+                    Destroy(m_InstantiatePanel.gameObject);
+                    GameManager.Instance.isFerstStart = false;
+                    GameManager.Instance.SaveGame();
+                    m_GameScene = eGameScene.WaitCount;
+                }
+
                 break;
 
             case eGameScene.WaitCount:
                 //ブラーを無効化
                 m_Blur.enabledBlur = false;
+
+                //カウントダウンを表示
+                GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
+                count.transform.SetParent(m_Camera.transform, false);
 
                 m_GameScene = eGameScene.StartCount;
                 break;
@@ -152,7 +181,6 @@ public class GameScene : MonoBehaviour
                 if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
                     RankParkInterface.Instance().AddScore(GameManager.Instance.score);
-                    //print("Send Score");
                 }
 
                 //セーブ

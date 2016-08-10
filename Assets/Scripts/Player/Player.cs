@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     private float MinDistance = 1.0f;   //フリックの最小距離
     [SerializeField]
     private float FlickTime = 0.3f;     //フリックが有効な時間
+    [SerializeField]
+    private float m_Angle = 30.0f;
 
     private GameObject m_Canvas;
     private Rigidbody m_Rigidbody;
@@ -80,32 +82,39 @@ public class Player : MonoBehaviour
     void HandleFlick(object sender, System.EventArgs e)
     {
         if (GameSceneManager.Instance.isGameOver ||
-            !GameSceneManager.Instance.isGamePlaying) return;
+            !GameSceneManager.Instance.isGamePlaying || !m_isGrounded) return;
 
         var gesture = sender as FlickGesture;
 
         if (gesture.State != FlickGesture.GestureState.Recognized)
             return;
 
-        //Left
-        if (gesture.ScreenFlickVector.x < 0)
+        //フリック方向の判定
+        if (Mathf.Abs(gesture.ScreenFlickVector.y) < Mathf.Abs(gesture.ScreenFlickVector.x))
         {
-            m_CurrentRunningRail--;
+            //Right
+            if (m_Angle < gesture.ScreenFlickVector.x)
+            {
+                m_CurrentRunningRail++;
+            }
+            //Left
+            else if (-m_Angle > gesture.ScreenFlickVector.x)
+            {
+                m_CurrentRunningRail--;
+            }
         }
-        //Right
-        else if (gesture.ScreenFlickVector.x > 0)
+        else if (Mathf.Abs(gesture.ScreenFlickVector.x) < Mathf.Abs(gesture.ScreenFlickVector.y))
         {
-            m_CurrentRunningRail++;
-        }
-        //Down
-        else if (gesture.ScreenFlickVector.y < 0)
-        {
-            m_isCrouch = true;
-        }
-        //Up
-        else if (gesture.ScreenFlickVector.y > 0)
-        {
+            //Up
+            if (m_Angle < gesture.ScreenFlickVector.y)
+            {
 
+            }
+            //Down
+            else if (-m_Angle > gesture.ScreenFlickVector.y)
+            {
+                m_isCrouch = true;
+            }
         }
     }
 
@@ -146,9 +155,9 @@ public class Player : MonoBehaviour
         if (m_isGrounded)
         {
             //横移動
-            LateralMotion();            
+            LateralMotion();
         }
-        
+
         //スコア
         GameManager.Instance.score = (int)transform.position.z;
     }

@@ -36,8 +36,8 @@ public class Panel_Result : MonoBehaviour
         int random = Random.Range(0, m_ShowAdRate);
         int i;
 
-        //広告ありの場合
-        if (random == 0)
+        //広告ありの場合 15m以上進まないと表示されない
+        if (random == 0 && GameManager.Instance.score >= 15)
         {
             //広告バーをアクティブ化
             m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(true);

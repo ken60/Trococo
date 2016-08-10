@@ -1199,7 +1199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ver a0.4.8
+  m_Text: Ver a0.5.1
 --- !u!114 &114000010416115114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2419,7 +2419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.6764706, b: 0.6764706, a: 1}
+  m_Color: {r: 1, g: 0.875, b: 0.875, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2751,9 +2751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Sprite:
-  - {fileID: 21300000, guid: 24f31c95c795c264e9086704540086c9, type: 3}
-  - {fileID: 21300000, guid: 4b4d1ec654f901e42b504dd15216082d, type: 3}
-  - {fileID: 21300000, guid: abe7d0c018bb3d34c80b6f314d4ca31a, type: 3}
+  - {fileID: 21300000, guid: 7945d97fec8b6a34b806c171deb29b26, type: 3}
+  - {fileID: 21300002, guid: 7945d97fec8b6a34b806c171deb29b26, type: 3}
+  - {fileID: 21300004, guid: 7945d97fec8b6a34b806c171deb29b26, type: 3}
   m_Button:
   - {fileID: 114000011597005556}
   - {fileID: 114000012532210774}

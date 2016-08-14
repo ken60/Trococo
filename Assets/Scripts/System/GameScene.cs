@@ -135,22 +135,15 @@ public class GameScene : MonoBehaviour
                 m_Blur.enabledBlur = false;
 
                 //カウントダウンを表示
-                GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 12.0f), Quaternion.identity) as GameObject;
-                count.transform.SetParent(m_Camera.transform, false);
+                GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
+                count.transform.SetParent(m_Canvas.transform, false);
 
                 m_GameScene = eGameScene.StartCount;
                 break;
 
             //ゲーム開始時のカウントダウン
             case eGameScene.StartCount:
-                m_TimeCount += Time.deltaTime;
 
-                if (m_TimeCount >= 3.0f)
-                {
-                    m_TimeCount = 0.0f;
-                    GameSceneManager.Instance.isGamePlaying = true;
-                    m_GameScene = eGameScene.Play;
-                }
                 break;
             //ゲームプレイ中
             case eGameScene.Play:

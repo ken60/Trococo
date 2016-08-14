@@ -59,7 +59,8 @@ MonoBehaviour:
     type: 2}
   m_Panel_Tutorial: {fileID: 1000014051313974, guid: 3a63ff28cd7a43d42856acbfcdd6e3dd,
     type: 2}
-  m_StartCount: {fileID: 118732, guid: 8c26cd695d092aa40919b8fc292245e0, type: 2}
+  m_StartCount: {fileID: 1000011986840912, guid: 22a70e8dc13843e4e9a7fd4710533703,
+    type: 2}
   m_Player: {fileID: 0}
   m_StageGenerator: {fileID: 0}
   m_Blur: {fileID: 0}

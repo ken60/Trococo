@@ -41,7 +41,6 @@ public class Panel_Main : MonoBehaviour
     {
         //累計コイン数を表示
         m_GoldCoinText.text = GameManager.Instance.totalGoldCoinNum.ToString();
-        
     }
 
     //メニューボタンにアタッチ
@@ -59,10 +58,10 @@ public class Panel_Main : MonoBehaviour
 
         //表示していたパネルのボタンを有効化
         m_Button_Menu[m_ShowingPanelNum].enabled = true;
+        //表示していたパネルを隠す
+        PanelHide(m_Panel_Menu[m_ShowingPanelNum].gameObject);
         //押したボタンのパネルを表示
         PanelShow(m_Panel_Menu[num].gameObject);
-        //前回表示していたパネルを隠す
-        PanelHide(m_Panel_Menu[m_ShowingPanelNum].gameObject);
         //表示中のパネルを変更
         m_ShowingPanelNum = num;
     }
@@ -127,14 +126,13 @@ public class Panel_Main : MonoBehaviour
         hash.Add("y", 1.0f);
         hash.Add("time", 0.2f);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        hash.Add("onstart", "StartAction");
-        hash.Add("oncompletetarget", this.gameObject);
         iTween.ScaleTo(panel.gameObject, hash);
     }
 
     //メニューパネルを非表示
     void PanelHide(GameObject panel)
     {
+        m_isActive_itween = true;
         Hashtable hash = new Hashtable();
         hash.Add("x", 0.0f);
         hash.Add("y", 0.0f);
@@ -145,11 +143,6 @@ public class Panel_Main : MonoBehaviour
         iTween.ScaleTo(panel.gameObject, hash);
     }
     
-    void StartAction()
-    {
-        m_isActive_itween = true;
-    }
-
     void EndAction()
     {
         m_isActive_itween = false;

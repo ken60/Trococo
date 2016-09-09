@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Collider m_Collider;   //プレイヤーのCollider
     [SerializeField]
-    private ParticleSystem m_DieParticle;   //プレイヤーのCollider
+    private GameObject m_Character; //キャラクター
+    [SerializeField]
+    private ParticleSystem m_DieParticle;   //ゲームオーバーのパーティクル
     [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
     [SerializeField]
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     private float m_Angle = 30.0f;
 
     private GameObject m_Canvas;
+    private Vector3 m_CharScale = new Vector3(1.0f, 1.0f, 1.0f);
     private Rigidbody m_Rigidbody;
     private Animator m_Animator;
     private Touch m_Touch;
@@ -62,7 +65,6 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         m_CurrentRunningRail = 0;
         m_TimeCount = 0;
-
     }
 
     //タップ時に呼ばれる
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
                 m_CurrentRunningRail++;
             }
             //Left
-            else if (-m_Angle > gesture.ScreenFlickVector.x)
+            else if (gesture.ScreenFlickVector.x < -m_Angle)
             {
                 m_CurrentRunningRail--;
             }
@@ -111,7 +113,7 @@ public class Player : MonoBehaviour
 
             }
             //Down
-            else if (-m_Angle > gesture.ScreenFlickVector.y)
+            else if (gesture.ScreenFlickVector.y < -m_Angle)
             {
                 m_isCrouch = true;
             }
@@ -142,6 +144,7 @@ public class Player : MonoBehaviour
         if (m_isCrouch)
         {
             m_Collider.enabled = !m_isCrouch;
+            m_CharScale.y = 0.6f;
             m_TimeCount += Time.deltaTime;
             if (m_TimeCount >= m_CrouchTime)
             {
@@ -150,7 +153,12 @@ public class Player : MonoBehaviour
                 m_Collider.enabled = !m_isCrouch;
             }
         }
-
+        else
+        {
+            m_CharScale.y = 1.0f;
+        }
+            m_Character.transform.localScale = Vector3.Lerp(m_Character.transform.localScale, m_CharScale, 0.3f);
+        
         //地面についている時
         if (m_isGrounded)
         {
@@ -164,7 +172,6 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (m_isJump)
         {
             m_isJump = false;
@@ -195,10 +202,11 @@ public class Player : MonoBehaviour
                 GameSceneManager.Instance.isGameOver = true;
                 Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
             }
+
             //イカ
             if (hit.gameObject.tag == "Squid")
             {
-                GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], transform.position + new Vector3(0.0f, 0.8f, 0.0f), Quaternion.identity) as GameObject;
+                GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], Vector3.zero, Quaternion.identity) as GameObject;
                 obj.transform.SetParent(m_Canvas.transform, false);
             }
 

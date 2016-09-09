@@ -56,12 +56,20 @@ public class Panel_Main : MonoBehaviour
         if (m_ClickCnt != 1) return;
         m_ClickCnt = 0;
 
+        //セッティングパネルを閉じた時にセーブ
+        if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Settings)
+            if (num != m_ShowingPanelNum && GameManager.Instance.isChangingSettings())
+            {
+                GameManager.Instance.SaveGame();
+                print("Save");
+            }
+
         //表示していたパネルのボタンを有効化
         m_Button_Menu[m_ShowingPanelNum].enabled = true;
         //表示していたパネルを隠す
         PanelHide(m_Panel_Menu[m_ShowingPanelNum].gameObject);
         //押したボタンのパネルを表示
-        PanelShow(m_Panel_Menu[num].gameObject);
+        iTweenManager.Show_ScaleTo(m_Panel_Menu[num].gameObject, 0.2f);
         //表示中のパネルを変更
         m_ShowingPanelNum = num;
     }
@@ -74,7 +82,7 @@ public class Panel_Main : MonoBehaviour
         if (m_ClickCnt != 1) return;
         m_ClickCnt = 0;
 
-        MoveOut();
+        iTweenManager.MoveOut_MoveTo_Y(this.gameObject, 0.4f, -Screen.height * 0.5f, "LoadGame", this.gameObject);
     }
 
     //ランキング
@@ -96,39 +104,6 @@ public class Panel_Main : MonoBehaviour
         }
     }
 
-    //********iTween********
-    public void Show()
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 1.0f);
-        hash.Add("y", 1.0f);
-        hash.Add("time", 0.4f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.ScaleTo(this.gameObject, hash);
-    }
-
-    public void MoveOut()
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("y", -Screen.height * 0.5f);
-        hash.Add("time", 0.4f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        hash.Add("oncomplete", "LoadGame");
-        hash.Add("oncompletetarget", this.gameObject);
-        iTween.MoveTo(this.gameObject, hash);
-    }
-
-    //メニューパネルを表示
-    void PanelShow(GameObject panel)
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 1.0f);
-        hash.Add("y", 1.0f);
-        hash.Add("time", 0.2f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.ScaleTo(panel.gameObject, hash);
-    }
-
     //メニューパネルを非表示
     void PanelHide(GameObject panel)
     {
@@ -142,7 +117,7 @@ public class Panel_Main : MonoBehaviour
         hash.Add("oncompletetarget", this.gameObject);
         iTween.ScaleTo(panel.gameObject, hash);
     }
-    
+
     void EndAction()
     {
         m_isActive_itween = false;

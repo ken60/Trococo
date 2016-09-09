@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Collider: {fileID: 6530148}
   m_DieParticle: {fileID: 19872740, guid: f02123e7c588bbc469f870ac750094ae, type: 2}
   m_MoveSpeed: 6
-  m_JumpForce: 250
+  m_JumpForce: 220
   m_LateralJumpForce: 120
   m_CrouchTime: 1.1
   m_LerpRate: 0.2
@@ -239,6 +239,7 @@ MonoBehaviour:
   m_RayDist: 0.501
   MinDistance: 2
   FlickTime: 0.3
+  m_Angle: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

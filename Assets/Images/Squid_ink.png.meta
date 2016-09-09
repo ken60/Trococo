@@ -1,17 +1,19 @@
 fileFormatVersion: 2
-guid: 1c772d9924186e24eb014df53e386062
-timeCreated: 1469106200
+guid: f4a5d134d0cd1fb4c9bb2e6837133d59
+timeCreated: 1471164966
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CountDown_0
-    21300002: CountDown_1
-    21300004: CountDown_2
-    21300006: CountDown_3
+    21300000: Squid_ink_0
+    21300002: Squid_ink_1
+    21300004: Squid_ink_2
+    21300006: Squid_ink_3
+    21300008: Squid_ink_4
+    21300010: Squid_ink_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -34,7 +36,7 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -57,57 +59,83 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CountDown_0
+      name: Squid_ink_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 270
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Squid_ink_1
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 480
+        width: 270
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Squid_ink_2
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 480
+        width: 270
+        height: 480
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Squid_ink_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 250
-        height: 128
+        width: 270
+        height: 480
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: CountDown_1
+      name: Squid_ink_4
       rect:
         serializedVersion: 2
-        x: 250
+        x: 270
         y: 0
-        width: 250
-        height: 128
+        width: 270
+        height: 480
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     - serializedVersion: 2
-      name: CountDown_2
+      name: Squid_ink_5
       rect:
         serializedVersion: 2
-        x: 500
+        x: 540
         y: 0
-        width: 250
-        height: 128
+        width: 270
+        height: 480
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: CountDown_3
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 0
-        width: 250
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

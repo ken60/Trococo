@@ -48,7 +48,7 @@ public class Panel_Tutorial : MonoBehaviour
         Hashtable hash = new Hashtable();
         hash.Add("x", 1.0f);
         hash.Add("y", 1.0f);
-        hash.Add("time", 0.4f);
+        hash.Add("time", 0.3f);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         iTween.ScaleTo(panel.gameObject, hash);
     }
@@ -58,7 +58,7 @@ public class Panel_Tutorial : MonoBehaviour
         Hashtable hash = new Hashtable();
         hash.Add("x", 0.0f);
         hash.Add("y", 0.0f);
-        hash.Add("time", 0.2f);
+        hash.Add("time", 0.1f);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         hash.Add("oncomplete", "EndAction");
         hash.Add("oncompletetarget", this.gameObject);
@@ -70,7 +70,7 @@ public class Panel_Tutorial : MonoBehaviour
         Hashtable hash = new Hashtable();
         hash.Add("x", 0.0f);
         hash.Add("y", 0.0f);
-        hash.Add("time", 0.2f);
+        hash.Add("time", 0.1f);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         hash.Add("oncomplete", "End");
         hash.Add("oncompletetarget", this.gameObject);

@@ -70,7 +70,7 @@ public class GameScene : MonoBehaviour
                 //タイトルパネルを表示
                 GameObject main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
                 main.transform.SetParent(m_Canvas.transform, false);
-                main.GetComponent<Panel_Main>().Show();
+                iTweenManager.Show_ScaleTo(main.gameObject, 0.35f);
 
                 m_FromTitle = true;
 
@@ -143,8 +143,10 @@ public class GameScene : MonoBehaviour
 
             //ゲーム開始時のカウントダウン
             case eGameScene.StartCount:
+                //StartCountのUpdate()にシーンチェンジ記述
 
                 break;
+
             //ゲームプレイ中
             case eGameScene.Play:
                 if (GameSceneManager.Instance.isGameOver)

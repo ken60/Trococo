@@ -8,6 +8,8 @@ class Data
     public int playCharID = 0;          //選択しているキャラクターID
     public bool[] isCharAvailable = new bool[6];          //キャラを開放しているか
     public bool isFirstStart = true;    //初回起動か
+    public bool isMute = false;         //音をミュートにするか
+    public bool isEnableShadow = true;  //影を有効にするか
 }
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
@@ -22,6 +24,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private int m_TotalGoldCoinNum = 0;     //累計金コイン数
     private int m_PlayerCharID = 0;         //選択しているキャラID
     private bool m_isFirstStart = true;     //初回起動か
+    private bool m_isMute = false;         //音をミュートにするか
+    private bool m_isShadowEnabled = true;  //影を有効にするか
+    private bool m_isMute_old = false;
+    private bool m_isShadowEnabled_old = true;
+
     private string m_Json;
 
     void Start()
@@ -46,37 +53,35 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         m_TotalGoldCoinNum = loadData.totalGoldCoinNum;
 
         for (int i = 0; i < m_isCharAvailable.Length; i++)
-        {
             m_isCharAvailable[i] = loadData.isCharAvailable[i];
-        }
+
         m_isFirstStart = loadData.isFirstStart;
+        m_isMute = loadData.isMute;
+        m_isMute_old = loadData.isMute;
+        m_isShadowEnabled = loadData.isEnableShadow;
+        m_isShadowEnabled_old = loadData.isEnableShadow;
     }
 
     public void SaveGame()
     {
         Data data = new Data();
 
-        //ハイスコア
         if (m_HighScore < m_Score)
-        {
             data.highScore = m_Score;
-        }
         else
-        {
             data.highScore = m_OldHighScore;
-        }
 
-        //合計コイン数
         data.totalGoldCoinNum = m_TotalGoldCoinNum + m_GoldCoinNum;
 
-        //キャラ解放
         for (int i = 0; i < m_isCharAvailable.Length; i++)
-        {
             data.isCharAvailable[i] = m_isCharAvailable[i];
-        }
 
-        //初回起動か
         data.isFirstStart = m_isFirstStart;
+        data.isMute = m_isMute;
+        data.isEnableShadow = m_isShadowEnabled;
+
+        m_isMute_old = m_isMute;
+        m_isShadowEnabled_old = m_isShadowEnabled;
 
         m_Json = JsonUtility.ToJson(data);
         FileIO.FileWrite("SaveData", m_Json);
@@ -141,7 +146,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //指定のキャラを開放しているか
     public bool IsCharAvailable(int id)
     {
-        if (id > m_isCharAvailable.Length - 1)
+        if (m_isCharAvailable.Length - 1 < id)
             id = m_isCharAvailable.Length - 1;
 
         if (m_isCharAvailable[id] == true) return true;
@@ -152,11 +157,39 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     //キャラを開放
     public void OpenCharacter(int id)
     {
-        if (id > m_isCharAvailable.Length - 1)
+        if (m_isCharAvailable.Length - 1 < id)
             id = m_isCharAvailable.Length - 1;
 
         if (m_isCharAvailable[id] == true) return;
 
         m_isCharAvailable[id] = true;
     }
+
+    //音をミュート
+    public bool isAusioMute
+    {
+        get { return m_isMute; }
+        set { m_isMute = value; }
+    }
+
+    //影の有無
+    public bool isShadowEnable
+    {
+        get { return m_isShadowEnabled; }
+        set { m_isShadowEnabled = value; }
+    }
+
+    //設定を変更したか
+    public bool isChangingSettings()
+    {
+        if (m_isMute != m_isMute_old)
+            return true;
+
+        else if (m_isShadowEnabled != m_isShadowEnabled_old)
+            return true;
+
+        return false;
+    }
+
+
 }

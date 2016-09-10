@@ -26,11 +26,21 @@ public class Panel_Main : MonoBehaviour
     private float m_LerpLate = 1.0f;
 
     private int m_ShowingPanelNum = (int)PanelMenuNum.ePanel_Home;
+    private int m_OldShowingPanelNum;
     private int m_ClickCnt = 0;
     private bool m_isActive_itween = false; //itween動作中か
 
     void Start()
     {
+        m_OldShowingPanelNum = m_ShowingPanelNum;
+
+        //全てのメニューパネルを非アクティブ化
+        foreach (GameObject obj in m_Panel_Menu)
+            obj.SetActive(false);
+
+        //ホームパネルをアクティブ化
+        m_Panel_Menu[m_ShowingPanelNum].SetActive(true);
+
         //表示中のパネルのボタンを無効化
         m_Button_Menu[m_ShowingPanelNum].enabled = false;
 
@@ -69,6 +79,7 @@ public class Panel_Main : MonoBehaviour
         //表示していたパネルを隠す
         PanelHide(m_Panel_Menu[m_ShowingPanelNum].gameObject);
         //押したボタンのパネルを表示
+        m_Panel_Menu[num].SetActive(true);
         iTweenManager.Show_ScaleTo(m_Panel_Menu[num].gameObject, 0.2f);
         //表示中のパネルを変更
         m_ShowingPanelNum = num;
@@ -121,6 +132,8 @@ public class Panel_Main : MonoBehaviour
     void EndAction()
     {
         m_isActive_itween = false;
+        m_Panel_Menu[m_OldShowingPanelNum].SetActive(false);
+        m_OldShowingPanelNum = m_ShowingPanelNum;
     }
 
     void LoadGame()
@@ -128,6 +141,4 @@ public class Panel_Main : MonoBehaviour
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
         Destroy(this.gameObject);
     }
-
-
 }

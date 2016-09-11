@@ -145,7 +145,7 @@ public class Panel_Result : MonoBehaviour
         m_ClickCnt++;
         if (m_ClickCnt != 1) return;
         MoveOut();
-        DestroySquidInk();
+        GameSceneManager.Instance.DestroySquidInk();
         GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
 
     }
@@ -155,7 +155,7 @@ public class Panel_Result : MonoBehaviour
         m_ClickCnt++;
         if (m_ClickCnt != 1) return;
         MoveOut();
-        DestroySquidInk();
+        GameSceneManager.Instance.DestroySquidInk();
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
     }
 
@@ -170,13 +170,4 @@ public class Panel_Result : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //画面に出たイカスミを削除
-    void DestroySquidInk()
-    {
-        GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("Squid_ink");
-        foreach (GameObject obj in tagobjs)
-        {
-            Destroy(obj);
-        }
-    }
 }

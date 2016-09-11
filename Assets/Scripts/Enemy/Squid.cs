@@ -18,10 +18,10 @@ public class Squid : MonoBehaviour
     void Update()
     {
         m_Phase += 2;
-        m_Sin = Mathf.Sin(m_Phase * Mathf.PI / 180) * Time.deltaTime / m_Speed;
+        m_Sin = Mathf.Sin(m_Phase * Mathf.PI / 180) * Time.deltaTime * Time.timeScale / m_Speed;
 
         //Movement
         transform.position = new Vector3(transform.position.x, transform.position.y + m_Sin, transform.position.z);
-        transform.Rotate(new Vector3(0.0f, m_RotateSpeed, 0.0f));
+        transform.Rotate(new Vector3(0.0f, m_RotateSpeed * Time.deltaTime * Time.timeScale, 0.0f));
     }
 }

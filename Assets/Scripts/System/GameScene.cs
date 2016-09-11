@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
 
 public class GameScene : MonoBehaviour
@@ -182,7 +183,8 @@ public class GameScene : MonoBehaviour
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
-                    RankParkInterface.Instance().AddScore(GameManager.Instance.score);
+                    //ランキングスコア送信
+                    print("Send score");
                 }
 
                 //セーブ

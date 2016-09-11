@@ -14,8 +14,8 @@ public class StartCount : MonoBehaviour
     void Start()
     {
         m_CountImage = GetComponent<Image>();
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
-        Show();
+        transform.localScale = Vector3.zero; 
+        iTweenManager.Show_ScaleTo(this.gameObject, 0.15f);
     }
 
     void Update()
@@ -41,35 +41,14 @@ public class StartCount : MonoBehaviour
         else if (m_TimeCount < 3.5f)
         {
             m_CountImage.sprite = m_NumberSprite[3];
+
             GameSceneManager.Instance.isGamePlaying = true;
             GameScene.m_GameScene = GameScene.eGameScene.Play;
         }
         else
         {
-            Hide();
+            iTweenManager.Hide_ScaleTo(this.gameObject, 0.2f, "EndAction", this.gameObject);
         }
-    }
-
-    void Show()
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 1.0f);
-        hash.Add("y", 1.0f);
-        hash.Add("time", 0.15f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.ScaleTo(this.gameObject, hash);
-    }
-
-    void Hide()
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 0.0f);
-        hash.Add("y", 0.0f);
-        hash.Add("time", 0.2f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        hash.Add("oncomplete", "EndAction");
-        hash.Add("oncompletetarget", this.gameObject);
-        iTween.ScaleTo(this.gameObject, hash);
     }
 
     void EndAction()

@@ -15,7 +15,7 @@ public class Panel_HowToPlay : MonoBehaviour
 
     void Start()
     {
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.localScale = Vector3.zero;
 
         m_ExplanatoryImage.sprite = m_Sprite[m_PageNmmber - 1];
         m_Button[0].gameObject.SetActive(false);

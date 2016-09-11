@@ -22,8 +22,6 @@ public class SceneChangeFade : MonoBehaviour
 
     void Update()
     {
-
-
         m_Color.a = m_Alpha;
         m_Image.color = m_Color;
     }

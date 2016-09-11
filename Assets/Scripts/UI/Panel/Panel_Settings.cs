@@ -15,7 +15,7 @@ public class Panel_Settings : MonoBehaviour
 
     void Start()
     {
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.localScale = Vector3.zero;
 
         m_AusioEnabled = GameManager.Instance.isAudioEnabled;
         m_ShadowEnabled = GameManager.Instance.isShadowEnable;

@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     void HandleTapped(object sender, System.EventArgs e)
     {
         if (GameSceneManager.Instance.isGameOver ||
+            GameSceneManager.Instance.isPause ||
             !GameSceneManager.Instance.isGamePlaying)
             return;
 
@@ -144,7 +145,7 @@ public class Player : MonoBehaviour
             return;
 
         //プレイヤーの移動
-        transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
+        transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime * Time.timeScale;
         //m_Rigidbody.velocity = (Vector3.forward * m_MoveSpeed) *Time.deltaTime;
 
         //接地判定

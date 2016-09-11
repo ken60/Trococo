@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class _Debug : MonoBehaviour
 {
-    [SerializeField]
     private Text m_Text;
 
     //fps測定用
@@ -13,6 +12,7 @@ public class _Debug : MonoBehaviour
 
     void Start()
     {
+        m_Text = GetComponent<Text>();
         frameCount = 0;
         prevTime = 0.0f;
     }

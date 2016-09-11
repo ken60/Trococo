@@ -18,7 +18,7 @@ public class Panel_Tutorial : MonoBehaviour
     void Start()
     {
         m_Image.sprite = m_TutorialSprite[m_PageNumber];
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.localScale = Vector3.zero;
         iTweenManager.Show_ScaleTo(this.gameObject, 0.3f);
     }
 

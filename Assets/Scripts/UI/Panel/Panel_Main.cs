@@ -44,7 +44,7 @@ public class Panel_Main : MonoBehaviour
         //表示中のパネルのボタンを無効化
         m_Button_Menu[m_ShowingPanelNum].enabled = false;
 
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        transform.localScale = Vector3.zero;
     }
 
     void Update()
@@ -106,8 +106,7 @@ public class Panel_Main : MonoBehaviour
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            //RankParkを表示
-            RankParkInterface.Instance().StartActivity();
+            //ランキングを表示
         }
         else
         {

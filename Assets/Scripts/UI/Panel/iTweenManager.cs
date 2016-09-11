@@ -9,6 +9,7 @@ public class iTweenManager : MonoBehaviour
         hash.Add("x", 1.0f);
         hash.Add("y", 1.0f);
         hash.Add("time", time);
+        hash.Add("ignoretimescale", true);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         iTween.ScaleTo(obj.gameObject, hash);
     }
@@ -19,6 +20,7 @@ public class iTweenManager : MonoBehaviour
         hash.Add("x", 0.0f);
         hash.Add("y", 0.0f);
         hash.Add("time", time);
+        hash.Add("ignoretimescale", true);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         hash.Add("oncomplete", oncomplete);
         hash.Add("oncompletetarget", oncompletetarget.gameObject);
@@ -30,6 +32,7 @@ public class iTweenManager : MonoBehaviour
         Hashtable hash = new Hashtable();
         hash.Add("y", y);
         hash.Add("time", time);
+        hash.Add("ignoretimescale", true);
         hash.Add("easeType", iTween.EaseType.easeInOutSine);
         hash.Add("oncomplete", oncomplete);
         hash.Add("oncompletetarget", oncompletetarget.gameObject);

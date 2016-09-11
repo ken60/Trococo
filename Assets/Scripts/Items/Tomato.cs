@@ -12,6 +12,6 @@ public class Tomato : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(new Vector3(0.0f, m_RotateSpeed * Time.deltaTime, 0.0f));
+        transform.Rotate(new Vector3(0.0f, m_RotateSpeed * Time.deltaTime * Time.timeScale, 0.0f));
     }
 }

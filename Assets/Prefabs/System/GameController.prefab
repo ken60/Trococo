@@ -41,6 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UI_Text: {fileID: 0}
+  m_PauseButton: {fileID: 0}
   m_Panel_Main: {fileID: 1000011370357784, guid: 96e5c4fc9ef841047b02dd6fc6036bb0,
     type: 2}
   m_Panel_Result: {fileID: 1000010981700114, guid: 53402489bd9672d469a3a383365eed56,

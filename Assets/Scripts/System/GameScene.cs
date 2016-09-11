@@ -42,7 +42,12 @@ public class GameScene : MonoBehaviour
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
-    private GameObject m_InstantiatePanel;
+    private GameObject m_TutorialPanel;
+
+    void Awake()
+    {
+        GameManager.Instance.LoadGame();
+    }
 
     void Start()
     {
@@ -59,6 +64,8 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadTitle:
                 //セーブデータのロード
                 GameManager.Instance.LoadGame();
+                //設定のロード
+                ReflectSettings();
                 //ステージの初期化
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
@@ -106,8 +113,8 @@ public class GameScene : MonoBehaviour
 
                 if (GameManager.Instance.isFerstStart)
                 {
-                    m_InstantiatePanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;
-                    m_InstantiatePanel.transform.SetParent(m_Canvas.transform, false);
+                    m_TutorialPanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;
+                    m_TutorialPanel.transform.SetParent(m_Canvas.transform, false);
 
                     m_GameScene = eGameScene.Tutorial;
                 }
@@ -120,9 +127,9 @@ public class GameScene : MonoBehaviour
 
             case eGameScene.Tutorial:
 
-                if (m_InstantiatePanel.GetComponent<Panel_Tutorial>().m_isEnd)
+                if (m_TutorialPanel.GetComponent<Panel_Tutorial>().m_isEnd)
                 {
-                    Destroy(m_InstantiatePanel.gameObject);
+                    Destroy(m_TutorialPanel.gameObject);
                     GameManager.Instance.isFerstStart = false;
                     GameManager.Instance.SaveGame();
                     m_GameScene = eGameScene.WaitCount;
@@ -189,4 +196,12 @@ public class GameScene : MonoBehaviour
         }
     }
 
+    void ReflectSettings()
+    {
+        //影
+        LightManager.Instance.ShadowEnabled(GameManager.Instance.isShadowEnable);
+
+        //オーディオミュート
+        AudioManager.Instance.AudioMute(GameManager.Instance.isAudioEnabled);
+    }
 }

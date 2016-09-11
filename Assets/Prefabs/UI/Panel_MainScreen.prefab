@@ -41,12 +41,12 @@ GameObject:
   - 114: {fileID: 114000010383632900}
   - 114: {fileID: 114000012419648744}
   m_Layer: 5
-  m_Name: 'Sound '
+  m_Name: AUdio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010506091168
 GameObject:
   m_ObjectHideFlags: 1
@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010623250960
 GameObject:
   m_ObjectHideFlags: 1
@@ -203,7 +203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000010941922898
 GameObject:
   m_ObjectHideFlags: 1
@@ -377,7 +377,7 @@ GameObject:
   - 114: {fileID: 114000012639852888}
   - 114: {fileID: 114000012114786576}
   m_Layer: 5
-  m_Name: Sound Text
+  m_Name: AUdio Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011879062218
 GameObject:
   m_ObjectHideFlags: 1
@@ -791,12 +791,12 @@ GameObject:
   - 114: {fileID: 114000010583958360}
   - 114: {fileID: 114000012945382896}
   m_Layer: 5
-  m_Name: Sound
+  m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013143387764
 GameObject:
   m_ObjectHideFlags: 1
@@ -938,7 +938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000013821424394
 GameObject:
   m_ObjectHideFlags: 1
@@ -1023,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000014121613572
 GameObject:
   m_ObjectHideFlags: 1
@@ -3129,7 +3129,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000013734115086}
-        m_MethodName: Button_Sound
+        m_MethodName: Button_Audio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3735,7 +3735,6 @@ MonoBehaviour:
   - {fileID: 114000013656795216}
   - {fileID: 114000012888890018}
   - {fileID: 114000012611683654}
-  m_Light: {fileID: 108000014093118486, guid: 137a08944459c8643b892349497fa169, type: 2}
 --- !u!114 &114000013951434832
 MonoBehaviour:
   m_ObjectHideFlags: 1

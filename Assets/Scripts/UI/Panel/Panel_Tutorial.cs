@@ -18,15 +18,8 @@ public class Panel_Tutorial : MonoBehaviour
     void Start()
     {
         m_Image.sprite = m_TutorialSprite[m_PageNumber];
-        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f); PanelShow(this.gameObject);
-    }
-
-    void Update()
-    {
-        if (m_PageNumber == m_TutorialSprite.Length - 1)
-        {
-            m_ButtonText.text = "スタート";
-        }
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        iTweenManager.Show_ScaleTo(this.gameObject, 0.3f);
     }
 
     public void Button_Next()
@@ -34,53 +27,22 @@ public class Panel_Tutorial : MonoBehaviour
         if (m_PageNumber < m_TutorialSprite.Length - 1)
         {
             m_PageNumber++;
-            PanelHide(this.gameObject);
+            iTweenManager.Hide_ScaleTo(this.gameObject, 0.1f, "EndAction", this.gameObject);
         }
         else
         {
-            PanelHideDestroy(this.gameObject);
+            iTweenManager.Hide_ScaleTo(this.gameObject, 0.1f, "End", this.gameObject);
         }
-    }
-
-    //********iTween********
-    void PanelShow(GameObject panel)
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 1.0f);
-        hash.Add("y", 1.0f);
-        hash.Add("time", 0.3f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        iTween.ScaleTo(panel.gameObject, hash);
-    }
-
-    void PanelHide(GameObject panel)
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 0.0f);
-        hash.Add("y", 0.0f);
-        hash.Add("time", 0.1f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        hash.Add("oncomplete", "EndAction");
-        hash.Add("oncompletetarget", this.gameObject);
-        iTween.ScaleTo(panel.gameObject, hash);
-    }
-
-    void PanelHideDestroy(GameObject panel)
-    {
-        Hashtable hash = new Hashtable();
-        hash.Add("x", 0.0f);
-        hash.Add("y", 0.0f);
-        hash.Add("time", 0.1f);
-        hash.Add("easeType", iTween.EaseType.easeInOutSine);
-        hash.Add("oncomplete", "End");
-        hash.Add("oncompletetarget", this.gameObject);
-        iTween.ScaleTo(panel.gameObject, hash);
     }
 
     void EndAction()
     {
         m_Image.sprite = m_TutorialSprite[m_PageNumber];
-        PanelShow(this.gameObject);
+
+        if (m_PageNumber == m_TutorialSprite.Length - 1)
+            m_ButtonText.text = "スタート";
+
+        iTweenManager.Show_ScaleTo(this.gameObject, 0.3f);
     }
 
     void End()

@@ -7,21 +7,20 @@ public class Panel_Settings : MonoBehaviour
     private Text[] m_ButtonText;
     [SerializeField]
     private Button[] m_Button;
-    [SerializeField]
+
     private Light m_Light;
-    
-    private bool m_Ausio = true;
-    private bool m_ShadowEnabled = true;
+    private bool m_AusioEnabled = false;
+    private bool m_ShadowEnabled = false;
 
 
     void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
-        m_Ausio = GameManager.Instance.isAusioMute;
+        m_AusioEnabled = GameManager.Instance.isAudioEnabled;
         m_ShadowEnabled = GameManager.Instance.isShadowEnable;
 
-        if (m_Ausio)
+        if (m_AusioEnabled)
             m_ButtonText[0].text = "ON";
         else
             m_ButtonText[0].text = "OFF";
@@ -37,12 +36,15 @@ public class Panel_Settings : MonoBehaviour
 
     }
 
-    public void Button_Sound()
+    public void Button_Audio()
     {
-        m_Ausio = !m_Ausio;
-        AudioManager.Instance.AudioMute(!m_Ausio);
+        m_AusioEnabled = !m_AusioEnabled;
 
-        if (m_Ausio)
+        AudioManager.Instance.AudioMute(m_AusioEnabled);
+
+        GameManager.Instance.isAudioEnabled = m_AusioEnabled;
+
+        if (m_AusioEnabled)
             m_ButtonText[0].text = "ON";
         else
             m_ButtonText[0].text = "OFF";
@@ -51,14 +53,8 @@ public class Panel_Settings : MonoBehaviour
     public void Button_Shadow()
     {
         m_ShadowEnabled = !m_ShadowEnabled;
-        if (m_ShadowEnabled)
-        {
-            //m_Light.shadows = LightShadows.Soft;
-        }
-        else
-        {
-            //m_Light.shadows = LightShadows.None;
-        }
+
+        LightManager.Instance.ShadowEnabled(m_ShadowEnabled);
 
         GameManager.Instance.isShadowEnable = m_ShadowEnabled;
 

@@ -66,8 +66,6 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         m_BGMSource.mute = f;
         m_SESource.mute = f;
-
-        GameManager.Instance.isAusioMute = f;
     }
 
     public void ChangeVolume(float bgmVolume, float seVolume)

@@ -5,32 +5,46 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] m_Squid_ink;   //画面を覆うイカスミ
+
     [SerializeField]
     private GameObject m_TouchScriptObj;
+
     [SerializeField]
     private Collider m_Collider;   //プレイヤーのCollider
+
     [SerializeField]
     private GameObject m_Character; //キャラクター
+
     [SerializeField]
     private ParticleSystem m_DieParticle;   //ゲームオーバーのパーティクル
+
     [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
+
     [SerializeField]
     private float m_JumpForce;   //ジャンプ力
+
     [SerializeField]
     private float m_LateralJumpForce;    //横移動時のジャンプ力
+
     [SerializeField]
     private float m_CrouchTime; //しゃがむ時間
+
     [SerializeField]
     private float m_LerpRate;   //横移動の補間割合
+
     [SerializeField]
     private float m_LateralMotionSpeed;  //横移動のスピード
+
     [SerializeField]
     private float m_RayDist;    //地面判定のRayの長さ
+
     [SerializeField]
     private float MinDistance = 1.0f;   //フリックの最小距離
+
     [SerializeField]
     private float FlickTime = 0.3f;     //フリックが有効な時間
+
     [SerializeField]
     private float m_Angle = 30.0f;
 
@@ -53,10 +67,11 @@ public class Player : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         //m_Animator = GetComponent<Animator>();
 
+        FlickGesture flick = m_TouchScriptObj.GetComponent<FlickGesture>();
         m_TouchScriptObj.GetComponent<TapGesture>().Tapped += HandleTapped;
-        m_TouchScriptObj.GetComponent<FlickGesture>().StateChanged += HandleFlick;
-        m_TouchScriptObj.GetComponent<FlickGesture>().MinDistance = 1f;
-        m_TouchScriptObj.GetComponent<FlickGesture>().FlickTime = 0.3f;
+        flick.StateChanged += HandleFlick;
+        flick.MinDistance = 1f;
+        flick.FlickTime = 0.3f;
     }
 
     public void InitPlayer()
@@ -71,7 +86,8 @@ public class Player : MonoBehaviour
     void HandleTapped(object sender, System.EventArgs e)
     {
         if (GameSceneManager.Instance.isGameOver ||
-            !GameSceneManager.Instance.isGamePlaying) return;
+            !GameSceneManager.Instance.isGamePlaying)
+            return;
 
         if (m_isGrounded)
         {
@@ -84,7 +100,8 @@ public class Player : MonoBehaviour
     void HandleFlick(object sender, System.EventArgs e)
     {
         if (GameSceneManager.Instance.isGameOver ||
-            !GameSceneManager.Instance.isGamePlaying || !m_isGrounded) return;
+            !GameSceneManager.Instance.isGamePlaying || !m_isGrounded)
+            return;
 
         var gesture = sender as FlickGesture;
 
@@ -123,7 +140,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (GameSceneManager.Instance.isGameOver ||
-            !GameSceneManager.Instance.isGamePlaying) return;
+            !GameSceneManager.Instance.isGamePlaying)
+            return;
 
         //プレイヤーの移動
         transform.position += new Vector3(0.0f, 0.0f, m_MoveSpeed) * Time.deltaTime;
@@ -157,8 +175,8 @@ public class Player : MonoBehaviour
         {
             m_CharScale.y = 1.0f;
         }
-            m_Character.transform.localScale = Vector3.Lerp(m_Character.transform.localScale, m_CharScale, 0.3f);
-        
+        m_Character.transform.localScale = Vector3.Lerp(m_Character.transform.localScale, m_CharScale, 0.3f);
+
         //地面についている時
         if (m_isGrounded)
         {
@@ -194,34 +212,31 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter(Collider hit)
     {
-        if (GameSceneManager.Instance.colliderEnabled)
+        //障害物
+        if (hit.gameObject.tag == "Obstacle")
         {
-            //障害物
-            if (hit.gameObject.tag == "Obstacle")
-            {
-                GameSceneManager.Instance.isGameOver = true;
-                Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
-            }
+            GameSceneManager.Instance.isGameOver = true;
+            Instantiate(m_DieParticle, transform.position, m_DieParticle.transform.rotation);
+        }
 
-            //イカ
-            if (hit.gameObject.tag == "Squid")
-            {
-                GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], Vector3.zero, Quaternion.identity) as GameObject;
-                obj.transform.SetParent(m_Canvas.transform, false);
-            }
+        //イカ
+        if (hit.gameObject.tag == "Squid")
+        {
+            GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], Vector3.zero, Quaternion.identity) as GameObject;
+            obj.transform.SetParent(m_Canvas.transform, false);
+        }
 
-            //コイン
-            if (hit.gameObject.tag == "Gold_Coin")
-            {
-                Destroy(hit.gameObject);
-                GameManager.Instance.goldCoin += 1;
-            }
+        //コイン
+        if (hit.gameObject.tag == "Gold_Coin")
+        {
+            Destroy(hit.gameObject);
+            GameManager.Instance.goldCoin += 1;
+        }
 
-            //トマト
-            if (hit.gameObject.tag == "Tomato")
-            {
-                Destroy(hit.gameObject);
-            }
+        //トマト
+        if (hit.gameObject.tag == "Tomato")
+        {
+            Destroy(hit.gameObject);
         }
     }
 }

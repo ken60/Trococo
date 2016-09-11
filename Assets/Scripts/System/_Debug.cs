@@ -24,9 +24,9 @@ public class _Debug : MonoBehaviour
         m_Text.text =
             "fps: " + fps.ToString("0.00") + "\n" +
             "loadHighscore: " + GameManager.Instance.highScore + "\n" +
-            "loadTotalGoldCoin: " + GameManager.Instance.totalGoldCoinNum + "\n" +
-            "colliderEnabled: " + GameSceneManager.Instance.colliderEnabled;
+            "loadTotalGoldCoin: " + GameManager.Instance.totalGoldCoinNum;
     }
+
     void fpsCount()
     {
         ++frameCount;
@@ -39,10 +39,5 @@ public class _Debug : MonoBehaviour
             frameCount = 0;
             prevTime = Time.realtimeSinceStartup;
         }
-    }
-
-    public void OnButton()
-    {
-        GameSceneManager.Instance.colliderEnabled = !GameSceneManager.Instance.colliderEnabled;
     }
 }

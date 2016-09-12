@@ -37,7 +37,7 @@ public class Panel_Result : MonoBehaviour
         int i;
 
         //広告ありの場合 15m以上進まないと表示されない
-        if (random == 0 && GameManager.Instance.score >= 15)
+        if (random == 0 && GameDataManager.Instance.score >= 15)
         {
             //広告バーをアクティブ化
             m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(true);
@@ -68,8 +68,8 @@ public class Panel_Result : MonoBehaviour
         }
 
         //Textに結果を表示
-        m_ScoreNum.text = GameManager.Instance.score + " m";
-        m_GoldCoinNum.text = GameManager.Instance.goldCoin + " 枚";
+        m_ScoreNum.text = GameDataManager.Instance.score + " m";
+        m_GoldCoinNum.text = GameDataManager.Instance.goldCoin + " 枚";
     }
 
     //Unity Ads
@@ -91,9 +91,9 @@ public class Panel_Result : MonoBehaviour
         {
             case ShowResult.Finished:
                 m_AdsText.text = "コイン +" + m_RewardCoinNum + "枚！";
-                GameManager.Instance.goldCoin += m_RewardCoinNum;
+                GameDataManager.Instance.goldCoin += m_RewardCoinNum;
 
-                GameManager.Instance.SaveGame();
+                GameDataManager.Instance.SaveGame();
                 break;
 
             case ShowResult.Skipped:
@@ -145,7 +145,7 @@ public class Panel_Result : MonoBehaviour
         m_ClickCnt++;
         if (m_ClickCnt != 1) return;
         MoveOut();
-        GameSceneManager.Instance.DestroySquidInk();
+        GameSceneManager.Instance.DestroyEffect();
         GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
 
     }
@@ -155,7 +155,7 @@ public class Panel_Result : MonoBehaviour
         m_ClickCnt++;
         if (m_ClickCnt != 1) return;
         MoveOut();
-        GameSceneManager.Instance.DestroySquidInk();
+        GameSceneManager.Instance.DestroyEffect();
         GameScene.m_GameScene = GameScene.eGameScene.LoadGame;
     }
 

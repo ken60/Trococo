@@ -13,6 +13,7 @@ public class StartCount : MonoBehaviour
 
     void Start()
     {
+        GameSceneManager.Instance.isStartCount = true;
         m_CountImage = GetComponent<Image>();
         transform.localScale = Vector3.zero; 
         iTweenManager.Show_ScaleTo(this.gameObject, 0.15f);
@@ -53,6 +54,7 @@ public class StartCount : MonoBehaviour
 
     void EndAction()
     {
+        GameSceneManager.Instance.isStartCount = false;
         Destroy(this.gameObject);
     }
 }

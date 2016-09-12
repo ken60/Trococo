@@ -22,7 +22,7 @@ public class DialogBox_CharOpen : MonoBehaviour
 
         m_CharImage.sprite = m_CharSprite[charId];
 
-        if (GameManager.Instance.IsCharAvailable(charId))
+        if (GameDataManager.Instance.IsCharAvailable(charId))
         {
             //Instantiate(m_OpenParticle, Vector3.zero, Quaternion.identity);
         }

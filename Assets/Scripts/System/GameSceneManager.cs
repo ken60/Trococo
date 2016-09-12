@@ -1,21 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
 {
     [SerializeField]
     private GameObject m_PausePanel;
-
-
+    [SerializeField]
+    private Button m_ButtonPause;
+    
     private GameObject m_Canvas;
+    private bool m_isStartCount = false;
     private bool m_isGamePlaying = false;
     private bool m_isPause = false;
     private bool m_isGameOver = false;
-    private bool m_isCollider = true;
 
     void Start()
     {
         m_Canvas = GameObject.Find("Canvas");
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    void Update()
+    {
+        if (!m_isGamePlaying)
+            m_ButtonPause.interactable = false;
+        else
+            m_ButtonPause.interactable = true;
     }
 
     public void InitGame()
@@ -24,10 +34,10 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
         m_isGameOver = false;
     }
 
-    public bool isGameOver
+    public bool isStartCount
     {
-        get { return m_isGameOver; }
-        set { m_isGameOver = value; }
+        get { return m_isStartCount; }
+        set { m_isStartCount = value; }
     }
 
     public bool isGamePlaying
@@ -42,14 +52,24 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
         set { m_isPause = value; }
     }
 
-    //画面に出たイカスミを削除
-    public void DestroySquidInk()
+    public bool isGameOver
     {
-        GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("Squid_ink");
-        foreach (GameObject obj in tagobjs)
-        {
-            Destroy(obj);
-        }
+        get { return m_isGameOver; }
+        set { m_isGameOver = value; }
+    }
+
+    //画面に出たエフェクトを削除
+    public void DestroyEffect()
+    {
+        GameObject[] ink = GameObject.FindGameObjectsWithTag("Squid_ink");
+        if (ink != null)
+            foreach (GameObject obj in ink)
+                Destroy(obj);
+
+        GameObject[] Smoke = GameObject.FindGameObjectsWithTag("Smoke");
+        if (Smoke != null)
+            foreach (GameObject obj in Smoke)
+                Destroy(obj);
     }
 
     //バックグラウンド移行時
@@ -67,6 +87,8 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
     //ポーズ
     public void GamePause()
     {
+        if (isStartCount) return;
+
         GameObject panel = Instantiate(m_PausePanel, Vector3.zero, Quaternion.identity) as GameObject;
         panel.transform.SetParent(m_Canvas.transform, false);
     }

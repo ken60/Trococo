@@ -30,6 +30,7 @@ public class Panel_Pause : MonoBehaviour
         iTweenManager.Hide_ScaleTo(this.gameObject, 0.35f, "EndAnimBackToHome", this.gameObject);
         GameSceneManager.Instance.isPause = false;
         GameSceneManager.Instance.isGamePlaying = false;
+        GameSceneManager.Instance.DestroyEffect();
         GameScene.m_GameScene = GameScene.eGameScene.LoadTitle;
     }
 

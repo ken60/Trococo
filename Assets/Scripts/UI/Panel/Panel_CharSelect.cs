@@ -24,7 +24,7 @@ public class Panel_CharSelect : MonoBehaviour
         m_Slider.minValue = 0;
         m_Slider.maxValue = m_Sprite.Length - 1;
 
-        int id = GameManager.Instance.playCharID;
+        int id = GameDataManager.Instance.playCharID;
         //スライダーを更新
         m_Slider.value = id;
         m_PageNmmber = id;
@@ -54,7 +54,7 @@ public class Panel_CharSelect : MonoBehaviour
         Button_Arrow();
 
         //キャラが開放されている時
-        if (GameManager.Instance.IsCharAvailable(m_PageNmmber))
+        if (GameDataManager.Instance.IsCharAvailable(m_PageNmmber))
         {
             //画像を元に戻す
             m_ExplanatoryImage.color = Color.white;
@@ -81,7 +81,7 @@ public class Panel_CharSelect : MonoBehaviour
         //スライダーを更新
         m_Slider.value = m_PageNmmber;
         //キャラIDを変更
-        GameManager.Instance.playCharID = m_PageNmmber;
+        GameDataManager.Instance.playCharID = m_PageNmmber;
     }
 
     //「もどる」ボタンをおした時

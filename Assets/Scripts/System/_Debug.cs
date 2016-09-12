@@ -23,8 +23,8 @@ public class _Debug : MonoBehaviour
 
         m_Text.text =
             "fps: " + fps.ToString("0.00") + "\n" +
-            "loadHighscore: " + GameManager.Instance.highScore + "\n" +
-            "loadTotalGoldCoin: " + GameManager.Instance.totalGoldCoinNum;
+            "loadHighscore: " + GameDataManager.Instance.highScore + "\n" +
+            "loadTotalGoldCoin: " + GameDataManager.Instance.totalGoldCoinNum;
     }
 
     void fpsCount()

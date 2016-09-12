@@ -13,7 +13,7 @@ public class TotalCoin : MonoBehaviour
 	
 	void Update ()
 	{
-        m_Text.text = "所持コイン " + GameManager.Instance.totalGoldCoinNum + "枚 ";
+        m_Text.text = "所持コイン " + GameDataManager.Instance.totalGoldCoinNum + "枚 ";
 
     }
 }

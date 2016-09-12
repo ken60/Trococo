@@ -34,15 +34,15 @@ public class Panel_Gashapon : MonoBehaviour
         m_isClick = true;
 
         int charId = 0;
-        if (m_GashaponPrice <= GameManager.Instance.totalGoldCoinNum)
+        if (m_GashaponPrice <= GameDataManager.Instance.totalGoldCoinNum)
         {
-            charId = Random.Range(0, GameManager.Instance.totalCharacterNumber);
+            charId = Random.Range(0, GameDataManager.Instance.totalCharacterNumber);
             //コインを減らす
-            GameManager.Instance.totalGoldCoinNum -= m_GashaponPrice;
+            GameDataManager.Instance.totalGoldCoinNum -= m_GashaponPrice;
             //キャラクターを開放
-            GameManager.Instance.OpenCharacter(charId);
+            GameDataManager.Instance.OpenCharacter(charId);
             //セーブ
-            GameManager.Instance.SaveGame();
+            GameDataManager.Instance.SaveGame();
 
             GameObject dialog = Instantiate(m_Dialog[1], Vector3.zero, Quaternion.identity) as GameObject;
             dialog.GetComponent<DialogBox_CharOpen>().SetData(charId);

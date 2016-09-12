@@ -2246,6 +2246,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 558913559}
+--- !u!114 &1672371833 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000010228641374, guid: 03666df97353e8644adf19b6a9046187,
+    type: 2}
+  m_PrefabInternal: {fileID: 699064314}
+  m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!4 &1673089923 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
@@ -2395,10 +2401,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000010675410546, guid: 45c893339d14d394dbc84fa97f230589,
         type: 2}
-      propertyPath: m_PausePanel
+      propertyPath: m_ButtonPause
       value: 
-      objectReference: {fileID: 1000013415999264, guid: 2e8d77b57aa02414e8321c1b9c4f5882,
-        type: 2}
+      objectReference: {fileID: 1672371833}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45c893339d14d394dbc84fa97f230589, type: 2}
   m_IsPrefabParent: 0

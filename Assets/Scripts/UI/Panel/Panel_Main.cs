@@ -50,7 +50,7 @@ public class Panel_Main : MonoBehaviour
     void Update()
     {
         //累計コイン数を表示
-        m_GoldCoinText.text = GameManager.Instance.totalGoldCoinNum.ToString();
+        m_GoldCoinText.text = GameDataManager.Instance.totalGoldCoinNum.ToString();
     }
 
     //メニューボタンにアタッチ
@@ -68,9 +68,9 @@ public class Panel_Main : MonoBehaviour
 
         //セッティングパネルを閉じた時にセーブ
         if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Settings)
-            if (num != m_ShowingPanelNum && GameManager.Instance.isChangingSettings())
+            if (num != m_ShowingPanelNum && GameDataManager.Instance.isChangingSettings())
             {
-                GameManager.Instance.SaveGame();
+                GameDataManager.Instance.SaveGame();
                 print("Save");
             }
 
@@ -110,7 +110,7 @@ public class Panel_Main : MonoBehaviour
         }
         else
         {
-            Debug.Log("Show RankPark");
+            Debug.Log("Show Ranking");
         }
     }
 

@@ -12,11 +12,9 @@ class Data
     public bool isEnableShadow = true;  //影を有効にするか
 }
 
-public class GameManager : SingletonMonoBehaviour<GameManager>
+public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 {
-    [SerializeField]
     private bool[] m_isCharAvailable = new bool[] { false };       //キャラを開放しているか
-
     private int m_Score = 0;                //セーブするスコア
     private int m_GoldCoinNum = 0;          //金コイン数
     private int m_HighScore = 0;            //ハイスコア
@@ -56,7 +54,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         for (int i = 0; i < m_isCharAvailable.Length; i++)
             m_isCharAvailable[i] = loadData.isCharAvailable[i];
 
-        //settings
+        //Settings
         m_isFirstStart = loadData.isFirstStart;
         m_isAudioEnabled = loadData.isAudioEnabled;
         m_isAudioEnabled_old = loadData.isAudioEnabled;

@@ -186,7 +186,7 @@ public class Player : MonoBehaviour
         }
 
         //スコア
-        GameManager.Instance.score = (int)transform.position.z;
+        GameDataManager.Instance.score = (int)transform.position.z;
     }
 
     void FixedUpdate()
@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         if (hit.gameObject.tag == "Gold_Coin")
         {
             Destroy(hit.gameObject);
-            GameManager.Instance.goldCoin += 1;
+            GameDataManager.Instance.goldCoin += 1;
         }
 
         //トマト

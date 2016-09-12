@@ -8,6 +8,6 @@ public class CoinText : MonoBehaviour
     
     void Update()
     {
-        m_GoldCoinText.text = GameManager.Instance.goldCoin.ToString();
+        m_GoldCoinText.text = GameDataManager.Instance.goldCoin.ToString();
     }
 }

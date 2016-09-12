@@ -13,6 +13,6 @@ public class ScoreText : MonoBehaviour
 
     void Update()
     {
-        m_ScoreText.text = "キョリ " + GameManager.Instance.score + "m";
+        m_ScoreText.text = "キョリ " + GameDataManager.Instance.score + "m";
     }
 }

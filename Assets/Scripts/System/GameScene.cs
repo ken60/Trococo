@@ -47,7 +47,7 @@ public class GameScene : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.LoadGame();
+        GameDataManager.Instance.LoadGame();
     }
 
     void Start()
@@ -59,12 +59,11 @@ public class GameScene : MonoBehaviour
 
     void Update()
     {
-        //print(m_GameScene);
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
                 //セーブデータのロード
-                GameManager.Instance.LoadGame();
+                GameDataManager.Instance.LoadGame();
                 //設定のロード
                 ReflectSettings();
                 //ステージの初期化
@@ -94,13 +93,13 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadGame:
                 GameSceneManager.Instance.isGameOver = false;
                 //初期化
-                GameManager.Instance.InitGame();
+                GameDataManager.Instance.InitGame();
 
                 //前のシーンがタイトル以外の時
                 if (!m_FromTitle)
                 {
                     //セーブデータのロード
-                    GameManager.Instance.LoadGame();
+                    GameDataManager.Instance.LoadGame();
                     //ステージの初期化
                     m_StageGenerator.InitStage();
                     //プレイヤーの初期化
@@ -112,7 +111,7 @@ public class GameScene : MonoBehaviour
                 m_UI_Text.SetActive(true);
 
 
-                if (GameManager.Instance.isFerstStart)
+                if (GameDataManager.Instance.isFerstStart)
                 {
                     m_TutorialPanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;
                     m_TutorialPanel.transform.SetParent(m_Canvas.transform, false);
@@ -131,8 +130,8 @@ public class GameScene : MonoBehaviour
                 if (m_TutorialPanel.GetComponent<Panel_Tutorial>().m_isEnd)
                 {
                     Destroy(m_TutorialPanel.gameObject);
-                    GameManager.Instance.isFerstStart = false;
-                    GameManager.Instance.SaveGame();
+                    GameDataManager.Instance.isFerstStart = false;
+                    GameDataManager.Instance.SaveGame();
                     m_GameScene = eGameScene.WaitCount;
                 }
 
@@ -181,14 +180,14 @@ public class GameScene : MonoBehaviour
                 panelRes.transform.SetParent(m_Canvas.transform, false);
 
                 //ハイスコアの時 & Androidのみスコアを送信
-                if (GameManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
+                if (GameDataManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
                     //ランキングスコア送信
                     print("Send score");
                 }
 
                 //セーブ
-                GameManager.Instance.SaveGame();
+                GameDataManager.Instance.SaveGame();
 
                 m_GameScene = eGameScene.End;
                 break;
@@ -201,9 +200,9 @@ public class GameScene : MonoBehaviour
     void ReflectSettings()
     {
         //影
-        LightManager.Instance.ShadowEnabled(GameManager.Instance.isShadowEnable);
+        LightManager.Instance.ShadowEnabled(GameDataManager.Instance.isShadowEnable);
 
         //オーディオミュート
-        AudioManager.Instance.AudioMute(GameManager.Instance.isAudioEnabled);
+        AudioManager.Instance.AudioMute(GameDataManager.Instance.isAudioEnabled);
     }
 }

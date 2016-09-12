@@ -13,6 +13,7 @@ TagManager:
   - Gold_Coin
   - Character
   - Copper_Coin
+  - Smoke
   layers:
   - Default
   - TransparentFX

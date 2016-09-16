@@ -1179,10 +1179,6 @@ Prefab:
       propertyPath: m_TouchScriptObj
       value: 
       objectReference: {fileID: 1036490553}
-    - target: {fileID: 11405162, guid: 4f92664c6a5dbb14dbd62b481c63828d, type: 2}
-      propertyPath: m_Character
-      value: 
-      objectReference: {fileID: 1475891955}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f92664c6a5dbb14dbd62b481c63828d, type: 2}
   m_IsPrefabParent: 0
@@ -2137,10 +2133,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 503970388}
---- !u!1 &1475891955 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 190384, guid: 4f92664c6a5dbb14dbd62b481c63828d, type: 2}
-  m_PrefabInternal: {fileID: 757210987}
 --- !u!4 &1492778105 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}

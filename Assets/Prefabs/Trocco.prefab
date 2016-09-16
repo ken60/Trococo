@@ -81,7 +81,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ae8fa3bc4a18ea44bbff5a0c67d4e2a9, type: 2}
+  - {fileID: 2100000, guid: dd6734ab23bd0044b9c6fa3a0f4cefd3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -229,6 +229,7 @@ MonoBehaviour:
   - {fileID: 132352, guid: 12e4ec41feb49a347af455121a7fc7f9, type: 2}
   m_TouchScriptObj: {fileID: 0}
   m_Collider: {fileID: 6530148}
+  m_Character: {fileID: 190384}
   m_DieParticle: {fileID: 19872740, guid: f02123e7c588bbc469f870ac750094ae, type: 2}
   m_MoveSpeed: 6
   m_JumpForce: 220

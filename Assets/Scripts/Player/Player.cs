@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
         }
 
         //コイン
-        if (hit.gameObject.tag == "Gold_Coin")
+        if (hit.gameObject.tag == "Coin")
         {
             Destroy(hit.gameObject);
             GameDataManager.Instance.goldCoin += 1;

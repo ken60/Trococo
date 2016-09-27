@@ -41,12 +41,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UI_Text: {fileID: 0}
-  m_PauseButton: {fileID: 0}
   m_Panel_Main: {fileID: 1000011370357784, guid: 96e5c4fc9ef841047b02dd6fc6036bb0,
     type: 2}
   m_Panel_Result: {fileID: 1000010981700114, guid: 53402489bd9672d469a3a383365eed56,
     type: 2}
   m_Panel_Tutorial: {fileID: 1000014051313974, guid: 3a63ff28cd7a43d42856acbfcdd6e3dd,
+    type: 2}
+  m_Dialog_UserRegister: {fileID: 1000011839853660, guid: 26542068ada940149bc9d20fb32476b5,
     type: 2}
   m_StartCount: {fileID: 1000011986840912, guid: 22a70e8dc13843e4e9a7fd4710533703,
     type: 2}

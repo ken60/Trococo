@@ -74,7 +74,7 @@ GameObject:
   - 114: {fileID: 114000011231463588}
   - 114: {fileID: 114000013541386106}
   m_Layer: 5
-  m_Name: DialogBox_NotEnoughCoins
+  m_Name: DialogBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,8 +367,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Text: {fileID: 114000011189345876}
-  m_FontSize: 40
-  m_Content: "\u30B3\u30A4\u30F3\u304C\u8DB3\u308A\u307E\u305B\u3093"
 --- !u!222 &222000010218045208
 CanvasRenderer:
   m_ObjectHideFlags: 1

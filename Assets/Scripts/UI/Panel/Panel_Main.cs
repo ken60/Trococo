@@ -68,7 +68,7 @@ public class Panel_Main : MonoBehaviour
 
         //セッティングパネルを閉じた時にセーブ
         if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Settings)
-            if (num != m_ShowingPanelNum && GameDataManager.Instance.isChangingSettings())
+            if (num != m_ShowingPanelNum && GameSettingsManager.Instance.isChangingSettings())
             {
                 GameDataManager.Instance.SaveGame();
                 print("Save");

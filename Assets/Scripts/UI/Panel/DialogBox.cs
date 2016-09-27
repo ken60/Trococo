@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogBox_NotEnoughCoins : MonoBehaviour
+public class DialogBox : MonoBehaviour
 {
     [SerializeField]
     private Text m_Text;
-    [SerializeField]
-    private int m_FontSize = 64;
-    [SerializeField, TextArea(5, 14)]
-    private string m_Content = null;
-    
+
     void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
-        m_Text.text = m_Content;
-        m_Text.fontSize = m_FontSize;
+        m_Text.text = "Please set using the SetText(string)";
 
         iTweenManager.Show_ScaleTo(this.gameObject, 0.2f);
     }
@@ -33,5 +28,10 @@ public class DialogBox_NotEnoughCoins : MonoBehaviour
     void EndAction()
     {
         Destroy(this.gameObject);
+    }
+
+    public void SetText(string text)
+    {
+        m_Text.text = text;
     }
 }

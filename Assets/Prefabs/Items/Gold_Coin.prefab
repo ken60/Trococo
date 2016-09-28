@@ -24,7 +24,7 @@ GameObject:
   - 114: {fileID: 114000012830167726}
   - 65: {fileID: 65000013523475578}
   m_Layer: 0
-  m_Name: Coin
+  m_Name: Gold_Coin
   m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

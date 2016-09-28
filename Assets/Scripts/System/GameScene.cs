@@ -82,14 +82,13 @@ public class GameScene : MonoBehaviour
                 main.transform.SetParent(m_Canvas.transform, false);
                 iTweenManager.Show_ScaleTo(main.gameObject, 0.35f);
 
-                /*
+                
                 //ユーザー登録をしていないときに登録ダイアログを表示
                 if (!GameSettingsManager.Instance.isUserRegisterCompletion)
                 {
                     GameObject dialog = Instantiate(m_Dialog_UserRegister, m_Dialog_UserRegister.transform.position, Quaternion.identity) as GameObject;
                     dialog.transform.SetParent(m_Canvas.transform, false);
                 }
-                */
 
                 m_FromTitle = true;
 

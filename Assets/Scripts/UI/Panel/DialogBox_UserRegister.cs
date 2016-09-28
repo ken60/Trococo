@@ -27,8 +27,8 @@ public class DialogBox_UserRegister : MonoBehaviour
         else
         {
             GameObject dialog = Instantiate(m_Dialog, Vector3.zero, Quaternion.identity) as GameObject;
-            dialog.GetComponent<DialogBox>().SetText("名前を入力してください！");
             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            dialog.GetComponent<DialogBox>().SetText("名前を入力してください！");
         }
     }
 

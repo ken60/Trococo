@@ -2293,6 +2293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad9ebdf6384a874b8688b7ba84626a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Dialog: {fileID: 1000012030682216, guid: 163a0f8f48e2f42478850546e9d6eae1, type: 2}
 --- !u!1001 &1644810326
 Prefab:
   m_ObjectHideFlags: 0

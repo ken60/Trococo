@@ -4,7 +4,17 @@ using System.Collections;
 
 public class NCMB_UserRegister : SingletonMonoBehaviour<NCMB_UserRegister>
 {
+    [SerializeField]
+    private GameObject m_Dialog;
+
+    private GameObject m_Canvas;
     private string currentPlayerName;
+
+
+    void Start()
+    {
+        m_Canvas = GameObject.Find("Canvas");
+    }
 
     // mobile backendに接続してログイン ------------------------
 
@@ -28,9 +38,16 @@ public class NCMB_UserRegister : SingletonMonoBehaviour<NCMB_UserRegister>
         user.Password = pw;
         user.SignUpAsync((NCMBException e) =>
         {
-            if (e == null)
+            if (e.ErrorCode == "E409001")
             {
-                currentPlayerName = id;
+                Debug.Log("ユーザー名が重複");
+                GameObject dialog = Instantiate(m_Dialog, m_Dialog.transform.position, Quaternion.identity) as GameObject;
+                dialog.transform.SetParent(m_Canvas.transform, false);
+                dialog.GetComponent<DialogBox>().SetText("すでに登録されている名前です。");
+            }
+            else
+            {
+                Debug.Log("新規登録に成功");
             }
         });
     }

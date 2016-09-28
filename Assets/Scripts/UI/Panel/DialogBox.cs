@@ -6,6 +6,8 @@ public class DialogBox : MonoBehaviour
     [SerializeField]
     private Text m_Text;
 
+    private string m_DescriptionText;
+
     void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
@@ -17,6 +19,7 @@ public class DialogBox : MonoBehaviour
 
     void Update()
     {
+        m_Text.text = m_DescriptionText;
         transform.SetAsLastSibling();
     }
 
@@ -32,6 +35,6 @@ public class DialogBox : MonoBehaviour
 
     public void SetText(string text)
     {
-        m_Text.text = text;
+        m_DescriptionText = text;
     }
 }

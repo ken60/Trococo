@@ -44,7 +44,7 @@ public class NCMB_UserRegister : SingletonMonoBehaviour<NCMB_UserRegister>
                 dialog.transform.SetParent(m_Canvas.transform, false);
                 dialog.GetComponent<DialogBox>().SetText("すでに登録されている名前です。");
             }
-            else
+            else if(e.ErrorCode == null)
             {
                 Debug.Log("新規登録に成功");
             }

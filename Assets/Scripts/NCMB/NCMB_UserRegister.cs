@@ -10,7 +10,6 @@ public class NCMB_UserRegister : SingletonMonoBehaviour<NCMB_UserRegister>
     private GameObject m_Canvas;
     private string currentPlayerName;
 
-
     void Start()
     {
         m_Canvas = GameObject.Find("Canvas");

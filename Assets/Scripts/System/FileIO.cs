@@ -23,7 +23,7 @@ public class FileIO : MonoBehaviour
         //ファイルがない場合は作成
         if (!Directory.Exists(path))
         {
-            FileWrite("SaveData", "");
+            FileWrite(name, "");
         }
         return File.ReadAllText(path + name + ".json", System.Text.Encoding.UTF8);
     }

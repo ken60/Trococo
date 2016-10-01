@@ -54,7 +54,6 @@ public class GameScene : MonoBehaviour
 
     void Start()
     {
-
         m_Canvas = GameObject.Find("Canvas");
         m_FromTitle = false;
         m_Camera = Camera.main;
@@ -67,7 +66,7 @@ public class GameScene : MonoBehaviour
             case eGameScene.LoadTitle:
                 //セーブデータのロード
                 GameDataManager.Instance.LoadGame();
-                //設定のロード
+                //設定の適用
                 ReflectSettings();
                 //ステージの初期化
                 m_StageGenerator.InitStage();
@@ -81,14 +80,6 @@ public class GameScene : MonoBehaviour
                 GameObject main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
                 main.transform.SetParent(m_Canvas.transform, false);
                 iTweenManager.Show_ScaleTo(main.gameObject, 0.35f);
-
-                
-                //ユーザー登録をしていないときに登録ダイアログを表示
-                if (!GameSettingsManager.Instance.isUserRegisterCompletion)
-                {
-                    GameObject dialog = Instantiate(m_Dialog_UserRegister, m_Dialog_UserRegister.transform.position, Quaternion.identity) as GameObject;
-                    dialog.transform.SetParent(m_Canvas.transform, false);
-                }
 
                 m_FromTitle = true;
 
@@ -211,9 +202,9 @@ public class GameScene : MonoBehaviour
     void ReflectSettings()
     {
         //影
-        LightManager.Instance.ShadowEnabled(GameSettingsManager.Instance.isShadowEnable);
+        LightManager.Instance.ShadowEnabled(GameDataManager.Instance.isShadowEnable);
 
         //オーディオミュート
-        AudioManager.Instance.AudioMute(GameSettingsManager.Instance.isAudioEnabled);
+        AudioManager.Instance.AudioMute(GameDataManager.Instance.isAudioEnabled);
     }
 }

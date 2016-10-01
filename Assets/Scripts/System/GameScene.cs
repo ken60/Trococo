@@ -112,7 +112,7 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを表示
                 m_UI_Text.SetActive(true);
 
-
+                //初回起動時チュートリアル表示
                 if (GameDataManager.Instance.isFerstStart)
                 {
                     m_TutorialPanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;

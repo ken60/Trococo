@@ -248,7 +248,7 @@ Transform:
   - {fileID: 688690350}
   - {fileID: 478737294}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
 --- !u!1001 &145257329
 Prefab:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000014102027072, guid: 12f8bc07e921f254c8d599ef543d9a80, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114000011020363196, guid: 12f8bc07e921f254c8d599ef543d9a80, type: 2}
@@ -1177,7 +1177,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 442650, guid: 4f92664c6a5dbb14dbd62b481c63828d, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11405162, guid: 4f92664c6a5dbb14dbd62b481c63828d, type: 2}
       propertyPath: m_TouchScriptObj
@@ -1527,7 +1527,7 @@ Transform:
   - {fileID: 111348186}
   - {fileID: 514588274}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &928300623 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
@@ -1680,7 +1680,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 467232, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11465758, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
       propertyPath: m_UI_Text
@@ -1943,7 +1943,7 @@ RectTransform:
   - {fileID: 1941543620}
   - {fileID: 729991062}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2224,7 +2224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011391149126, guid: 94003a3d4290ecc4184865faeb9056f5, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114000010926609068, guid: 94003a3d4290ecc4184865faeb9056f5,
         type: 2}
@@ -2570,7 +2570,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1941543619 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010902334780, guid: 03666df97353e8644adf19b6a9046187,

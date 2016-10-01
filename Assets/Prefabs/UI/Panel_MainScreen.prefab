@@ -1981,6 +1981,7 @@ MonoBehaviour:
   - {fileID: 114000011058298222}
   - {fileID: 114000013618558204}
   m_CharSelect: {fileID: 114000011775191774}
+  m_HowToPlay: {fileID: 114000013509267296}
   m_GoldCoinText: {fileID: 114000010583190010}
   m_CopperCoinText: {fileID: 114000010583190010}
   m_LerpLate: 1

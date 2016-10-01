@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.ImageEffects;
 
 public class GameScene : MonoBehaviour
 {
@@ -37,8 +36,6 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private StageGenerator m_StageGenerator;    //ステージ生成スクリプト ステージ初期化で必要
     [SerializeField]
-    private BlurOptimized m_Blur;   //StandardAsset Blur
-    [SerializeField]
     private float m_GameOverWait;   //ゲームオーバー時の待機時間
 
     private Camera m_Camera;
@@ -72,8 +69,6 @@ public class GameScene : MonoBehaviour
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
                 m_Player.InitPlayer();
-                //ブラーを有効化
-                m_Blur.enabledBlur = true;
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
@@ -140,8 +135,6 @@ public class GameScene : MonoBehaviour
                 break;
 
             case eGameScene.WaitCount:
-                //ブラーを無効化
-                m_Blur.enabledBlur = false;
 
                 //カウントダウンを表示
                 GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
@@ -174,20 +167,19 @@ public class GameScene : MonoBehaviour
 
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
-                //ブラーを有効化
-                m_Blur.enabledBlur = true;
 
                 //リザルトパネルを表示
                 GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;
                 panelRes.transform.SetParent(m_Canvas.transform, false);
 
+                /*
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameDataManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
                 {
                     //ランキングスコア送信
                     print("Send score");
                 }
-
+                */
                 //セーブ
                 GameDataManager.Instance.SaveGame();
 

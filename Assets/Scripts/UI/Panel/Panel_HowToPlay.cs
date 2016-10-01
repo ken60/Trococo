@@ -58,4 +58,10 @@ public class Panel_HowToPlay : MonoBehaviour
 
         MyUpdate();
     }
+
+    public int pageNumber
+    {
+        get { return m_PageNmmber; }
+        set { m_PageNmmber = value; }
+    }
 }

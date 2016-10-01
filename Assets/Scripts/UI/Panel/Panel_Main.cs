@@ -19,6 +19,8 @@ public class Panel_Main : MonoBehaviour
     [SerializeField]
     private Panel_CharSelect m_CharSelect = null;
     [SerializeField]
+    private Panel_HowToPlay m_HowToPlay = null;
+    [SerializeField]
     private Text m_GoldCoinText = null;
     [SerializeField]
     private Text m_CopperCoinText = null;
@@ -74,6 +76,13 @@ public class Panel_Main : MonoBehaviour
                 print("Save Settings");
             }
 
+        //遊び方パネルを閉じたときに1ページに
+        if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_HowToPlay)
+            if (num != m_ShowingPanelNum)
+            {
+                m_HowToPlay.pageNumber = 1;
+            }
+
         //表示していたパネルのボタンを有効化
         m_Button_Menu[m_ShowingPanelNum].enabled = true;
         //表示していたパネルを隠す
@@ -96,7 +105,8 @@ public class Panel_Main : MonoBehaviour
         iTweenManager.MoveOut_MoveTo_Y(this.gameObject, 0.4f, -Screen.height * 0.5f, "LoadGame", this.gameObject);
     }
 
-    //ランキング
+    /*
+    //ランキング('16/10/1 削除)
     public void Button_Ranking()
     {
         //ボタンの同時押し対策
@@ -113,6 +123,7 @@ public class Panel_Main : MonoBehaviour
             Debug.Log("Show Ranking");
         }
     }
+    */
 
     //メニューパネルを非表示
     void PanelHide(GameObject panel)

@@ -16,8 +16,8 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
         DontDestroyOnLoad(this.gameObject);
+        m_Canvas = GameObject.Find("Canvas");
     }
 
     void Update()

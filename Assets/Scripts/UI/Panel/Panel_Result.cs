@@ -41,11 +41,13 @@ public class Panel_Result : MonoBehaviour
         {
             //広告バーをアクティブ化
             m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(true);
+
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length; i++)
             {
                 MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
             }
+
             //ボタンの移動
             for (int j = 0; j < m_Button.Length; j++)
                 Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length) * 0.2f);
@@ -55,12 +57,14 @@ public class Panel_Result : MonoBehaviour
         {
             //広告バーを非アクティブ化
             m_ResultBar[m_ResultBar.Length - 1].gameObject.SetActive(false);
+
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length - 1; i++)
             {
                 MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
 
             }
+
             //ボタンの移動
             for (int j = 0; j < m_Button.Length; j++)
                 Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length - 1) * 0.2f);
@@ -80,6 +84,11 @@ public class Panel_Result : MonoBehaviour
             var options = new ShowOptions { resultCallback = HandleShowResult };
             Advertisement.Show("rewardedVideo", options);
         }
+    }
+
+    public void SNS()
+    {
+        SNSManager.Instance.SnsShare();
     }
 
     private void HandleShowResult(ShowResult result)

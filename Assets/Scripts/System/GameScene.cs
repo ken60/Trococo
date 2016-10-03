@@ -42,6 +42,7 @@ public class GameScene : MonoBehaviour
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
+    private bool m_CaptureSS = false;   //スクリーンショットを撮ったか
     private GameObject m_TutorialPanel;
 
     void Awake()
@@ -77,6 +78,7 @@ public class GameScene : MonoBehaviour
                 iTweenManager.Show_ScaleTo(main.gameObject, 0.35f);
 
                 m_FromTitle = true;
+                m_CaptureSS = false;
 
                 m_GameScene = eGameScene.Title;
                 break;
@@ -153,14 +155,25 @@ public class GameScene : MonoBehaviour
             case eGameScene.Play:
                 if (GameSceneManager.Instance.isGameOver)
                 {
+                    //スクリーンショットを撮る
+                    if (!m_CaptureSS)
+                    {
+                        //スクリーンショット
+                        SNSManager.Instance.CaptureScreenshot();
+                        m_CaptureSS = true;
+                    }
+                    
+                    //Wait
                     m_TimeCount += Time.deltaTime;
                     if (m_TimeCount >= m_GameOverWait)
                     {
+
                         m_TimeCount = 0.0f;
                         m_GameScene = eGameScene.GameOver;
                     }
                 }
                 break;
+
             //ゲームオーバー時一度だけ
             case eGameScene.GameOver:
                 GameSceneManager.Instance.isGamePlaying = false;

@@ -88,7 +88,7 @@ public class Panel_Result : MonoBehaviour
 
     public void SNS()
     {
-        SNSManager.Instance.SnsShare();
+        SNSManager.Instance.Share();
     }
 
     private void HandleShowResult(ShowResult result)

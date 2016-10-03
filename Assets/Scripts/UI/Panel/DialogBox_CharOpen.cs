@@ -24,6 +24,7 @@ public class DialogBox_CharOpen : MonoBehaviour
 
         if (GameDataManager.Instance.IsCharAvailable(charId))
         {
+            //パーティクル
             //Instantiate(m_OpenParticle, Vector3.zero, Quaternion.identity);
         }
     }

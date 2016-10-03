@@ -5,83 +5,102 @@ using System.IO;
 
 public class SNSManager : SingletonMonoBehaviour<SNSManager>
 {
-    private string m_FileName = "Screenshot.png";
+    [SerializeField]
+    private GameObject m_Dialog;
+
+    private const string m_FileName = "Screenshot.png";
     private string m_ShareText = "";
-    private string m_ShareURL = "https://twitter.com/senna_niconico";
+    private string m_ShareURL_Android = "";
+    private string m_ShareURL_iPhone = "";
     private string m_ImagePath = "";
 
-    public void SnsImageShare()
+    void Start()
+    {
+        m_ImagePath = Application.persistentDataPath + "/" + m_FileName;
+    }
+
+    public void Share()
+    {
+        if (File.Exists(m_ImagePath))
+        {
+            SnsImageShare();
+        }
+        else
+        {
+            ImageNotExists();
+            SnsShare();
+        }
+    }
+
+    void SnsImageShare()
     {
         m_ShareText = "[テスト]トロココで" + GameDataManager.Instance.score + "m進んだ！\n";
-        m_ImagePath = Application.persistentDataPath + "/Twitter.png";
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL, m_ImagePath);
+            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL_Android, m_ImagePath);
         }
         else if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL, m_ImagePath);
+            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL_iPhone, m_ImagePath);
         }
+
     }
 
-    public void SnsShare()
+    void SnsShare()
     {
-        m_ShareText = "[テスト]トロココで" + GameDataManager.Instance.score + "m進んだ！";
-        m_ImagePath = Application.persistentDataPath + "/Twitter.png";
+        m_ShareText = "[テスト]トロココで" + GameDataManager.Instance.score + "m進んだ！\n";
 
         if (Application.platform == RuntimePlatform.Android)
         {
-            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL, null);
+            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL_Android, null);
         }
         else if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL, null);
+            SocialConnector.SocialConnector.Share(m_ShareText, m_ShareURL_iPhone, null);
         }
     }
 
-    public void CaptureScreenshot(string fileName)
+    public void CaptureScreenshot()
     {
-        StartCoroutine(Screenshot(fileName));
+        StartCoroutine(Screenshot());
     }
 
-    IEnumerator Screenshot(string fileName)
+    IEnumerator Screenshot()
     {
-        // スクリーンショットをとる
-        Application.CaptureScreenshot(fileName);
-
-        // インジケーター表示
-#if UNITY_IPHONE
-		Handheld.SetActivityIndicatorStyle(iOSActivityIndicatorStyle.White);
-#elif UNITY_ANDROID
-        Handheld.SetActivityIndicatorStyle(AndroidActivityIndicatorStyle.Small);
-#endif
-        Handheld.StartActivityIndicator();
-
-        // スクリーンショットが保存されるまで待機
-        long filesize = 0;
-        string filePath = Path.Combine(Application.persistentDataPath, fileName);
-
-        while (filesize == 0)
+        if (File.Exists(m_ImagePath))
         {
-            yield return null;
+            File.Delete(m_ImagePath);
 
-            //ファイルのサイズを取得
-            FileInfo fi = new FileInfo(filePath);
-            if (fi != null)
+            var deletion = new WaitForFile(m_ImagePath, false, 1.0f);
+            yield return deletion;
+
+            if (!deletion.IsCompleted)
             {
-                filesize = fi.Length;
+                // Timeout.
+                yield break;
             }
         }
 
-        while (!File.Exists(filePath))
+        Application.CaptureScreenshot(m_FileName);
+
+        var creation = new WaitForFile(m_ImagePath, true, 1.0f);
+        yield return creation;
+
+        if (!creation.IsCompleted)
         {
-            yield return null;
+            // Timeout.
+            yield break;
         }
 
-        // インジケーター非表示
-        Handheld.StopActivityIndicator();
+        // Do something with the file.
+    }
 
+    void ImageNotExists()
+    {
+        GameObject dialog = Instantiate(m_Dialog, Vector3.zero, Quaternion.identity) as GameObject;
+        dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
+        dialog.GetComponent<DialogBox>().SetText("スクリーンショットに\n失敗しました...\n\nメッセージのみをシェアします");
     }
 
     public string fileName

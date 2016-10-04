@@ -28,13 +28,13 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private GameObject m_Panel_Tutorial; //チュートリアルパネル
     [SerializeField]
-    private GameObject m_Dialog_UserRegister;   //ユーザー登録パネル
-    [SerializeField]
     private GameObject m_StartCount;    //スタートカウントダウン
     [SerializeField]
     private Player m_Player;    //プレイヤースクリプト プレイヤー初期化で必要
     [SerializeField]
     private StageGenerator m_StageGenerator;    //ステージ生成スクリプト ステージ初期化で必要
+    [SerializeField]
+    private Blur m_Blur;            //ブラースクリプト
     [SerializeField]
     private float m_GameOverWait;   //ゲームオーバー時の待機時間
 
@@ -70,6 +70,8 @@ public class GameScene : MonoBehaviour
                 m_StageGenerator.InitStage();
                 //プレイヤーの初期化
                 m_Player.InitPlayer();
+                //ブラーを有効化
+                m_Blur.enabled = true;
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
@@ -108,6 +110,9 @@ public class GameScene : MonoBehaviour
 
                 //ゲームプレイ中のUIを表示
                 m_UI_Text.SetActive(true);
+
+                //ブラーを無効化
+                m_Blur.enabled = false;
 
                 //初回起動時チュートリアル表示
                 if (GameDataManager.Instance.isFerstStart)
@@ -162,7 +167,7 @@ public class GameScene : MonoBehaviour
                         SNSManager.Instance.CaptureScreenshot();
                         m_CaptureSS = true;
                     }
-                    
+
                     //Wait
                     m_TimeCount += Time.deltaTime;
                     if (m_TimeCount >= m_GameOverWait)
@@ -180,6 +185,9 @@ public class GameScene : MonoBehaviour
 
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
+
+                //ブラーを有効化
+                m_Blur.enabled = true;
 
                 //リザルトパネルを表示
                 GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;

@@ -1576,6 +1576,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 404706187}
+--- !u!114 &1010880110 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012097087868, guid: 12f8bc07e921f254c8d599ef543d9a80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1608736761}
+  m_Script: {fileID: 11500000, guid: 4a5d067db0d97d04a86fafe8aa4c60a2, type: 3}
 --- !u!1 &1036490553 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000010790467892, guid: 12f8bc07e921f254c8d599ef543d9a80,
@@ -1681,6 +1687,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1941543619}
     - target: {fileID: 11465758, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
+      propertyPath: m_Dialog_UserRegister
+      value: 
+      objectReference: {fileID: 1000011839853660, guid: 26542068ada940149bc9d20fb32476b5,
+        type: 2}
+    - target: {fileID: 11465758, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
       propertyPath: m_Player
       value: 
       objectReference: {fileID: 149868650}
@@ -1691,7 +1702,7 @@ Prefab:
     - target: {fileID: 11465758, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
       propertyPath: m_Blur
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1010880110}
     - target: {fileID: 141298, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
       propertyPath: m_Name
       value: GameScene
@@ -2179,8 +2190,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114000011774512140, guid: 12f8bc07e921f254c8d599ef543d9a80, type: 2}
+    - target: {fileID: 114000012097087868, guid: 12f8bc07e921f254c8d599ef543d9a80,
+        type: 2}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12f8bc07e921f254c8d599ef543d9a80, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1617878264

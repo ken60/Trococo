@@ -44,9 +44,9 @@ GameObject:
   - 92: {fileID: 92000013249315656}
   - 124: {fileID: 124000014110948526}
   - 81: {fileID: 81000012267831096}
-  - 114: {fileID: 114000011774512140}
   - 114: {fileID: 114000011020363196}
   - 114: {fileID: 114000013903897720}
+  - 114: {fileID: 114000012097087868}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -163,22 +163,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114000011774512140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012190694276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc6bde01469c7b4badee5362f191d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  downsample: 0
-  blurSize: 0
-  blurIterations: 0
-  blurType: 0
-  blurShader: {fileID: 4800000, guid: f9d5fa183cd6b45eeb1491f74863cd91, type: 3}
 --- !u!114 &114000012092358978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +181,21 @@ MonoBehaviour:
   sendMessageEvents: 60
   sendMessageTarget: {fileID: 0}
   layers: []
+--- !u!114 &114000012097087868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012190694276}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a5d067db0d97d04a86fafe8aa4c60a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BulrWidth: 0.0065
+  m_BulrHeight: 0.0065
+  material: {fileID: 0}
+  m_Shader: {fileID: 4800000, guid: c5cd54e8449c2934789c464bb6b67cc6, type: 3}
 --- !u!114 &114000012430550142
 MonoBehaviour:
   m_ObjectHideFlags: 1

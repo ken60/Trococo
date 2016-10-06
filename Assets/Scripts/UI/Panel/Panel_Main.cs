@@ -80,7 +80,7 @@ public class Panel_Main : MonoBehaviour
         if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_HowToPlay)
             if (num != m_ShowingPanelNum)
             {
-                m_HowToPlay.pageNumber = 1;
+                m_HowToPlay.SetPageNumber(1);
             }
 
         //表示していたパネルのボタンを有効化

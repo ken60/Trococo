@@ -59,9 +59,9 @@ public class Panel_HowToPlay : MonoBehaviour
         MyUpdate();
     }
 
-    public int pageNumber
+    public void SetPageNumber(int num)
     {
-        get { return m_PageNmmber; }
-        set { m_PageNmmber = value; }
+        m_PageNmmber = num;
+        MyUpdate();
     }
 }

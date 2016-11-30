@@ -47,6 +47,7 @@ GameObject:
   - 114: {fileID: 114000011020363196}
   - 114: {fileID: 114000013903897720}
   - 114: {fileID: 114000012097087868}
+  - 114: {fileID: 114000012465364206}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -192,8 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5d067db0d97d04a86fafe8aa4c60a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulrWidth: 0.0065
-  m_BulrHeight: 0.0065
+  m_BulrWidth: 0.004
+  m_BulrHeight: 0.004
   material: {fileID: 0}
   m_Shader: {fileID: 4800000, guid: c5cd54e8449c2934789c464bb6b67cc6, type: 3}
 --- !u!114 &114000012430550142
@@ -224,6 +225,18 @@ MonoBehaviour:
   Windows8Mouse: 1
   Windows7Mouse: 1
   UniversalWindowsMouse: 1
+--- !u!114 &114000012465364206
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012190694276}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a9435f64ab6d64d9dbafa07e3dc5f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 5
 --- !u!114 &114000013425649128
 MonoBehaviour:
   m_ObjectHideFlags: 1

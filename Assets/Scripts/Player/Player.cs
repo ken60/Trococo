@@ -7,13 +7,13 @@ public class Player : MonoBehaviour
     private GameObject[] m_Squid_ink;   //画面を覆うイカスミ
 
     [SerializeField]
-    private GameObject m_TouchScriptObj;
+    private GameObject[] m_AllCharacters;   //すべてのキャラクター
 
     [SerializeField]
-    private Collider m_Collider;   //プレイヤーのCollider
+    private Transform m_CharGenPosition; //キャラクターの生成位置
 
     [SerializeField]
-    private GameObject m_Character; //キャラクター
+    private GameObject m_TouchScriptObj;    //タッチ関連
 
     [SerializeField]
     private ParticleSystem m_DieParticle;   //ゲームオーバーのパーティクル
@@ -49,13 +49,16 @@ public class Player : MonoBehaviour
     private float m_Angle = 30.0f;
 
     private GameObject m_Canvas;
+    private GameObject m_Character; //生成されたキャラクター
     private Vector3 m_CharScale = new Vector3(1.0f, 1.0f, 1.0f);
     private Rigidbody m_Rigidbody;
+    private Collider m_Collider;   //プレイヤーのCollider
     private Animator m_Animator;
     private Touch m_Touch;
     private Ray ray;
     private RaycastHit hit;
     private int m_CurrentRunningRail = 0;   //現在走っているレール
+    private int m_PreCharID = 0;    //前の選択キャラID
     private float m_TimeCount = 0;
     private bool m_isGrounded = false;
     private bool m_isJump = false;
@@ -72,6 +75,12 @@ public class Player : MonoBehaviour
         flick.StateChanged += HandleFlick;
         flick.MinDistance = 1f;
         flick.FlickTime = 0.3f;
+        m_PreCharID = GameDataManager.Instance.playCharID;
+
+        //初期キャラクター生成
+        m_Character = Instantiate(m_AllCharacters[m_PreCharID], m_CharGenPosition.position, m_CharGenPosition.rotation) as GameObject;
+        m_Character.transform.SetParent(transform);
+        m_Collider = m_Character.GetComponent<BoxCollider>();
     }
 
     public void InitPlayer()
@@ -140,6 +149,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        //キャラクター変更
+        CharacterChange(GameDataManager.Instance.playCharID);
+
         if (GameSceneManager.Instance.isGameOver ||
             !GameSceneManager.Instance.isGamePlaying)
             return;
@@ -187,6 +199,7 @@ public class Player : MonoBehaviour
 
         //スコア
         GameDataManager.Instance.score = (int)transform.position.z;
+
     }
 
     void FixedUpdate()
@@ -199,6 +212,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    void CharacterChange(int charID)
+    {
+        if (m_PreCharID != charID)
+        {
+            Destroy(m_Character.gameObject);
+            m_PreCharID = charID;
+            m_Character = Instantiate(m_AllCharacters[charID], m_CharGenPosition.position, m_CharGenPosition.rotation) as GameObject;
+            m_Character.transform.SetParent(transform);
+        }
+    }
 
     //横移動
     void LateralMotion()

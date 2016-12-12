@@ -64,8 +64,7 @@ public class Panel_CharSelect : MonoBehaviour
             m_StartButtonText.text = "ゲームスタート";
             m_StartButtonText.fontSize = 64;
         }
-        //キャラが開放されていない時
-        else
+        else //キャラが開放されていない時
         {
             //画像を黒くする
             m_ExplanatoryImage.color = Color.black;

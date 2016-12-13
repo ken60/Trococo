@@ -104,7 +104,7 @@ ParticleSystem:
   moveWithTransform: 0
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 1210565267
+  randomSeed: -25933882
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -774,13 +774,13 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4280388432
+          rgba: 4281507584
         key1:
           serializedVersion: 2
-          rgba: 4278255400
+          rgba: 4286513042
         key2:
           serializedVersion: 2
-          rgba: 4278190189
+          rgba: 4278255400
         key3:
           serializedVersion: 2
           rgba: 109
@@ -796,7 +796,7 @@ ParticleSystem:
         key7:
           serializedVersion: 2
           rgba: 0
-        ctime0: 1928
+        ctime0: 0
         ctime1: 65535
         ctime2: 65535
         ctime3: 65535

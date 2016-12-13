@@ -62,7 +62,6 @@ public class Panel_Result : MonoBehaviour
             for (i = 0; i < m_ResultBar.Length - 1; i++)
             {
                 MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
-
             }
 
             //ボタンの移動

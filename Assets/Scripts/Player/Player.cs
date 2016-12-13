@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private ParticleSystem m_DieParticle;   //ゲームオーバーのパーティクル
 
     [SerializeField]
+    private GameObject[] m_ChangeParticle;    //キャラチェンジ時のパーティクル
+
+    [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
 
     [SerializeField]
@@ -110,7 +113,9 @@ public class Player : MonoBehaviour
     void HandleFlick(object sender, System.EventArgs e)
     {
         if (GameSceneManager.Instance.isGameOver ||
-            !GameSceneManager.Instance.isGamePlaying || !m_isGrounded)
+            GameSceneManager.Instance.isPause ||
+            !GameSceneManager.Instance.isGamePlaying ||
+            !m_isGrounded)
             return;
 
         var gesture = sender as FlickGesture;
@@ -188,6 +193,7 @@ public class Player : MonoBehaviour
         {
             m_CharScale.y = 1.0f;
         }
+
         m_Character.transform.localScale = Vector3.Lerp(m_Character.transform.localScale, m_CharScale, 0.3f);
 
         //地面についている時
@@ -217,10 +223,27 @@ public class Player : MonoBehaviour
         if (m_PreCharID != charID)
         {
             Destroy(m_Character.gameObject);
+
             m_PreCharID = charID;
+
+            //パーティクル
+            Instantiate(m_ChangeParticle[Random.Range(0, m_ChangeParticle.Length)], transform.position + new Vector3(0f, 0.5f, 0f), m_ChangeParticle[0].transform.rotation);
+
+            //キャラ生成
             m_Character = Instantiate(m_AllCharacters[charID], m_CharGenPosition.position, m_CharGenPosition.rotation) as GameObject;
             m_Character.transform.SetParent(transform);
-            m_Character.gameObject.SetActive(GameDataManager.Instance.IsCharAvailable(charID));
+
+            //キャラクターのコライダー取得
+            m_Collider = m_Character.GetComponent<BoxCollider>();
+
+            if (GameDataManager.Instance.IsCharAvailable(charID))
+            {
+                m_Character.GetComponent<MeshRenderer>().material.color = Color.white;
+            }
+            else
+            {
+                m_Character.GetComponent<MeshRenderer>().material.color = Color.black;
+            }
         }
     }
 

@@ -16,7 +16,7 @@ class Data
 public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 {
     [SerializeField]
-    private string m_FileName = "GameData";
+    private string m_FileName = "SaveData";
 
     private bool[] m_isCharAvailable = new bool[6] { false, false, false, false, false, false };       //キャラを開放しているか
     private int m_Score = 0;                //セーブするスコア
@@ -55,7 +55,9 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
         m_HighScore = loadData.highScore;
         m_OldHighScore = loadData.highScore;
         m_TotalGoldCoinNum = loadData.totalGoldCoinNum;
-                
+        m_PlayerCharID = loadData.playCharID;
+
+
         for (int i = 0; i < m_isCharAvailable.Length; i++)
         {
             m_isCharAvailable[i] = loadData.isCharAvailable[i];
@@ -80,6 +82,7 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
             data.highScore = m_OldHighScore;
 
         data.totalGoldCoinNum = m_TotalGoldCoinNum + m_GoldCoinNum;
+        data.playCharID = m_PlayerCharID;
 
         for (int i = 0; i < m_isCharAvailable.Length; i++)
             data.isCharAvailable[i] = m_isCharAvailable[i];

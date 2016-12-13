@@ -17,6 +17,7 @@ public class Panel_CharSelect : MonoBehaviour
     private Slider m_Slider;
 
     private int m_PageNmmber = 0;
+    private float m_TimeCount = 0f;
 
     void Start()
     {
@@ -30,29 +31,15 @@ public class Panel_CharSelect : MonoBehaviour
         m_PageNmmber = id;
         //スプライトを変更
         m_ExplanatoryImage.sprite = m_Sprite[id];
-
-        Button_Arrow();
     }
 
-    void Button_Arrow()
+    void Update()
     {
-        //1ページ目は◀ボタンを隠す
-        if (m_PageNmmber == 0)
-            m_Botton_Arrow[0].gameObject.SetActive(false);
-        else
-            m_Botton_Arrow[0].gameObject.SetActive(true);
-
-        //最終ページは▶ボタンを隠す
-        if (m_PageNmmber == m_Sprite.Length - 1)
-            m_Botton_Arrow[1].gameObject.SetActive(false);
-        else
-            m_Botton_Arrow[1].gameObject.SetActive(true);
+        m_TimeCount += Time.deltaTime;
     }
 
     public void CharSelectUpdate()
     {
-        Button_Arrow();
-
         //キャラが開放されている時
         if (GameDataManager.Instance.IsCharAvailable(m_PageNmmber))
         {
@@ -86,9 +73,14 @@ public class Panel_CharSelect : MonoBehaviour
     //「もどる」ボタンをおした時
     public void Button_Prev()
     {
-        //ページ数が1ページ未満の時ページ送り
+        if (m_TimeCount < 0.3f) return;
+        m_TimeCount = 0f;
+
+        //ページ数変更
         if (0 < m_PageNmmber)
             m_PageNmmber--;
+        else
+            m_PageNmmber = m_Sprite.Length - 1;
 
         CharSelectUpdate();
     }
@@ -96,9 +88,14 @@ public class Panel_CharSelect : MonoBehaviour
     //「つぎへ」ボタンをおした時
     public void Button_Next()
     {
-        //ページ数が最大未満の時ページ送り
+        if (m_TimeCount < 0.3f) return;
+        m_TimeCount = 0f;
+
+        //ページ数変更
         if (m_PageNmmber < m_Sprite.Length - 1)
             m_PageNmmber++;
+        else
+            m_PageNmmber = 0;
 
         CharSelectUpdate();
     }

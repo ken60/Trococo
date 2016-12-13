@@ -135,9 +135,15 @@ MonoBehaviour:
   - {fileID: 1000012860722758, guid: a54a97bbe14f0eb4c9bfb95158099ae4, type: 2}
   - {fileID: 1000012964237536, guid: bf65952e7b750c142a7334b6d8a0c175, type: 2}
   - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
+  - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
+  - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
   m_CharGenPosition: {fileID: 4000014065919098}
   m_TouchScriptObj: {fileID: 0}
   m_DieParticle: {fileID: 19872740, guid: f02123e7c588bbc469f870ac750094ae, type: 2}
+  m_ChangeParticle:
+  - {fileID: 1000010100724510, guid: 1fc5201ecb33ec5419d44e31e3facd8a, type: 2}
+  - {fileID: 1000010485161116, guid: 897b6708fa3a88342aef117dd730219d, type: 2}
+  - {fileID: 1000012376996872, guid: 1e45dd7867a0d2f4cab9f2b94bde43b0, type: 2}
   m_MoveSpeed: 6
   m_JumpForce: 220
   m_LateralJumpForce: 120

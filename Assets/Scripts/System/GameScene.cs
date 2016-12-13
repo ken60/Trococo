@@ -147,6 +147,8 @@ public class GameScene : MonoBehaviour
                 GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
                 count.transform.SetParent(m_Canvas.transform, false);
 
+                GameDataManager.Instance.SaveGame();
+
                 m_GameScene = eGameScene.StartCount;
                 break;
 

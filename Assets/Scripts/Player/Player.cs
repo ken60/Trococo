@@ -220,6 +220,7 @@ public class Player : MonoBehaviour
             m_PreCharID = charID;
             m_Character = Instantiate(m_AllCharacters[charID], m_CharGenPosition.position, m_CharGenPosition.rotation) as GameObject;
             m_Character.transform.SetParent(transform);
+            m_Character.gameObject.SetActive(GameDataManager.Instance.IsCharAvailable(charID));
         }
     }
 

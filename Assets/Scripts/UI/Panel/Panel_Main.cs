@@ -17,13 +17,9 @@ public class Panel_Main : MonoBehaviour
     [SerializeField]
     private Button[] m_Button_Menu = null;
     [SerializeField]
-    private Panel_CharSelect m_CharSelect = null;
-    [SerializeField]
     private Panel_HowToPlay m_HowToPlay = null;
     [SerializeField]
     private Text m_GoldCoinText = null;
-    [SerializeField]
-    private Text m_CopperCoinText = null;
     [SerializeField]
     private float m_LerpLate = 1.0f;
 

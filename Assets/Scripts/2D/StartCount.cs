@@ -8,7 +8,6 @@ public class StartCount : MonoBehaviour
     private Sprite[] m_NumberSprite;
 
     private Image m_CountImage;
-    private int m_ImageCount = 0;
     private float m_TimeCount = 0.0f;
 
     void Start()

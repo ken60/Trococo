@@ -78,9 +78,13 @@ public class Panel_CharSelect : MonoBehaviour
 
         //ページ数変更
         if (0 < m_PageNmmber)
+        {
             m_PageNmmber--;
+        }
         else
+        {
             m_PageNmmber = m_Sprite.Length - 1;
+        }
 
         CharSelectUpdate();
     }
@@ -93,9 +97,13 @@ public class Panel_CharSelect : MonoBehaviour
 
         //ページ数変更
         if (m_PageNmmber < m_Sprite.Length - 1)
+        {
             m_PageNmmber++;
+        }
         else
+        {
             m_PageNmmber = 0;
+        }
 
         CharSelectUpdate();
     }

@@ -25,7 +25,6 @@ public class Panel_Result : MonoBehaviour
     private RectTransform m_RectTransform;
     private int m_ClickCnt = 0;
 
-
     void Start()
     {
         m_ClickCnt = 0;

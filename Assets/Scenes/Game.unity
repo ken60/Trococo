@@ -435,12 +435,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010554670020, guid: 2742fadd2956e8f45b8064de16bbd0f3,
-        type: 2}
-      propertyPath: m_Dialog
-      value: 
-      objectReference: {fileID: 1000012030682216, guid: 163a0f8f48e2f42478850546e9d6eae1,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2742fadd2956e8f45b8064de16bbd0f3, type: 2}
   m_IsPrefabParent: 0
@@ -738,16 +732,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114000013453336098, guid: 8e346ecc8bc11234f8ae90de5d50f8ce,
-        type: 2}
-      propertyPath: m_BGMSource
-      value: 
-      objectReference: {fileID: 1307049615}
-    - target: {fileID: 114000013453336098, guid: 8e346ecc8bc11234f8ae90de5d50f8ce,
-        type: 2}
-      propertyPath: m_SESource
-      value: 
-      objectReference: {fileID: 1307049614}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e346ecc8bc11234f8ae90de5d50f8ce, type: 2}
   m_IsPrefabParent: 0
@@ -1887,16 +1871,6 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 782233244}
---- !u!82 &1307049614 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82000014205828744, guid: 8e346ecc8bc11234f8ae90de5d50f8ce,
-    type: 2}
-  m_PrefabInternal: {fileID: 588281175}
---- !u!82 &1307049615 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82000012329702302, guid: 8e346ecc8bc11234f8ae90de5d50f8ce,
-    type: 2}
-  m_PrefabInternal: {fileID: 588281175}
 --- !u!1 &1345893684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,12 +2459,6 @@ Prefab:
       propertyPath: m_ButtonPause
       value: 
       objectReference: {fileID: 1672371833}
-    - target: {fileID: 114000010675410546, guid: 45c893339d14d394dbc84fa97f230589,
-        type: 2}
-      propertyPath: m_PausePanel
-      value: 
-      objectReference: {fileID: 1000013415999264, guid: 2e8d77b57aa02414e8321c1b9c4f5882,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 45c893339d14d394dbc84fa97f230589, type: 2}
   m_IsPrefabParent: 0

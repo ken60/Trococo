@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class Squid_ink : MonoBehaviour
 {
+    [SerializeField]
+    private float m_AliveTime = 1f;
+
     private Image m_Image;
     private Color m_Color;
     private float m_Alpha = 1.0f;
@@ -14,7 +17,7 @@ public class Squid_ink : MonoBehaviour
     }
     void Update()
     {
-        m_Alpha -= 0.05f * Time.deltaTime;
+        m_Alpha -= 1.0f / m_AliveTime * Time.deltaTime;
 
         if (m_Alpha <= 0.0f)
             Destroy(gameObject);

@@ -43,12 +43,6 @@ public class Player : MonoBehaviour
     private float m_RayDist;    //地面判定のRayの長さ
 
     [SerializeField]
-    private float MinDistance = 1.0f;   //フリックの最小距離
-
-    [SerializeField]
-    private float FlickTime = 0.3f;     //フリックが有効な時間
-
-    [SerializeField]
     private float m_Angle = 30.0f;
 
     private GameObject m_Canvas;
@@ -76,8 +70,8 @@ public class Player : MonoBehaviour
         FlickGesture flick = m_TouchScriptObj.GetComponent<FlickGesture>();
         m_TouchScriptObj.GetComponent<TapGesture>().Tapped += HandleTapped;
         flick.StateChanged += HandleFlick;
-        flick.MinDistance = 1f;
-        flick.FlickTime = 0.3f;
+        flick.MinDistance = 0.3f;
+        flick.FlickTime = 0.25f;
         m_PreCharID = GameDataManager.Instance.playCharID;
 
         //初期キャラクター生成
@@ -101,12 +95,7 @@ public class Player : MonoBehaviour
             GameSceneManager.Instance.isPause ||
             !GameSceneManager.Instance.isGamePlaying)
             return;
-
-        if (m_isGrounded)
-        {
-            m_isJump = true;
-            //m_Animator.SetTrigger("Jump");
-        }
+               
     }
 
     //フリック時に呼ばれる
@@ -142,7 +131,11 @@ public class Player : MonoBehaviour
             //Up
             if (m_Angle < gesture.ScreenFlickVector.y)
             {
-
+                if (m_isGrounded)
+                {
+                    m_isJump = true;
+                    //m_Animator.SetTrigger("Jump");
+                }
             }
             //Down
             else if (gesture.ScreenFlickVector.y < -m_Angle)
@@ -176,7 +169,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        //しゃがみ中はプレイヤー自身の衝突判定を無効化
+        //しゃがみ中はプレイヤーキャラのColliderを無効化
         if (m_isCrouch)
         {
             m_Collider.enabled = !m_isCrouch;

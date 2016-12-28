@@ -11,7 +11,11 @@ class Data
 
     public bool isAudioEnabled = true;  //音を有効にするか
     public bool isEnableShadow = true;  //影を有効にするか
+
+    public string un = "";
+    public string ps = "";
 }
+
 
 public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 {
@@ -31,6 +35,9 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
     private bool m_isAudioEnabled_old = true;
     private bool m_isShadowEnabled = true;  //影を有効にするか
     private bool m_isShadowEnabled_old = true;
+
+    private string m_un = "";
+    private string m_ps = "";
 
     private string m_Json;
 
@@ -69,6 +76,10 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
         m_isAudioEnabled_old = loadData.isAudioEnabled;
         m_isShadowEnabled = loadData.isEnableShadow;
         m_isShadowEnabled_old = loadData.isEnableShadow;
+
+        //Account
+        m_un = loadData.un;
+        m_ps = loadData.ps;
     }
 
     public void SaveGame()
@@ -94,6 +105,11 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 
         m_isAudioEnabled_old = m_isAudioEnabled;
         m_isShadowEnabled_old = m_isShadowEnabled;
+
+
+        //Account
+        data.un = m_un;
+        data.ps = m_ps;
 
         m_Json = JsonUtility.ToJson(data);
         FileIO.FileWrite(m_FileName, m_Json);
@@ -201,5 +217,17 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
             return true;
 
         return false;
+    }
+
+    public string userName
+    {
+        get { return m_un; }
+        set { m_un = value; }
+    }
+
+    public string userPass
+    {
+        get { return m_ps; }
+        set { m_ps = value; }
     }
 }

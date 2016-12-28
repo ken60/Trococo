@@ -22,6 +22,8 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private GameObject m_UI_Text;   //ゲーム中のスコア表示Text
     [SerializeField]
+    private GameObject m_Panel_Signin;  //サインインパネル
+    [SerializeField]
     private GameObject m_Panel_Main;  //メインパネルスクリプト
     [SerializeField]
     private GameObject m_Panel_Result;  //リザルトパネル
@@ -42,6 +44,7 @@ public class GameScene : MonoBehaviour
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
+    private bool m_isLoggingIn = false;
     private bool m_CaptureSS = false;   //スクリーンショットを撮ったか
     private GameObject m_TutorialPanel;
 
@@ -82,9 +85,23 @@ public class GameScene : MonoBehaviour
                 m_FromTitle = true;
                 m_CaptureSS = false;
 
-                m_GameScene = eGameScene.Title;
-                break;
+                if (GameDataManager.Instance.userName == "" && !m_isLoggingIn)
+                {
+                    //サインインパネルを表示
+                    GameObject signin = Instantiate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity) as GameObject;
+                    signin.transform.SetParent(m_Canvas.transform, false);
+                }
+                else
+                {
+                    //ログイン
+                    NCMBManager.Instance.Login(GameDataManager.Instance.userName, GameDataManager.Instance.userPass);
+                    m_isLoggingIn = true;
+                }
 
+                m_GameScene = eGameScene.Title;
+
+                break;
+                
             case eGameScene.Title:
                 //Title Showing
                 //Panel_MainのLoadGame()にシーンチェンジ記述
@@ -194,15 +211,15 @@ public class GameScene : MonoBehaviour
                 //リザルトパネルを表示
                 GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;
                 panelRes.transform.SetParent(m_Canvas.transform, false);
-
-                /*
+                
                 //ハイスコアの時 & Androidのみスコアを送信
-                if (GameDataManager.Instance.IsHighScore() && Application.platform == RuntimePlatform.Android)
+                if (GameDataManager.Instance.IsHighScore())// && Application.platform == RuntimePlatform.Android)
                 {
                     //ランキングスコア送信
+                    NCMBManager.Instance.SendScore(GameDataManager.Instance.score);
                     print("Send score");
                 }
-                */
+
                 //セーブ
                 GameDataManager.Instance.SaveGame();
 

@@ -242,6 +242,7 @@ Transform:
   - {fileID: 688690350}
   - {fileID: 478737294}
   - {fileID: 1198144499}
+  - {fileID: 1501684176}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1001 &145257329
@@ -1713,6 +1714,11 @@ Prefab:
       propertyPath: m_Name
       value: GameScene
       objectReference: {fileID: 0}
+    - target: {fileID: 11465758, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
+      propertyPath: m_Panel_Signin
+      value: 
+      objectReference: {fileID: 1000012287428990, guid: d6765109e5cfb9b44907acac14c2cf18,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 456265fadf6f7754cbef4ae9deb12955, type: 2}
   m_IsPrefabParent: 0
@@ -2153,6 +2159,47 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
   m_PrefabInternal: {fileID: 1350523198}
+--- !u!1 &1501684175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1501684176}
+  - 114: {fileID: 1501684177}
+  m_Layer: 0
+  m_Name: NCMBManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1501684176
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501684175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 134808425}
+  m_RootOrder: 4
+--- !u!114 &1501684177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501684175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9167352439d82354cbd8b4738e0499c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PassLength: 15
 --- !u!4 &1553385652 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}
@@ -2319,6 +2366,52 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 471862, guid: 1e0eb148cf1560f4d96a2e95b1370202, type: 2}
   m_PrefabInternal: {fileID: 1456891194}
+--- !u!1 &1697354474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1697354476}
+  - 114: {fileID: 1697354475}
+  m_Layer: 0
+  m_Name: NCMBSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1697354475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697354474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126b11b65f49b45b380dd0c54bf19f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applicationKey: 75c41fb3c87f69e8b8bade5d456b3ce23e11db31ce64289d31c7f18df7c9ac74
+  clientKey: 6b4d9956f8dfe321fae7402a4519af171596f98339f3719ea6655b7fc7e54ae5
+  usePush: 0
+  useAnalytics: 0
+  androidSenderId: 
+  responseValidation: 0
+--- !u!4 &1697354476
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697354474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!4 &1748939891 stripped
 Transform:
   m_PrefabParentObject: {fileID: 475400, guid: 88827502889ee534e868a65963285914, type: 2}

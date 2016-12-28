@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private GameObject m_TouchScriptObj;    //タッチ関連
 
     [SerializeField]
-    private ParticleSystem m_DieParticle;   //ゲームオーバーのパーティクル
+    private GameObject m_DieParticle;   //ゲームオーバーのパーティクル
 
     [SerializeField]
     private GameObject[] m_ChangeParticle;    //キャラチェンジ時のパーティクル
@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     private bool m_isGrounded = false;
     private bool m_isJump = false;
     private bool m_isCrouch = false;
+    private bool m_isJumpCancel = false;
 
     void Start()
     {
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
         FlickGesture flick = m_TouchScriptObj.GetComponent<FlickGesture>();
         m_TouchScriptObj.GetComponent<TapGesture>().Tapped += HandleTapped;
         flick.StateChanged += HandleFlick;
-        flick.MinDistance = 0.3f;
+        flick.MinDistance = 0.2f;
         flick.FlickTime = 0.25f;
         m_PreCharID = GameDataManager.Instance.playCharID;
 
@@ -85,7 +86,10 @@ public class Player : MonoBehaviour
         transform.position = Vector3.zero;
         transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         m_CurrentRunningRail = 0;
-        m_TimeCount = 0;
+
+        m_TimeCount = 0.0f;
+        m_isCrouch = false;
+        m_Collider.enabled = true;
     }
 
     //タップ時に呼ばれる
@@ -95,7 +99,7 @@ public class Player : MonoBehaviour
             GameSceneManager.Instance.isPause ||
             !GameSceneManager.Instance.isGamePlaying)
             return;
-               
+
     }
 
     //フリック時に呼ばれる
@@ -103,8 +107,7 @@ public class Player : MonoBehaviour
     {
         if (GameSceneManager.Instance.isGameOver ||
             GameSceneManager.Instance.isPause ||
-            !GameSceneManager.Instance.isGamePlaying ||
-            !m_isGrounded)
+            !GameSceneManager.Instance.isGamePlaying)
             return;
 
         var gesture = sender as FlickGesture;
@@ -118,12 +121,18 @@ public class Player : MonoBehaviour
             //Right
             if (m_Angle < gesture.ScreenFlickVector.x)
             {
-                m_CurrentRunningRail++;
+                if (m_isGrounded)
+                {
+                    m_CurrentRunningRail++;
+                }
             }
             //Left
             else if (gesture.ScreenFlickVector.x < -m_Angle)
             {
-                m_CurrentRunningRail--;
+                if (m_isGrounded)
+                {
+                    m_CurrentRunningRail--;
+                }
             }
         }
         else if (Mathf.Abs(gesture.ScreenFlickVector.x) < Mathf.Abs(gesture.ScreenFlickVector.y))
@@ -140,7 +149,14 @@ public class Player : MonoBehaviour
             //Down
             else if (gesture.ScreenFlickVector.y < -m_Angle)
             {
-                m_isCrouch = true;
+                if (m_isGrounded)
+                {
+                    m_isCrouch = true;
+                }
+                else
+                {
+                    m_isJumpCancel = true;
+                }
             }
         }
     }
@@ -175,6 +191,7 @@ public class Player : MonoBehaviour
             m_Collider.enabled = !m_isCrouch;
             m_CharScale.y = 0.6f;
             m_TimeCount += Time.deltaTime;
+
             if (m_TimeCount >= m_CrouchTime)
             {
                 m_TimeCount = 0.0f;
@@ -208,6 +225,12 @@ public class Player : MonoBehaviour
             m_isJump = false;
             m_isGrounded = false;
             m_Rigidbody.AddForce(Vector3.up * m_JumpForce);
+        }
+
+        if (m_isJumpCancel)
+        {
+            m_isJumpCancel = false;
+            m_Rigidbody.AddForce(Vector3.down * (m_JumpForce * 1.3f));
         }
     }
 

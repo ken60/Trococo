@@ -139,7 +139,8 @@ MonoBehaviour:
   - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
   m_CharGenPosition: {fileID: 4000014065919098}
   m_TouchScriptObj: {fileID: 0}
-  m_DieParticle: {fileID: 19872740, guid: f02123e7c588bbc469f870ac750094ae, type: 2}
+  m_DieParticle: {fileID: 1000012157472710, guid: efc22ddf48ec4554893fda9397196457,
+    type: 2}
   m_ChangeParticle:
   - {fileID: 1000010100724510, guid: 1fc5201ecb33ec5419d44e31e3facd8a, type: 2}
   - {fileID: 1000010485161116, guid: 897b6708fa3a88342aef117dd730219d, type: 2}
@@ -151,8 +152,6 @@ MonoBehaviour:
   m_LerpRate: 0.2
   m_LateralMotionSpeed: 2
   m_RayDist: 0.501
-  MinDistance: 2
-  FlickTime: 0.3
   m_Angle: 30
 --- !u!1001 &100100000
 Prefab:

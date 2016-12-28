@@ -24,6 +24,7 @@ public class Panel_Result : MonoBehaviour
 
     private RectTransform m_RectTransform;
     private int m_ClickCnt = 0;
+    private float m_MoveInTime = 0.15f;
 
     void Start()
     {
@@ -44,12 +45,12 @@ public class Panel_Result : MonoBehaviour
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length; i++)
             {
-                MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
+                MoveIn(m_ResultBar[i].gameObject, i * m_MoveInTime);
             }
 
             //ボタンの移動
             for (int j = 0; j < m_Button.Length; j++)
-                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length) * 0.2f);
+                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length) * m_MoveInTime);
         }
         //広告無しの場合
         else
@@ -60,12 +61,12 @@ public class Panel_Result : MonoBehaviour
             //スコアバーなどの移動
             for (i = 0; i < m_ResultBar.Length - 1; i++)
             {
-                MoveIn(m_ResultBar[i].gameObject, i * 0.2f);
+                MoveIn(m_ResultBar[i].gameObject, i * m_MoveInTime);
             }
 
             //ボタンの移動
             for (int j = 0; j < m_Button.Length; j++)
-                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length - 1) * 0.2f);
+                Button_MoveIn(m_Button[j].gameObject, (j + m_ResultBar.Length - 1) * m_MoveInTime);
 
         }
 

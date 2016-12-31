@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using NCMB;
 
 public class Panel_Main : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Panel_Main : MonoBehaviour
     private Panel_HowToPlay m_HowToPlay = null;
     [SerializeField]
     private Text m_GoldCoinText = null;
+    [SerializeField]
+    private Text m_UserName = null;
     [SerializeField]
     private float m_LerpLate = 1.0f;
 
@@ -43,12 +46,14 @@ public class Panel_Main : MonoBehaviour
         m_Button_Menu[m_ShowingPanelNum].enabled = false;
 
         transform.localScale = Vector3.zero;
+
+        m_UserName.text = GameDataManager.Instance.userName;
     }
 
     void Update()
     {
         //累計コイン数を表示
-        m_GoldCoinText.text = GameDataManager.Instance.totalGoldCoinNum.ToString();
+        m_GoldCoinText.text = GameDataManager.Instance.totalGoldCoinNum.ToString();        
     }
 
     //メニューボタンにアタッチ

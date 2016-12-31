@@ -4,16 +4,9 @@ using System.Collections.Generic;
 
 public class NCMBManager : SingletonMonoBehaviour<NCMBManager>
 {
-    [SerializeField]
-    int m_PassLength = 15;
-
-    private string ps;
-    private string STR_GROUP = "0123456789ABCDEFGHIJKLNMOPQRSTUVWXYZabcdefghijklnmopqrstuvwxyz";
 
     public void Login(string userName, string pass)
     {
-        print("Login: " + userName + " " + pass);
-
         //NCMBUserのインスタンス作成 
         NCMBUser user = new NCMBUser();
 
@@ -26,29 +19,9 @@ public class NCMBManager : SingletonMonoBehaviour<NCMBManager>
              }
              else
              {
-                 Debug.Log("ログインに成功！");
+                 Debug.Log("ログインに成功");
              }
          });
-    }
-
-    public void IsNameAvailable(string Name)
-    {
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
-        query.WhereEqualTo("Name", Name);
-        query.CountAsync((int count, NCMBException e) =>
-        {
-            if (e == null)
-            {
-                if (count == 0)
-                {
-                    print("名前は登録されていない");
-                }
-                else
-                {
-                    print("すでに名前が登録されている");
-                }
-            }
-        });
     }
 
     public void SendScore(int score)

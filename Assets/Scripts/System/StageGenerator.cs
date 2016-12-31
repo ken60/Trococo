@@ -10,6 +10,8 @@ public class StageGenerator : MonoBehaviour
     [SerializeField]
     private GameObject m_Ground;     //地面
     [SerializeField]
+    private GameObject[] m_Stage;
+    [SerializeField]
     private GameObject[] m_Plante;   //ステージオブジェクト
     [SerializeField]
     private GameObject[] m_Obstacle; //障害物
@@ -22,6 +24,7 @@ public class StageGenerator : MonoBehaviour
 
     private List<GameObject> m_GeneratedRail = new List<GameObject>();
     private List<GameObject> m_GeneratedGround = new List<GameObject>();
+    private List<GameObject> m_GeneratedStage = new List<GameObject>();
     private List<GameObject> m_GeneratedPlante = new List<GameObject>();
     private List<GameObject> m_GeneratedObstacle = new List<GameObject>();
     private int m_RailPosZ = -2;        //レールを生成するZ座標
@@ -42,6 +45,7 @@ public class StageGenerator : MonoBehaviour
 
         m_GeneratedRail = new List<GameObject>();
         m_GeneratedGround = new List<GameObject>();
+        m_GeneratedStage = new List<GameObject>();
         m_GeneratedPlante = new List<GameObject>();
         m_GeneratedObstacle = new List<GameObject>();
         m_RailPosZ = -2;
@@ -61,6 +65,7 @@ public class StageGenerator : MonoBehaviour
         for (; m_GroundPosZ < m_PreInstantiateGround; m_GroundPosZ++)
         {
             GenObject(m_Ground, m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
+            GenObject(m_Stage[Random.Range(0, m_Stage.Length)], m_GeneratedStage, new Vector3(0.0f, 0.0f, m_GroundPosZ * m_GroundSizeZ));
         }
 
         //初期配置障害物を生成
@@ -89,6 +94,8 @@ public class StageGenerator : MonoBehaviour
         {
             //画面外に出た地面を移動
             MoveObject(m_GeneratedGround, new Vector3(0.0f, -1.0f, m_GroundPosZ * m_GroundSizeZ));
+
+            MoveObject(m_GeneratedStage, new Vector3(0.0f, 0.0f, m_GroundPosZ * m_GroundSizeZ));
 
             //障害物を生成
             GenObject(m_Obstacle[Random.Range(0, m_Obstacle.Length)], m_GeneratedObstacle, new Vector3(0.0f, 0.0f, m_ObstaclePosZ * 10));

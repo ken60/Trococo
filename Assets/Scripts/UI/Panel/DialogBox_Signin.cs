@@ -9,8 +9,6 @@ public class DialogBox_Signin : MonoBehaviour
     [SerializeField]
     private Button m_Button;
     [SerializeField]
-    private Text m_ButtonText;
-    [SerializeField]
     private InputField m_InputField;
     [SerializeField]
     int m_PassLength = 15;
@@ -25,6 +23,8 @@ public class DialogBox_Signin : MonoBehaviour
 
     public void OK_Button()
     {
+        string name = m_InputField.text;
+
         //NCMBUserのインスタンス作成 
         NCMBUser user = new NCMBUser();
         NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
@@ -32,7 +32,7 @@ public class DialogBox_Signin : MonoBehaviour
         //パスワードの生成
         ps = GenPassword();
 
-        query.WhereEqualTo("Name", m_InputField.text);
+        query.WhereEqualTo("Name", name);
 
         query.CountAsync((int count, NCMBException e) =>
         {
@@ -41,11 +41,9 @@ public class DialogBox_Signin : MonoBehaviour
                 if (count == 0)
                 {
                     //ユーザ名とパスワードの設定
-                    user.UserName = m_InputField.text;
+                    user.UserName = name;
                     user.Password = ps;
-
-                    print("Signin: " + m_InputField.text + " " + ps);
-
+                    
                     //会員登録を行う
                     user.SignUpAsync((NCMBException e2) =>
                     {
@@ -57,17 +55,15 @@ public class DialogBox_Signin : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("新規登録に成功");
-
-                            GameDataManager.Instance.userName = m_InputField.text;
+                            GameDataManager.Instance.userName = name;
                             GameDataManager.Instance.userPass = ps;
                             GameDataManager.Instance.SaveGame();
 
+                            iTweenManager.Hide_ScaleTo(this.gameObject, 0.2f, "EndAction", this.gameObject);
+
                             GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-                            dialog.GetComponent<DialogBox>().SetText("ユーザーを作成しました！");
-
-                            iTweenManager.Hide_ScaleTo(this.gameObject, 0.2f, "EndAction", this.gameObject);
+                            dialog.GetComponent<DialogBox>().SetText("ユーザーを作成しました");
                         }
                     });
                 }

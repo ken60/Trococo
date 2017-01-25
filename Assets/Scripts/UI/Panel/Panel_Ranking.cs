@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using NCMB;
+using UnityEngine;
 using UnityEngine.UI;
-using NCMB;
 using System.Collections.Generic;
 
 public class Panel_Ranking : MonoBehaviour
@@ -8,89 +8,82 @@ public class Panel_Ranking : MonoBehaviour
     [SerializeField]
     private Text[] rankText;
     [SerializeField]
-    private Text[] nameScore;
+    private Text[] nameText;
+    [SerializeField]
+    private Text[] scoreText;
 
     private List<string> m_Rankers = null;
+    private int currentRank = 0;
+    private List<int> neighbors;
     private bool m_ShowRanks = false;
+
+
+    private LeaderBoard lBoard;
+    private HighScore currentHighScore;
+
+    bool isScoreFetched;
+    bool isRankFetched;
+    bool isLeaderBoardFetched;
 
     void Start()
     {
+        lBoard = new LeaderBoard();
+
+        // フラグ初期化
+        isScoreFetched = false;
+        isRankFetched = false;
+        isLeaderBoardFetched = false;
+
+        // 現在のハイスコアを取得
+        currentHighScore = new HighScore(-1, GameDataManager.Instance.userName);
+        currentHighScore.Fetch();
     }
 
     void Update()
     {
-        if (!m_ShowRanks)
+        // 現在のハイスコアの取得が完了したら1度だけ実行
+        if (currentHighScore.score != -1 && !isScoreFetched)
         {
-            //ShowRanking();
-            FetchTopRankers();
-            m_ShowRanks = true;
+            lBoard.FetchRank(currentHighScore.score);
+
+            isScoreFetched = true;
         }
-    }
 
-    void ShowRanking()
-    {
-        // データストアのRankingクラスから、Nameをキーにして検索
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
-        query.WhereEqualTo("Name", GameDataManager.Instance.userName);
-
-        query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+        // 現在の順位の取得が完了したら1度だけ実行
+        if (lBoard.currentRank != 0 && !isRankFetched)
         {
-            //検索成功したら    
-            if (e == null)
-            {
-                rankText[0].text = "1位";
-                nameScore[0].text = System.Convert.ToString(objList[0]["Name"]) + "　" + System.Convert.ToInt32(objList[0]["Score"]);
+            lBoard.FetchTopRankers();
+            lBoard.FetchNeighbors();
 
-                if (objList.Count == 0)
-                {
-                    // ハイスコアが未登録の場合
+            isRankFetched = true;
+        }
 
-                }
-                else
-                {
-                    // ハイスコアが登録済みの場合
-                    int cloudScore = System.Convert.ToInt32(objList[0]["Score"]); // クラウド上のスコアを取得
-
-                }
-            }
-        });
-    }
-
-    public void FetchTopRankers()
-    {
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
-
-        // Scoreを降順でデータを取得するように設定
-        query.OrderByDescending("Score");
-
-        // 検索件数を設定
-        query.Limit = 3;
-
-        // データストアを検索
-        query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+        // ランキングの取得が完了したら1度だけ実行
+        if (lBoard.neighbors != null && lBoard.topRankers != null && !isLeaderBoardFetched)
         {
-            if (e != null)
+            // 自分が1位のときと2位のときだけ順位表示を調整
+            int offset = 2;
+            if (lBoard.currentRank == 1) offset = 0;
+            if (lBoard.currentRank == 2) offset = 1;
+            
+
+            // 取得したトップ3ランキングを表示
+            for (int i = 0; i < lBoard.topRankers.Count; ++i)
             {
-                //検索に失敗した場合の処理
-                Debug.Log("検索に失敗しました " + e.ErrorCode);
+                rankText[i].text = (i + 1).ToString();
+                nameText[i].text = lBoard.topRankers[i].name;
+                scoreText[i].text = lBoard.topRankers[i].score.ToString();
             }
-            else
+
+            // 取得したライバルランキングを表示
+            for (int i = 0; i < lBoard.neighbors.Count; ++i)
             {
-                List<string> list = new List<string>();
-
-                foreach (NCMBObject obj in objList)
-                {
-                    string name;
-                    name = System.Convert.ToString(obj["Name"]) + "　" + System.Convert.ToInt32(obj["Score"]).ToString();
-
-                    list.Add(name);
-                }
-
-                for(int i=0;i<list.Count;i++)
-                {
-                    nameScore[i].text = list[i].ToString();
-                }
+                rankText[i].text = (lBoard.currentRank - offset + i).ToString();
+                nameText[i].text = lBoard.neighbors[i].name;
+                scoreText[i].text = lBoard.neighbors[i].score.ToString();
             }
-        });
+
+            isLeaderBoardFetched = true;
+        }
     }
 }

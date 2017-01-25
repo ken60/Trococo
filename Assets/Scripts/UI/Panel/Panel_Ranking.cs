@@ -62,23 +62,25 @@ public class Panel_Ranking : MonoBehaviour
         if (lBoard.neighbors != null && lBoard.topRankers != null && !isLeaderBoardFetched)
         {
             // 自分が1位のときと2位のときだけ順位表示を調整
-            int offset = 2;
+            int offset = 3;
             if (lBoard.currentRank == 1) offset = 0;
             if (lBoard.currentRank == 2) offset = 1;
-            
 
+            int i;
             // 取得したトップ3ランキングを表示
-            for (int i = 0; i < lBoard.topRankers.Count; ++i)
+            for (i = 0; i < lBoard.topRankers.Count; ++i)
             {
-                rankText[i].text = (i + 1).ToString();
+                rankText[i].text = (i + 1).ToString() + "位";
                 nameText[i].text = lBoard.topRankers[i].name;
                 scoreText[i].text = lBoard.topRankers[i].score.ToString();
             }
 
+            print("lBoard.topRankers.Count " + lBoard.neighbors.Count);
+
             // 取得したライバルランキングを表示
-            for (int i = 0; i < lBoard.neighbors.Count; ++i)
+            for (; i < lBoard.neighbors.Count; ++i)
             {
-                rankText[i].text = (lBoard.currentRank - offset + i).ToString();
+                rankText[i].text = (lBoard.currentRank - offset + i).ToString() + "位";
                 nameText[i].text = lBoard.neighbors[i].name;
                 scoreText[i].text = lBoard.neighbors[i].score.ToString();
             }

@@ -16,18 +16,18 @@ public class HighScore
     public void Fetch()
     {
         // データストアの「HighScore」クラスから、Nameをキーにして検索
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
+        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
         query.WhereEqualTo("Name", name);
 
         query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
         {
-            //検索成功したら  
+            //検索成功したら
             if (e == null)
             {
                 // ハイスコアが未登録だったら
                 if (objList.Count == 0)
                 {
-                    NCMBObject obj = new NCMBObject("HighScore");
+                    NCMBObject obj = new NCMBObject("Ranking");
                     obj["Name"] = name;
                     obj["Score"] = 0;
                     obj.SaveAsync();
@@ -52,7 +52,7 @@ public class LeaderBoard
     public void FetchRank(int currentScore)
     {
         // データスコアの「HighScore」から検索
-        NCMBQuery<NCMBObject> rankQuery = new NCMBQuery<NCMBObject>("HighScore");
+        NCMBQuery<NCMBObject> rankQuery = new NCMBQuery<NCMBObject>("Ranking");
         rankQuery.WhereGreaterThan("Score", currentScore);
 
         rankQuery.CountAsync((int count, NCMBException e) =>
@@ -72,7 +72,7 @@ public class LeaderBoard
     public void FetchTopRankers()
     {
         // データストアの「HighScore」クラスから検索
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
+        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
         query.OrderByDescending("Score");
         query.Limit = 3;
 
@@ -88,8 +88,8 @@ public class LeaderBoard
 
                 foreach (NCMBObject obj in objList)
                 {
-                    int s = System.Convert.ToInt32(obj["Score"]);
                     string n = System.Convert.ToString(obj["Name"]);
+                    int s = System.Convert.ToInt32(obj["Score"]);
 
                     list.Add(new HighScore(s, n));
                 }
@@ -107,7 +107,7 @@ public class LeaderBoard
         if (numSkip < 0) numSkip = 0;
 
         // データストアの「HighScore」クラスから検索
-        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
+        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
         query.OrderByDescending("Score");
         query.Skip = numSkip;
         query.Limit = 7;
@@ -124,8 +124,8 @@ public class LeaderBoard
 
                 foreach (NCMBObject obj in objList)
                 {
-                    int s = System.Convert.ToInt32(obj["Score"]);
                     string n = System.Convert.ToString(obj["Name"]);
+                    int s = System.Convert.ToInt32(obj["Score"]);
 
                     list.Add(new HighScore(s, n));
                 }

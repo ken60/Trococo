@@ -65,24 +65,34 @@ public class Panel_Ranking : MonoBehaviour
             int offset = 3;
             if (lBoard.currentRank == 1) offset = 0;
             if (lBoard.currentRank == 2) offset = 1;
-
-            int i;
+            if (lBoard.currentRank == 3) offset = 2;
+            
             // 取得したトップ3ランキングを表示
-            for (i = 0; i < lBoard.topRankers.Count; ++i)
+            for (int i = 0; i < lBoard.topRankers.Count; ++i)
             {
                 rankText[i].text = (i + 1).ToString() + "位";
                 nameText[i].text = lBoard.topRankers[i].name;
                 scoreText[i].text = lBoard.topRankers[i].score.ToString();
+
+                //自分の名前を赤に
+                if (lBoard.topRankers[i].name == GameDataManager.Instance.userName)
+                {
+                    nameText[i].color = Color.red;
+                }
             }
 
-            print("lBoard.topRankers.Count " + lBoard.neighbors.Count);
-
             // 取得したライバルランキングを表示
-            for (; i < lBoard.neighbors.Count; ++i)
+            for (int i = 0; i < lBoard.neighbors.Count; ++i)
             {
-                rankText[i].text = (lBoard.currentRank - offset + i).ToString() + "位";
-                nameText[i].text = lBoard.neighbors[i].name;
-                scoreText[i].text = lBoard.neighbors[i].score.ToString();
+                rankText[i + 3].text = (lBoard.currentRank - offset + i).ToString() + "位";
+                nameText[i + 3].text = lBoard.neighbors[i].name;
+                scoreText[i + 3].text = lBoard.neighbors[i].score.ToString();
+
+                //自分の名前を赤に
+                if (lBoard.neighbors[i].name == GameDataManager.Instance.userName)
+                {
+                    nameText[i + 3].color = Color.red;
+                }
             }
 
             isLeaderBoardFetched = true;

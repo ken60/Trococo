@@ -11,10 +11,9 @@ public class Panel_Ranking : MonoBehaviour
     private Text[] nameText;
     [SerializeField]
     private Text[] scoreText;
-
-    private List<string> m_Rankers = null;
+    
     private int currentRank = 0;
-    private List<int> neighbors;
+    private float m_TimeCount = 0f;
     private bool m_ShowRanks = false;
 
 
@@ -58,15 +57,15 @@ public class Panel_Ranking : MonoBehaviour
             isRankFetched = true;
         }
 
-        // ランキングの取得が完了したら1度だけ実行
+        //ランキングの取得が完了したら1度だけ実行
         if (lBoard.neighbors != null && lBoard.topRankers != null && !isLeaderBoardFetched)
         {
-            // 自分が1位のときと2位のときだけ順位表示を調整
-            int offset = 3;
+            //順位表示を調整
+            int offset = 2;
             if (lBoard.currentRank == 1) offset = 0;
             if (lBoard.currentRank == 2) offset = 1;
             if (lBoard.currentRank == 3) offset = 2;
-            
+
             // 取得したトップ3ランキングを表示
             for (int i = 0; i < lBoard.topRankers.Count; ++i)
             {
@@ -97,5 +96,24 @@ public class Panel_Ranking : MonoBehaviour
 
             isLeaderBoardFetched = true;
         }
+
+        m_TimeCount += Time.deltaTime;
+    }
+
+    public void Reload()
+    {
+        if (m_TimeCount < 5.0f) return;
+        m_TimeCount = 0f;
+
+        lBoard = new LeaderBoard();
+
+        // フラグ初期化
+        isScoreFetched = false;
+        isRankFetched = false;
+        isLeaderBoardFetched = false;
+
+        // 現在のハイスコアを取得
+        currentHighScore = new HighScore(-1, GameDataManager.Instance.userName);
+        currentHighScore.Fetch();
     }
 }

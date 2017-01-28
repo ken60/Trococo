@@ -23,8 +23,6 @@ public class Panel_Main : MonoBehaviour
     private Text m_GoldCoinText = null;
     [SerializeField]
     private Text m_UserName = null;
-    [SerializeField]
-    private float m_LerpLate = 1.0f;
 
     private int m_ShowingPanelNum = (int)PanelMenuNum.ePanel_Home;
     private int m_OldShowingPanelNum;

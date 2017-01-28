@@ -31,6 +31,7 @@ public class StageGenerator : MonoBehaviour
     private int m_GroundPosZ = -1;      //地面を生成するZ座標
     private int m_ObstaclePosZ = 1;    //障害物を生成するZ座標
     private int m_GroundSizeZ = 10;     //地面のZサイズ
+    private int m_RailSizeZ = 5;     //レールのZサイズ
 
     private void Start()
     {
@@ -54,11 +55,9 @@ public class StageGenerator : MonoBehaviour
         m_GroundSizeZ = 10;
 
         //初期配置レールを生成
-        for (; m_RailPosZ < m_PreInstantiateRail; m_RailPosZ++)
+        for (; m_RailPosZ < m_PreInstantiateRail; m_RailPosZ += m_RailSizeZ)
         {
-            GenObject(m_Rail, m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));    //右
-            GenObject(m_Rail, m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));    //中
-            GenObject(m_Rail, m_GeneratedRail, new Vector3(-1.0f, 0.0f, m_RailPosZ));   //左
+            GenObject(m_Rail, m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));
         }
 
         //初期配置地面を生成
@@ -83,10 +82,8 @@ public class StageGenerator : MonoBehaviour
         if (m_Player.position.z > m_RailPosZ - (m_PreInstantiateRail - 2))
         {
             //画面外に出たレールを移動
-            MoveObject(m_GeneratedRail, new Vector3(1.0f, 0.0f, m_RailPosZ));   //右
-            MoveObject(m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));   //中
-            MoveObject(m_GeneratedRail, new Vector3(-1.0f, 0.0f, m_RailPosZ));  //左
-            m_RailPosZ++;
+            MoveObject(m_GeneratedRail, new Vector3(0.0f, 0.0f, m_RailPosZ));
+            m_RailPosZ += m_RailSizeZ;
         }
 
 

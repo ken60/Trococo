@@ -12,10 +12,7 @@ public class Panel_Ranking : MonoBehaviour
     [SerializeField]
     private Text[] scoreText;
     
-    private int currentRank = 0;
     private float m_TimeCount = 0f;
-    private bool m_ShowRanks = false;
-
 
     private LeaderBoard lBoard;
     private HighScore currentHighScore;
@@ -26,6 +23,8 @@ public class Panel_Ranking : MonoBehaviour
 
     void Start()
     {
+        transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+
         lBoard = new LeaderBoard();
 
         // フラグ初期化

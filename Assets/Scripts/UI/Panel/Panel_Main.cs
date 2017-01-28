@@ -106,26 +106,6 @@ public class Panel_Main : MonoBehaviour
         iTweenManager.MoveOut_MoveTo_Y(this.gameObject, 0.4f, -Screen.height * 0.5f, "LoadGame", this.gameObject);
     }
 
-    /*
-    //ランキング('16/10/1 削除)
-    public void Button_Ranking()
-    {
-        //ボタンの同時押し対策
-        m_ClickCnt++;
-        if (m_ClickCnt != 1) return;
-        m_ClickCnt = 0;
-
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            //ランキングを表示
-        }
-        else
-        {
-            Debug.Log("Show Ranking");
-        }
-    }
-    */
-
     //メニューパネルを非表示
     void PanelHide(GameObject panel)
     {

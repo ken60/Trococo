@@ -73,6 +73,8 @@ public class Panel_Ranking : MonoBehaviour
                 nameText[i].text = lBoard.topRankers[i].name;
                 scoreText[i].text = lBoard.topRankers[i].score.ToString();
 
+                nameText[i].color = Color.black;
+
                 //自分の名前を赤に
                 if (lBoard.topRankers[i].name == GameDataManager.Instance.userName)
                 {
@@ -86,6 +88,8 @@ public class Panel_Ranking : MonoBehaviour
                 rankText[i + 3].text = (lBoard.currentRank - offset + i).ToString() + "位";
                 nameText[i + 3].text = lBoard.neighbors[i].name;
                 scoreText[i + 3].text = lBoard.neighbors[i].score.ToString();
+
+                nameText[i + 3].color = Color.black;
 
                 //自分の名前を赤に
                 if (lBoard.neighbors[i].name == GameDataManager.Instance.userName)

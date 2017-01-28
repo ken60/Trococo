@@ -100,10 +100,8 @@ public class LeaderBoard
     
     public void FetchNeighbors()
     {
-        neighbors = new List<HighScore>();
-
         // スキップする数を決める（ただし自分が1位か2位のときは調整する）
-        int numSkip = currentRank - 3;
+        int numSkip = currentRank - 4;
         if (numSkip < 0) numSkip = 0;
 
         // データストアの「HighScore」クラスから検索

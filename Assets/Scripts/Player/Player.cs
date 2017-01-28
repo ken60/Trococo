@@ -296,11 +296,5 @@ public class Player : MonoBehaviour
             Destroy(hit.gameObject);
             GameDataManager.Instance.goldCoin += 1;
         }
-
-        //トマト
-        if (hit.gameObject.tag == "Tomato")
-        {
-            Destroy(hit.gameObject);
-        }
     }
 }

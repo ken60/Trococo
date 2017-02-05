@@ -60,7 +60,7 @@ public class Panel_Ranking : MonoBehaviour
         if (lBoard.neighbors != null && lBoard.topRankers != null && !isLeaderBoardFetched)
         {
             //順位表示を調整
-            int offset = 2;
+            int offset = 3;
             if (lBoard.currentRank == 1) offset = 0;
             if (lBoard.currentRank == 2) offset = 1;
             if (lBoard.currentRank == 3) offset = 2;

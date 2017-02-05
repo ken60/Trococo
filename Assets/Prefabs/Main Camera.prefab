@@ -16,15 +16,15 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000013739100452}
-  - 33: {fileID: 33000013467081114}
-  - 64: {fileID: 64000011213645646}
-  - 114: {fileID: 114000012092358978}
-  - 114: {fileID: 114000012430550142}
-  - 114: {fileID: 114000013496480352}
-  - 114: {fileID: 114000013425649128}
+  - component: {fileID: 4000013739100452}
+  - component: {fileID: 33000013467081114}
+  - component: {fileID: 64000011213645646}
+  - component: {fileID: 114000012092358978}
+  - component: {fileID: 114000012430550142}
+  - component: {fileID: 114000013496480352}
+  - component: {fileID: 114000013425649128}
   m_Layer: 0
   m_Name: TouchScript
   m_TagString: Untagged
@@ -37,17 +37,17 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 4000014102027072}
-  - 20: {fileID: 20000010666655294}
-  - 92: {fileID: 92000013249315656}
-  - 124: {fileID: 124000014110948526}
-  - 81: {fileID: 81000012267831096}
-  - 114: {fileID: 114000011020363196}
-  - 114: {fileID: 114000013903897720}
-  - 114: {fileID: 114000012097087868}
-  - 114: {fileID: 114000012465364206}
+  - component: {fileID: 4000014102027072}
+  - component: {fileID: 20000010666655294}
+  - component: {fileID: 92000013249315656}
+  - component: {fileID: 124000014110948526}
+  - component: {fileID: 81000012267831096}
+  - component: {fileID: 114000011020363196}
+  - component: {fileID: 114000013903897720}
+  - component: {fileID: 114000012097087868}
+  - component: {fileID: 114000012465364206}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -64,10 +64,10 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.31}
   m_LocalScale: {x: 0.02, y: 1, z: 0.04}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 4000014102027072}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4000014102027072
 Transform:
   m_ObjectHideFlags: 1
@@ -77,11 +77,11 @@ Transform:
   m_LocalRotation: {x: 0.08659554, y: 0.11277246, z: -0.009866317, w: 0.98979104}
   m_LocalPosition: {x: -1.84, y: 3.56, z: -5.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 10, y: 13, z: 0}
   m_Children:
   - {fileID: 4000013739100452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 10, y: 13, z: 0}
 --- !u!20 &20000010666655294
 Camera:
   m_ObjectHideFlags: 1
@@ -134,6 +134,8 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!81 &81000012267831096
 AudioListener:
@@ -297,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50ddf8376edfd2244b48e1dabf0ba108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LerpRate: 0.8
+  m_LerpRate: 0.65
   m_Offset: {x: -1.3, y: 3, z: -5.5}
 --- !u!124 &124000014110948526
 Behaviour:

@@ -97,19 +97,7 @@ Camera:
   m_PrefabParentObject: {fileID: 20000010666655294, guid: 12f8bc07e921f254c8d599ef543d9a80,
     type: 2}
   m_PrefabInternal: {fileID: 1608736761}
---- !u!114 &149868650 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11405162, guid: 4f92664c6a5dbb14dbd62b481c63828d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1097693658}
-  m_Script: {fileID: 11500000, guid: 0424e42f8ccfccb43aaa65abdbf67f4a, type: 3}
---- !u!114 &179467628 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114665131999951014, guid: 03666df97353e8644adf19b6a9046187,
-    type: 2}
-  m_PrefabInternal: {fileID: 340951047}
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1001 &340882813
+--- !u!1001 &71972633
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -151,6 +139,18 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 921b985487b30ba47b067f28e451d14d, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &149868650 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11405162, guid: 4f92664c6a5dbb14dbd62b481c63828d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1097693658}
+  m_Script: {fileID: 11500000, guid: 0424e42f8ccfccb43aaa65abdbf67f4a, type: 3}
+--- !u!114 &179467628 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114665131999951014, guid: 03666df97353e8644adf19b6a9046187,
+    type: 2}
+  m_PrefabInternal: {fileID: 340951047}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &340951047
 Prefab:
   m_ObjectHideFlags: 0

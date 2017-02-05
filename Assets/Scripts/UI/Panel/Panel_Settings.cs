@@ -17,8 +17,8 @@ public class Panel_Settings : MonoBehaviour
     {
         transform.localScale = Vector3.zero;
 
-        m_AusioEnabled = GameDataManager.Instance.isAudioEnabled;
-        m_ShadowEnabled = GameDataManager.Instance.isShadowEnable;
+        m_AusioEnabled = SettingManager.Instance.isAudioEnabled;
+        m_ShadowEnabled = SettingManager.Instance.isShadowEnable;
 
         if (m_AusioEnabled)
             m_ButtonText[0].text = "ON";
@@ -42,7 +42,7 @@ public class Panel_Settings : MonoBehaviour
 
         AudioManager.Instance.AudioMute(m_AusioEnabled);
 
-        GameDataManager.Instance.isAudioEnabled = m_AusioEnabled;
+        SettingManager.Instance.isAudioEnabled = m_AusioEnabled;
 
         if (m_AusioEnabled)
             m_ButtonText[0].text = "ON";
@@ -56,7 +56,7 @@ public class Panel_Settings : MonoBehaviour
 
         LightManager.Instance.ShadowEnabled(m_ShadowEnabled);
 
-        GameDataManager.Instance.isShadowEnable = m_ShadowEnabled;
+        SettingManager.Instance.isShadowEnable = m_ShadowEnabled;
 
         if (m_ShadowEnabled)
             m_ButtonText[1].text = "ON";

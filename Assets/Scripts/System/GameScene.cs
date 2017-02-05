@@ -50,7 +50,8 @@ public class GameScene : MonoBehaviour
 
     void Awake()
     {
-        GameDataManager.Instance.LoadGame();
+        AccountManager.Instance.LoadAccount();
+        SettingManager.Instance.LoadSetting();
     }
 
     void Start()
@@ -85,7 +86,7 @@ public class GameScene : MonoBehaviour
                 m_FromTitle = true;
                 m_CaptureSS = false;
 
-                if (GameDataManager.Instance.userName == "" && !m_isLoggingIn)
+                if (AccountManager.Instance.userName == "" && !m_isLoggingIn)
                 {
                     //サインインパネルを表示
                     GameObject signin = Instantiate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity) as GameObject;
@@ -94,7 +95,7 @@ public class GameScene : MonoBehaviour
                 else
                 {
                     //ログイン
-                    NCMBManager.Instance.Login(GameDataManager.Instance.userName, GameDataManager.Instance.userPass);
+                    NCMBManager.Instance.Login(AccountManager.Instance.userName, AccountManager.Instance.userPass);
                     m_isLoggingIn = true;
                 }
 
@@ -234,9 +235,9 @@ public class GameScene : MonoBehaviour
     void ReflectSettings()
     {
         //影
-        LightManager.Instance.ShadowEnabled(GameDataManager.Instance.isShadowEnable);
+        LightManager.Instance.ShadowEnabled(SettingManager.Instance.isShadowEnable);
 
         //オーディオミュート
-        AudioManager.Instance.AudioMute(GameDataManager.Instance.isAudioEnabled);
+        AudioManager.Instance.AudioMute(SettingManager.Instance.isAudioEnabled);
     }
 }

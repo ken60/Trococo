@@ -8,19 +8,12 @@ class Data
     public int playCharID = 0;          //選択しているキャラクターID
     public bool[] isCharAvailable = new bool[6];          //キャラを開放しているか
     public bool isFirstStart = true;    //初回起動か
-
-    public bool isAudioEnabled = true;  //音を有効にするか
-    public bool isEnableShadow = true;  //影を有効にするか
-
-    public string un = "";
-    public string ps = "";
 }
-
 
 public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 {
     [SerializeField]
-    private string m_FileName = "SaveData";
+    private string m_FileName = "trd00002";
 
     private bool[] m_isCharAvailable = new bool[6] { false, false, false, false, false, false };       //キャラを開放しているか
     private int m_Score = 0;                //セーブするスコア
@@ -30,14 +23,6 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
     private int m_TotalGoldCoinNum = 0;     //累計金コイン数
     private int m_PlayerCharID = 0;         //選択しているキャラID
     private bool m_isFirstStart = true;     //初回起動か
-
-    private bool m_isAudioEnabled = true;  //音を有効にするか
-    private bool m_isAudioEnabled_old = true;
-    private bool m_isShadowEnabled = true;  //影を有効にするか
-    private bool m_isShadowEnabled_old = true;
-
-    private string m_un = "";
-    private string m_ps = "";
 
     private string m_Json;
 
@@ -69,17 +54,8 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
         {
             m_isCharAvailable[i] = loadData.isCharAvailable[i];
         }
-
-        //Settings
+        
         m_isFirstStart = loadData.isFirstStart;
-        m_isAudioEnabled = loadData.isAudioEnabled;
-        m_isAudioEnabled_old = loadData.isAudioEnabled;
-        m_isShadowEnabled = loadData.isEnableShadow;
-        m_isShadowEnabled_old = loadData.isEnableShadow;
-
-        //Account
-        m_un = loadData.un;
-        m_ps = loadData.ps;
     }
 
     public void SaveGame()
@@ -97,20 +73,9 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 
         for (int i = 0; i < m_isCharAvailable.Length; i++)
             data.isCharAvailable[i] = m_isCharAvailable[i];
-
-        //Settings
+        
         data.isFirstStart = m_isFirstStart;
-        data.isAudioEnabled = m_isAudioEnabled;
-        data.isEnableShadow = m_isShadowEnabled;
-
-        m_isAudioEnabled_old = m_isAudioEnabled;
-        m_isShadowEnabled_old = m_isShadowEnabled;
-
-
-        //Account
-        data.un = m_un;
-        data.ps = m_ps;
-
+               
         m_Json = JsonUtility.ToJson(data);
         FileIO.FileWrite(m_FileName, m_Json);
     }
@@ -191,43 +156,5 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
         if (m_isCharAvailable[id] == true) return;
 
         m_isCharAvailable[id] = true;
-    }
-
-    //音をミュート
-    public bool isAudioEnabled
-    {
-        get { return m_isAudioEnabled; }
-        set { m_isAudioEnabled = value; }
-    }
-
-    //影の有無
-    public bool isShadowEnable
-    {
-        get { return m_isShadowEnabled; }
-        set { m_isShadowEnabled = value; }
-    }
-
-    //設定を変更したか
-    public bool isChangingSettings()
-    {
-        if (m_isAudioEnabled != m_isAudioEnabled_old)
-            return true;
-
-        else if (m_isShadowEnabled != m_isShadowEnabled_old)
-            return true;
-
-        return false;
-    }
-
-    public string userName
-    {
-        get { return m_un; }
-        set { m_un = value; }
-    }
-
-    public string userPass
-    {
-        get { return m_ps; }
-        set { m_ps = value; }
     }
 }

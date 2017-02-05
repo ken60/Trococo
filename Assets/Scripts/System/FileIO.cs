@@ -3,28 +3,44 @@ using System.IO;
 
 public class FileIO : MonoBehaviour
 {
+    //ファイル書き込み
     public static void FileWrite(string name, string json)
     {
         // 保存するフォルダー
         string path = Application.persistentDataPath + "/Database/";
 
-        // フォルダーがない場合は作成する
+        //ディレクトリがない場合は作成する
         if (!Directory.Exists(path))
         {
             Directory.CreateDirectory(path);
         }
+
+        //ファイルがない場合は作成
+        if (!File.Exists(path + name + ".json"))
+        {
+            CreateFile(path + name + ".json");
+        }
+
         File.WriteAllText(path + name + ".json", json);
     }
 
+    //ファイル読み込み
     public static string FileRead(string name)
     {
         string path = Application.persistentDataPath + "/Database/";
 
-        //ファイルがない場合は作成
+        //ディレクトリがない場合は作成
         if (!Directory.Exists(path))
         {
-            FileWrite(name, "");
+            Directory.CreateDirectory(path);
         }
+
+        //ファイルがない場合は作成
+        if (!File.Exists(path + name + ".json"))
+        {
+            CreateFile(path + name + ".json");
+        }
+
         return File.ReadAllText(path + name + ".json", System.Text.Encoding.UTF8);
     }
 
@@ -52,5 +68,17 @@ public class FileIO : MonoBehaviour
 
         //中が空になったらディレクトリ自身も削除
         Directory.Delete(path, false);
+    }
+
+    //ファイル作成
+    private static void CreateFile(string path)
+    {
+        using (FileStream fs = File.Create(path))
+        {
+            // ファイルストリームを閉じて、変更を確定させる
+            // 呼ばなくても using を抜けた時点で Dispose メソッドが呼び出される
+            fs.Close();
+            print("CreateFile " + path);
+        }
     }
 }

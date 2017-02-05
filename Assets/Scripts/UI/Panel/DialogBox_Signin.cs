@@ -55,9 +55,9 @@ public class DialogBox_Signin : MonoBehaviour
                         }
                         else
                         {
-                            GameDataManager.Instance.userName = name;
-                            GameDataManager.Instance.userPass = ps;
-                            GameDataManager.Instance.SaveGame();
+                            AccountManager.Instance.userName = name;
+                            AccountManager.Instance.userPass = ps;
+                            AccountManager.Instance.SaveAccount();
 
                             iTweenManager.Hide_ScaleTo(this.gameObject, 0.2f, "EndAction", this.gameObject);
 

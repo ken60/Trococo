@@ -28,7 +28,7 @@ public class NCMBManager : SingletonMonoBehaviour<NCMBManager>
     {
         // データストアのRankingクラスから、Nameをキーにして検索
         NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Ranking");
-        query.WhereEqualTo("Name", GameDataManager.Instance.userName);
+        query.WhereEqualTo("Name", AccountManager.Instance.userName);
 
         query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
         {
@@ -39,7 +39,7 @@ public class NCMBManager : SingletonMonoBehaviour<NCMBManager>
                 {
                     // ハイスコアが未登録の場合
                     NCMBObject obj = new NCMBObject("Ranking");
-                    obj["Name"] = GameDataManager.Instance.userName;
+                    obj["Name"] = AccountManager.Instance.userName;
                     obj["Score"] = score;
                     obj.SaveAsync();
                 }

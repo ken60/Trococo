@@ -33,7 +33,7 @@ public class Panel_Ranking : MonoBehaviour
         isLeaderBoardFetched = false;
 
         // 現在のハイスコアを取得
-        currentHighScore = new HighScore(-1, GameDataManager.Instance.userName);
+        currentHighScore = new HighScore(-1, AccountManager.Instance.userName);
         currentHighScore.Fetch();
     }
 
@@ -75,7 +75,7 @@ public class Panel_Ranking : MonoBehaviour
                 nameText[i].color = Color.black;
 
                 //自分の名前を赤に
-                if (lBoard.topRankers[i].name == GameDataManager.Instance.userName)
+                if (lBoard.topRankers[i].name == AccountManager.Instance.userName)
                 {
                     nameText[i].color = Color.red;
                 }
@@ -91,7 +91,7 @@ public class Panel_Ranking : MonoBehaviour
                 nameText[i + 3].color = Color.black;
 
                 //自分の名前を赤に
-                if (lBoard.neighbors[i].name == GameDataManager.Instance.userName)
+                if (lBoard.neighbors[i].name == AccountManager.Instance.userName)
                 {
                     nameText[i + 3].color = Color.red;
                 }
@@ -116,7 +116,7 @@ public class Panel_Ranking : MonoBehaviour
         isLeaderBoardFetched = false;
 
         // 現在のハイスコアを取得
-        currentHighScore = new HighScore(-1, GameDataManager.Instance.userName);
+        currentHighScore = new HighScore(-1, AccountManager.Instance.userName);
         currentHighScore.Fetch();
     }
 }

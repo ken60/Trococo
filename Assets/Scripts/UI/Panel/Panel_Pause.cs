@@ -4,12 +4,9 @@ public class Panel_Pause : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_StartCount;
-
-    private GameObject m_Canvas;
-
+    
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
         Time.timeScale = 0.0f;
         GameSceneManager.Instance.isPause = true;
         transform.localScale = Vector3.zero;

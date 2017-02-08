@@ -4,12 +4,8 @@ using System.Collections.Generic;
 
 public class NCMBManager : SingletonMonoBehaviour<NCMBManager>
 {
-
     public void Login(string userName, string pass)
     {
-        //NCMBUserのインスタンス作成 
-        NCMBUser user = new NCMBUser();
-
         // ユーザー名とパスワードでログイン
         NCMBUser.LogInAsync(userName, pass, (NCMBException e) =>
          {

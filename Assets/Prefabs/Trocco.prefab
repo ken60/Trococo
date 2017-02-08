@@ -141,14 +141,14 @@ MonoBehaviour:
   - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
   - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
   - {fileID: 1000010095612326, guid: 5bc34667d8a73c64f852b8cdde6abe23, type: 2}
-  m_CharGenPosition: {fileID: 4000014065919098}
-  m_TouchScriptObj: {fileID: 0}
-  m_DieParticle: {fileID: 1000012157472710, guid: efc22ddf48ec4554893fda9397196457,
-    type: 2}
   m_ChangeParticle:
   - {fileID: 1000010100724510, guid: 1fc5201ecb33ec5419d44e31e3facd8a, type: 2}
   - {fileID: 1000010485161116, guid: 897b6708fa3a88342aef117dd730219d, type: 2}
   - {fileID: 1000012376996872, guid: 1e45dd7867a0d2f4cab9f2b94bde43b0, type: 2}
+  m_CharGenPosition: {fileID: 4000014065919098}
+  m_TouchScriptObj: {fileID: 0}
+  m_DieParticle: {fileID: 1000012157472710, guid: efc22ddf48ec4554893fda9397196457,
+    type: 2}
   m_MoveSpeed: 6
   m_JumpForce: 220
   m_LateralJumpForce: 120
@@ -280,7 +280,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874478252500482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.291, z: 0.375}
+  m_LocalPosition: {x: 0, y: 0.4688, z: 0.4431}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 442650}
@@ -353,12 +353,12 @@ Light:
   serializedVersion: 7
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 90
+  m_Intensity: 0.6
+  m_Range: 25
+  m_SpotAngle: 120
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

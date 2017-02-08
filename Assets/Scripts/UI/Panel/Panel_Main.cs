@@ -71,7 +71,7 @@ public class Panel_Main : MonoBehaviour
         if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Settings)
             if (num != m_ShowingPanelNum && SettingManager.Instance.isChangingSettings())
             {
-                GameDataManager.Instance.SaveGame();
+                SettingManager.Instance.SaveSetting();
                 print("Save Settings");
             }
 

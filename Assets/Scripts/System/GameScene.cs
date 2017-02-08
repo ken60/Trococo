@@ -39,8 +39,7 @@ public class GameScene : MonoBehaviour
     private Blur m_Blur;            //ブラースクリプト
     [SerializeField]
     private float m_GameOverWait;   //ゲームオーバー時の待機時間
-
-    private Camera m_Camera;
+    
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
@@ -58,7 +57,6 @@ public class GameScene : MonoBehaviour
     {
         m_Canvas = GameObject.Find("Canvas");
         m_FromTitle = false;
-        m_Camera = Camera.main;
     }
 
     void Update()

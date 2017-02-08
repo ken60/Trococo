@@ -12,8 +12,8 @@ public class Squid_ink : MonoBehaviour
 
     void Start()
     {
-        m_Color = GetComponent<Image>().color;
         m_Image = GetComponent<Image>();
+        m_Color = m_Image.color;
     }
     void Update()
     {

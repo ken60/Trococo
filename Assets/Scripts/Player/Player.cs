@@ -5,9 +5,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] m_Squid_ink;   //画面を覆うイカスミ
-
+    
     [SerializeField]
     private GameObject[] m_AllCharacters;   //すべてのキャラクター
+
+    [SerializeField]
+    private GameObject[] m_ChangeParticle;    //キャラチェンジ時のパーティクル
 
     [SerializeField]
     private Transform m_CharGenPosition; //キャラクターの生成位置
@@ -17,9 +20,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject m_DieParticle;   //ゲームオーバーのパーティクル
-
-    [SerializeField]
-    private GameObject[] m_ChangeParticle;    //キャラチェンジ時のパーティクル
 
     [SerializeField]
     private float m_MoveSpeed;   //プレイヤーの移動速度
@@ -105,9 +105,9 @@ public class Player : MonoBehaviour
     //フリック時に呼ばれる
     void HandleFlick(object sender, System.EventArgs e)
     {
-        if (GameSceneManager.Instance.isGameOver ||
-            GameSceneManager.Instance.isPause ||
-            !GameSceneManager.Instance.isGamePlaying)
+        if (!GameSceneManager.Instance.isGamePlaying ||
+            GameSceneManager.Instance.isGameOver ||
+            GameSceneManager.Instance.isPause)
             return;
 
         var gesture = sender as FlickGesture;

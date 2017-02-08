@@ -47,8 +47,7 @@ public class Gauss : MonoBehaviour
         command.GetTemporaryRT(rt1, -resolution, -resolution, 0, FilterMode.Point);
         int rt2 = Shader.PropertyToID("rt2");
         command.GetTemporaryRT(rt2, -resolution, -resolution, 0, FilterMode.Trilinear);
-
-        var weight = CalcWeight(4, 8);
+        
         command.SetGlobalVector(Shader.PropertyToID("_PixelSize"), new Vector4((float)resolution / Screen.width, (float)resolution / Screen.height, 0, 0));
 
         command.Blit((RenderTargetIdentifier)source, rt1, material, 0);

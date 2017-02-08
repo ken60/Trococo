@@ -13,7 +13,6 @@ public class MobileInput : MonoBehaviour
     private static MobileInput instance;
     private Vector2 m_StartPos = Vector2.zero;
     private TouchType m_TouchDir = TouchType.NONE;
-    private Vector2 m_Direction = Vector2.zero;
     private bool m_DuringTap = false;
 
     public enum TouchType

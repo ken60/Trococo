@@ -22,8 +22,6 @@ GameObject:
   - component: {fileID: 222000010122520366}
   - component: {fileID: 114000013905941584}
   - component: {fileID: 114000010305462846}
-  - component: {fileID: 114000013871980186}
-  - component: {fileID: 114000013058309312}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -39,9 +37,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224000013677715172}
+  - component: {fileID: 114590547802273496}
   - component: {fileID: 114000012982694344}
   m_Layer: 5
-  m_Name: Game UI
+  m_Name: Game_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +74,6 @@ GameObject:
   - component: {fileID: 222000011307853080}
   - component: {fileID: 114000014076912472}
   - component: {fileID: 114000010525812586}
-  - component: {fileID: 114000011344167202}
   m_Layer: 5
   m_Name: GoldCoinNum
   m_TagString: Untagged
@@ -148,18 +146,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 3, y: 3}
   m_UseGraphicAlpha: 1
---- !u!114 &114000011344167202
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013954920188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822fa6c8075bf544e903668c5916f3fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 10
 --- !u!114 &114000012982694344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,29 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_GoldCoinText: {fileID: 114000014076912472}
---- !u!114 &114000013058309312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010669112198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822fa6c8075bf544e903668c5916f3fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 10
---- !u!114 &114000013871980186
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010669112198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e071e817351d1fb4b833017e40d54373, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000013905941584
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -241,7 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -268,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -362,6 +325,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114590547802273496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010902334780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822fa6c8075bf544e903668c5916f3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortType: 0
+  index: 0
 --- !u!114 &114665131999951014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -396,7 +372,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114517802218748770}
   m_OnClick:
     m_PersistentCalls:

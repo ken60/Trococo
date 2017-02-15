@@ -5,13 +5,14 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 22492712}
-  - 222: {fileID: 22214020}
-  - 114: {fileID: 11405030}
-  - 95: {fileID: 9524998}
-  - 114: {fileID: 11479248}
+  - component: {fileID: 22492712}
+  - component: {fileID: 22214020}
+  - component: {fileID: 11405030}
+  - component: {fileID: 9524998}
+  - component: {fileID: 114702841088235148}
+  - component: {fileID: 11479248}
   m_Layer: 5
   m_Name: Squid_ink_B
   m_TagString: Squid_ink
@@ -90,10 +91,10 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 9}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -110,3 +111,16 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 132352}
   m_IsPrefabParent: 1
+--- !u!114 &114702841088235148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822fa6c8075bf544e903668c5916f3fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortType: 0
+  index: 0

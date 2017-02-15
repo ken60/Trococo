@@ -11,19 +11,20 @@ public class Panel_Ranking : MonoBehaviour
     private Text[] nameText;
     [SerializeField]
     private Text[] scoreText;
-    
-    private float m_TimeCount = 0f;
 
     private LeaderBoard lBoard;
     private HighScore currentHighScore;
 
-    bool isScoreFetched;
-    bool isRankFetched;
-    bool isLeaderBoardFetched;
+    private float m_TimeCount = 0f;
+    private bool isScoreFetched;
+    private bool isRankFetched;
+    private bool isLeaderBoardFetched;
 
     void Start()
     {
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+
+        Loading.Instance.ShowLoading(new Vector2(0f, -80f));
 
         lBoard = new LeaderBoard();
 
@@ -35,6 +36,7 @@ public class Panel_Ranking : MonoBehaviour
         // 現在のハイスコアを取得
         currentHighScore = new HighScore(-1, AccountManager.Instance.userName);
         currentHighScore.Fetch();
+
     }
 
     void Update()
@@ -97,6 +99,8 @@ public class Panel_Ranking : MonoBehaviour
                 }
             }
 
+            Loading.Instance.HideLoading();
+
             isLeaderBoardFetched = true;
         }
 
@@ -105,8 +109,17 @@ public class Panel_Ranking : MonoBehaviour
 
     public void Reload()
     {
-        if (m_TimeCount < 5.0f) return;
+        if (m_TimeCount < 3f) return;
         m_TimeCount = 0f;
+
+        for (int i = 0; i < rankText.Length; ++i)
+        {
+            rankText[i].text = "";
+            nameText[i].text = "";
+            scoreText[i].text = "";
+        }
+
+        Loading.Instance.ShowLoading(new Vector2(0f, -80f));
 
         lBoard = new LeaderBoard();
 

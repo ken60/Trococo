@@ -4179,6 +4179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 10
+  sortType: 1
 --- !u!114 &114000012639852888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5012,6 +5013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 20
+  sortType: 0
 --- !u!114 &114000013558102550
 MonoBehaviour:
   m_ObjectHideFlags: 1

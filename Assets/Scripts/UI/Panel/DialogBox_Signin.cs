@@ -24,6 +24,9 @@ public class DialogBox_Signin : MonoBehaviour
     public void OK_Button()
     {
         string name = m_InputField.text;
+        
+        Loading.Instance.ShowLoading(new Vector2(0f, 0f));
+        m_Button.enabled = false;
 
         //NCMBUserのインスタンス作成 
         NCMBUser user = new NCMBUser();
@@ -43,23 +46,30 @@ public class DialogBox_Signin : MonoBehaviour
                     //ユーザ名とパスワードの設定
                     user.UserName = name;
                     user.Password = ps;
-                    
+
                     //会員登録を行う
                     user.SignUpAsync((NCMBException e2) =>
                     {
                         if (e2 != null)
                         {
+                            Loading.Instance.HideLoading();
+                            m_Button.interactable = true;
+
                             GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
                             dialog.GetComponent<DialogBox>().SetText("エラー\nもう一度試してみてください");
                         }
                         else
                         {
+                            Loading.Instance.HideLoading();
+                            m_Button.interactable = true;
+
                             AccountManager.Instance.userName = name;
                             AccountManager.Instance.userPass = ps;
                             AccountManager.Instance.SaveAccount();
 
                             iTweenManager.Hide_ScaleTo(this.gameObject, 0.2f, "EndAction", this.gameObject);
+
 
                             GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
@@ -69,6 +79,9 @@ public class DialogBox_Signin : MonoBehaviour
                 }
                 else
                 {
+                    Loading.Instance.HideLoading();
+                    m_Button.interactable = true;
+
                     GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                     dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
                     dialog.GetComponent<DialogBox>().SetText("すでに登録されている名前です");

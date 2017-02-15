@@ -64,7 +64,7 @@ public class GameScene : MonoBehaviour
         switch (m_GameScene)
         {
             case eGameScene.LoadTitle:
-                //セーブデータのロード
+                //セーブデzータのロード
                 GameDataManager.Instance.LoadGame();
                 //設定の適用
                 ReflectSettings();

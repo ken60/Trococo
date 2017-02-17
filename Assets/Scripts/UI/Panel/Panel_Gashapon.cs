@@ -52,7 +52,7 @@ public class Panel_Gashapon : MonoBehaviour
         {
             GameObject dialog = Instantiate(m_Dialog[0], Vector3.zero, Quaternion.identity) as GameObject;
             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            dialog.GetComponent<DialogBox>().SetText("コインが足りません");
+            dialog.GetComponent<DialogBox>().SetMessage("コインが足りません");
         }
     }
 }

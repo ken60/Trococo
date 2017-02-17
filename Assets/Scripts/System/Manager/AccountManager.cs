@@ -16,12 +16,7 @@ public class AccountManager : SingletonMonoBehaviour<AccountManager>
     private string m_ps = "";
 
     private string m_Json;
-
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
+    
     public void LoadAccount()
     {
         AccountData loadData = JsonUtility.FromJson(FileIO.FileRead(m_FileName), typeof(AccountData)) as AccountData;

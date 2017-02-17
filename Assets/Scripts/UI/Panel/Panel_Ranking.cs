@@ -22,6 +22,9 @@ public class Panel_Ranking : MonoBehaviour
 
     void Start()
     {
+        //ネットワーク接続確認
+        NetworkChecker.Instance.ReachableCheck();
+
         transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
         Loading.Instance.ShowLoading(new Vector2(0f, -80f));
@@ -41,6 +44,20 @@ public class Panel_Ranking : MonoBehaviour
 
     void Update()
     {
+        //ローディング表示
+        if (this.transform.localScale.x < 1f)
+        {
+            Loading.Instance.HideLoading();
+        }
+        else if (nameText[0].text == "")
+        {
+            Loading.Instance.ShowLoading(new Vector2(0f, -80f));
+        }
+        else
+        {
+            Loading.Instance.HideLoading();
+        }
+
         // 現在のハイスコアの取得が完了したら1度だけ実行
         if (currentHighScore.score != -1 && !isScoreFetched)
         {
@@ -99,8 +116,6 @@ public class Panel_Ranking : MonoBehaviour
                 }
             }
 
-            Loading.Instance.HideLoading();
-
             isLeaderBoardFetched = true;
         }
 
@@ -112,14 +127,15 @@ public class Panel_Ranking : MonoBehaviour
         if (m_TimeCount < 3f) return;
         m_TimeCount = 0f;
 
+        //ネットワーク接続確認
+        NetworkChecker.Instance.ReachableCheck();
+
         for (int i = 0; i < rankText.Length; ++i)
         {
             rankText[i].text = "";
             nameText[i].text = "";
             scoreText[i].text = "";
         }
-
-        Loading.Instance.ShowLoading(new Vector2(0f, -80f));
 
         lBoard = new LeaderBoard();
 

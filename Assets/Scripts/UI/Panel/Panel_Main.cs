@@ -10,7 +10,7 @@ public class Panel_Main : MonoBehaviour
         ePanel_Settings = 0,
         ePanel_Home,
         ePanel_Gashapon,
-        ePanel_HowToPlay,
+        ePanel_Ranking,
     }
 
     [SerializeField]
@@ -51,7 +51,7 @@ public class Panel_Main : MonoBehaviour
     void Update()
     {
         //累計コイン数を表示
-        m_GoldCoinText.text = GameDataManager.Instance.totalGoldCoinNum.ToString();        
+        m_GoldCoinText.text = GameDataManager.Instance.totalGoldCoinNum.ToString();
     }
 
     //メニューボタンにアタッチ
@@ -69,18 +69,23 @@ public class Panel_Main : MonoBehaviour
 
         //セッティングパネルを閉じた時にセーブ
         if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Settings)
+        {
             if (num != m_ShowingPanelNum && SettingManager.Instance.isChangingSettings())
             {
                 SettingManager.Instance.SaveSetting();
-                print("Save Settings");
             }
+        }
 
+        /*
         //遊び方パネルを閉じたときに1ページに
-        if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_HowToPlay)
+        if (m_ShowingPanelNum == (int)PanelMenuNum.ePanel_Ranking)
+        {
             if (num != m_ShowingPanelNum)
             {
                 m_HowToPlay.SetPageNumber(1);
             }
+        }
+        */
 
         //表示していたパネルのボタンを有効化
         m_Button_Menu[m_ShowingPanelNum].enabled = true;

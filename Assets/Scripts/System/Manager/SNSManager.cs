@@ -100,7 +100,7 @@ public class SNSManager : SingletonMonoBehaviour<SNSManager>
     {
         GameObject dialog = Instantiate(m_Dialog, Vector3.zero, Quaternion.identity) as GameObject;
         dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-        dialog.GetComponent<DialogBox>().SetText("スクリーンショットに\n失敗しました...\n\nメッセージのみをシェアします");
+        dialog.GetComponent<DialogBox>().SetMessage("スクリーンショットに\n失敗しました...\n\nメッセージのみをシェアします");
     }
 
     public string fileName

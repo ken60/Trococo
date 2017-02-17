@@ -18,14 +18,16 @@ public class DialogBox_Signin : MonoBehaviour
 
     void Update()
     {
+        transform.SetAsLastSibling();
         m_Button.interactable = ConfirmationUserName(m_InputField.text);
     }
 
     public void OK_Button()
     {
         string name = m_InputField.text;
-        
+
         Loading.Instance.ShowLoading(new Vector2(0f, 0f));
+
         m_Button.enabled = false;
 
         //NCMBUserのインスタンス作成 
@@ -57,7 +59,7 @@ public class DialogBox_Signin : MonoBehaviour
 
                             GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-                            dialog.GetComponent<DialogBox>().SetText("エラー\nもう一度試してみてください");
+                            dialog.GetComponent<DialogBox>().SetMessage("エラー\nもう一度試してみてください");
                         }
                         else
                         {
@@ -73,7 +75,7 @@ public class DialogBox_Signin : MonoBehaviour
 
                             GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                             dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-                            dialog.GetComponent<DialogBox>().SetText("ユーザーを作成しました");
+                            dialog.GetComponent<DialogBox>().SetMessage("ユーザーを作成しました");
                         }
                     });
                 }
@@ -84,7 +86,7 @@ public class DialogBox_Signin : MonoBehaviour
 
                     GameObject dialog = Instantiate(m_DialogBox, Vector3.zero, Quaternion.identity) as GameObject;
                     dialog.transform.SetParent(GameObject.Find("Canvas").transform, false);
-                    dialog.GetComponent<DialogBox>().SetText("すでに登録されている名前です");
+                    dialog.GetComponent<DialogBox>().SetMessage("すでに登録されている名前です");
                 }
             }
         });

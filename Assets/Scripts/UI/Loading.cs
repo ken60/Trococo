@@ -3,26 +3,22 @@ using UnityEngine.UI;
 
 public class Loading : SingletonMonoBehaviour<Loading>
 {
-    [SerializeField]
-    private GameObject loadImg;
-
-    private GameObject instanceObj;
-    private GameObject canvas;
+    private Image loadImg;
 
     private void Start()
     {
-        canvas = GameObject.Find("Canvas");
+        loadImg = GetComponent<Image>();
+        HideLoading();
     }
 
     public void ShowLoading(Vector2 pos)
     {
         loadImg.transform.localPosition = pos;
-        instanceObj = Instantiate(loadImg, pos, Quaternion.identity) as GameObject;
-        instanceObj.transform.SetParent(canvas.transform, false);
+        loadImg.enabled = true;
     }
 
     public void HideLoading()
     {
-        Destroy(instanceObj);
+        loadImg.enabled = false;
     }
 }

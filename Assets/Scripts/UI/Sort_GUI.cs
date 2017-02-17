@@ -20,20 +20,17 @@ public class Sort_GUI : MonoBehaviour
         "DialogBox_Signin",
         "DialogBox",
     };
+
     enum eSortType
     {
         Auto,
         Maunal,
         First,
         Last
-
     }
-
-
 
     [SerializeField]
     private eSortType sortType;
-
     [SerializeField]
     private int index = 0;
 
@@ -48,7 +45,7 @@ public class Sort_GUI : MonoBehaviour
                     {
                         index = i;
                         this.transform.SetSiblingIndex(index);
-                        print(this.gameObject.name + " index: " + this.transform.GetSiblingIndex() + " " + i);
+                        //print(this.gameObject.name + " index: " + this.transform.GetSiblingIndex() + " " + i);
                     }
                 }
                 break;

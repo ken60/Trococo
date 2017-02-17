@@ -28,7 +28,6 @@ public class GameDataManager : SingletonMonoBehaviour<GameDataManager>
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
         m_isCharAvailable[0] = true;
     }
 

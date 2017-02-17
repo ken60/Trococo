@@ -19,11 +19,6 @@ public class SettingManager : SingletonMonoBehaviour<SettingManager>
 
     private string m_Json;
 
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     public void LoadSetting()
     {
         SettingData loadData = JsonUtility.FromJson(FileIO.FileRead(m_FileName), typeof(SettingData)) as SettingData;

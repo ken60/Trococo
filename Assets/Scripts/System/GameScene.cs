@@ -39,7 +39,7 @@ public class GameScene : MonoBehaviour
     private Blur m_Blur;            //ブラースクリプト
     [SerializeField]
     private float m_GameOverWait;   //ゲームオーバー時の待機時間
-    
+
     private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
@@ -57,6 +57,22 @@ public class GameScene : MonoBehaviour
     {
         m_Canvas = GameObject.Find("Canvas");
         m_FromTitle = false;
+
+        //ネットワーク接続確認
+        NetworkChecker.Instance.ReachableCheck();
+
+        if (AccountManager.Instance.userName == "" && !m_isLoggingIn)
+        {
+            //サインインパネルを表示
+            GameObject signin = Instantiate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity) as GameObject;
+            signin.transform.SetParent(m_Canvas.transform, false);
+        }
+        else
+        {
+            //ログイン
+            NCMBManager.Instance.Login(AccountManager.Instance.userName, AccountManager.Instance.userPass);
+            m_isLoggingIn = true;
+        }
     }
 
     void Update()
@@ -83,24 +99,11 @@ public class GameScene : MonoBehaviour
 
                 m_FromTitle = true;
                 m_CaptureSS = false;
-
-                if (AccountManager.Instance.userName == "" && !m_isLoggingIn)
-                {
-                    //サインインパネルを表示
-                    GameObject signin = Instantiate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity) as GameObject;
-                    signin.transform.SetParent(m_Canvas.transform, false);
-                }
-                else
-                {
-                    //ログイン
-                    NCMBManager.Instance.Login(AccountManager.Instance.userName, AccountManager.Instance.userPass);
-                    m_isLoggingIn = true;
-                }
-
+                
                 m_GameScene = eGameScene.Title;
 
                 break;
-                
+
             case eGameScene.Title:
                 //Title Showing
                 //Panel_MainのLoadGame()にシーンチェンジ記述
@@ -210,10 +213,13 @@ public class GameScene : MonoBehaviour
                 //リザルトパネルを表示
                 GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;
                 panelRes.transform.SetParent(m_Canvas.transform, false);
-                
+
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameDataManager.Instance.IsHighScore())// && Application.platform == RuntimePlatform.Android)
                 {
+                    //ネットワーク接続確認
+                    NetworkChecker.Instance.ReachableCheck();
+
                     //ランキングスコア送信
                     NCMBManager.Instance.SendScore(GameDataManager.Instance.score);
                     print("Send score");

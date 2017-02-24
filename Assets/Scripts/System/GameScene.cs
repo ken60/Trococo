@@ -40,7 +40,6 @@ public class GameScene : MonoBehaviour
     [SerializeField]
     private float m_GameOverWait;   //ゲームオーバー時の待機時間
 
-    private GameObject m_Canvas;
     private float m_TimeCount = 0.0f;
     private bool m_FromTitle = false;   //タイトルからの遷移か
     private bool m_isLoggingIn = false;
@@ -55,7 +54,6 @@ public class GameScene : MonoBehaviour
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
         m_FromTitle = false;
 
         //ネットワーク接続確認
@@ -64,8 +62,7 @@ public class GameScene : MonoBehaviour
         if (AccountManager.Instance.userName == "" && !m_isLoggingIn)
         {
             //サインインパネルを表示
-            GameObject signin = Instantiate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity) as GameObject;
-            signin.transform.SetParent(m_Canvas.transform, false);
+            TRC_Utility.CanvasInstantilate(m_Panel_Signin, m_Panel_Signin.transform.position, Quaternion.identity);
         }
         else
         {
@@ -93,13 +90,12 @@ public class GameScene : MonoBehaviour
                 //ゲームプレイ中のUIを非表示
                 m_UI_Text.SetActive(false);
                 //タイトルパネルを表示
-                GameObject main = Instantiate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
-                main.transform.SetParent(m_Canvas.transform, false);
+                GameObject main = TRC_Utility.CanvasInstantilate(m_Panel_Main, m_Panel_Main.transform.position, Quaternion.identity) as GameObject;
                 iTweenManager.Show_ScaleTo(main.gameObject, 0.35f);
 
                 m_FromTitle = true;
                 m_CaptureSS = false;
-                
+
                 m_GameScene = eGameScene.Title;
 
                 break;
@@ -136,8 +132,7 @@ public class GameScene : MonoBehaviour
                 //初回起動時チュートリアル表示
                 if (GameDataManager.Instance.isFerstStart)
                 {
-                    m_TutorialPanel = Instantiate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity) as GameObject;
-                    m_TutorialPanel.transform.SetParent(m_Canvas.transform, false);
+                    TRC_Utility.CanvasInstantilate(m_Panel_Tutorial, Vector3.zero, Quaternion.identity);
 
                     m_GameScene = eGameScene.Tutorial;
                 }
@@ -163,8 +158,7 @@ public class GameScene : MonoBehaviour
             case eGameScene.WaitCount:
 
                 //カウントダウンを表示
-                GameObject count = Instantiate(m_StartCount, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
-                count.transform.SetParent(m_Canvas.transform, false);
+                TRC_Utility.CanvasInstantilate(m_StartCount, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
 
                 GameDataManager.Instance.SaveGame();
 
@@ -211,8 +205,7 @@ public class GameScene : MonoBehaviour
                 m_Blur.enabled = true;
 
                 //リザルトパネルを表示
-                GameObject panelRes = Instantiate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity) as GameObject;
-                panelRes.transform.SetParent(m_Canvas.transform, false);
+                TRC_Utility.CanvasInstantilate(m_Panel_Result, m_Panel_Result.transform.position, Quaternion.identity);
 
                 //ハイスコアの時 & Androidのみスコアを送信
                 if (GameDataManager.Instance.IsHighScore())// && Application.platform == RuntimePlatform.Android)

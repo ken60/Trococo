@@ -7,17 +7,11 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
     private GameObject m_PausePanel;
     [SerializeField]
     private Button m_ButtonPause;
-    
-    private GameObject m_Canvas;
+
     private bool m_isStartCount = false;
     private bool m_isGamePlaying = false;
     private bool m_isPause = false;
     private bool m_isGameOver = false;
-
-    void Start()
-    {
-        m_Canvas = GameObject.Find("Canvas");
-    }
 
     void Update()
     {
@@ -88,7 +82,6 @@ public class GameSceneManager : SingletonMonoBehaviour<GameSceneManager>
     {
         if (isStartCount) return;
 
-        GameObject panel = Instantiate(m_PausePanel, Vector3.zero, Quaternion.identity) as GameObject;
-        panel.transform.SetParent(m_Canvas.transform, false);
+        TRC_Utility.CanvasInstantilate(m_PausePanel, Vector3.zero, Quaternion.identity);
     }
 }

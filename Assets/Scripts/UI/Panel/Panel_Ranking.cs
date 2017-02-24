@@ -49,7 +49,7 @@ public class Panel_Ranking : MonoBehaviour
         {
             Loading.Instance.HideLoading();
         }
-        else if (nameText[0].text == "")
+        else if (nameText[0].text == "" && NetworkChecker.Instance.networkReachability != NetworkReachability.NotReachable)
         {
             Loading.Instance.ShowLoading(new Vector2(0f, -80f));
         }

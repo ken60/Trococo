@@ -4,24 +4,16 @@ public class NetworkChecker : SingletonMonoBehaviour<NetworkChecker>
 {
     [SerializeField]
     private GameObject m_NetworkDalog;
-    [SerializeField]
-    private GameObject m_Canvas;
 
-    private NetworkReachability networkReachability;
+    private NetworkReachability _networkReachability;
     private GameObject m_instanteObj;
     private bool isShowDialog = false;
 
-    private void Start()
-    {
-        //m_Canvas = GameObject.Find("Canvas");
-        //print("m_Canvas " + m_Canvas.name);
-    }
-
     private void Update()
     {
-        if (networkReachability != Application.internetReachability)
+        if (_networkReachability != Application.internetReachability)
         {
-            networkReachability = Application.internetReachability;
+            _networkReachability = Application.internetReachability;
 
             ReachableNetwork();
         }
@@ -36,8 +28,10 @@ public class NetworkChecker : SingletonMonoBehaviour<NetworkChecker>
                 {
                     isShowDialog = true;
 
-                    m_instanteObj = Instantiate(m_NetworkDalog, Vector3.zero, Quaternion.identity) as GameObject;
-                    m_instanteObj.transform.SetParent(m_Canvas.transform, false);
+                    Loading.Instance.HideLoading();
+
+                    m_instanteObj = TRC_Utility.CanvasInstantilate(m_NetworkDalog, Vector3.zero, Quaternion.identity);
+                    m_instanteObj.transform.SetAsLastSibling();
                     m_instanteObj.GetComponent<DialogBox>().SetMessage("通信エラーが発生しました。\nインターネット接続を確認してください。");
                     m_instanteObj.GetComponent<DialogBox>().m_isShowButton = false;
 
@@ -72,5 +66,10 @@ public class NetworkChecker : SingletonMonoBehaviour<NetworkChecker>
     {
         if (m_instanteObj != null)
             Destroy(m_instanteObj);
+    }
+
+    public NetworkReachability networkReachability
+    {
+        get { return _networkReachability; }
     }
 }

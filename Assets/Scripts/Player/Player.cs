@@ -44,8 +44,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float m_Angle = 30.0f;
-
-    private GameObject m_Canvas;
+    
     private GameObject m_Character; //生成されたキャラクター
     private Vector3 m_CharScale = new Vector3(1.0f, 1.0f, 1.0f);
     private Rigidbody m_Rigidbody;
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        m_Canvas = GameObject.Find("Canvas");
         m_Rigidbody = GetComponent<Rigidbody>();
         //m_Animator = GetComponent<Animator>();
 
@@ -215,7 +213,6 @@ public class Player : MonoBehaviour
 
         //スコア
         GameDataManager.Instance.score = (int)transform.position.z;
-
     }
 
     void FixedUpdate()
@@ -286,8 +283,7 @@ public class Player : MonoBehaviour
         //イカ
         if (hit.gameObject.tag == "Squid")
         {
-            GameObject obj = Instantiate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], Vector3.zero, Quaternion.identity) as GameObject;
-            obj.transform.SetParent(m_Canvas.transform, false);
+            TRC_Utility.CanvasInstantilate(m_Squid_ink[Random.Range(0, m_Squid_ink.Length)], Vector3.zero, Quaternion.identity);
         }
 
         //コイン
